@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_opening"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A243B"
+    tools:context="com.example.app.jsdc.Opening">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/logo">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_putih"
+        android:paddingRight="100dp"
+        android:paddingLeft="100dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="JSDC"
+        android:textColor="#FF6C2C"
+        android:textSize="40dp"
+        android:id="@+id/jsdc"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jakarta Safety Driving Centre"
+        android:textColor="#ffff"
+        android:textStyle="italic"
+        android:textSize="22dp"
+        android:id="@+id/jscd_bawah"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,368 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.app.jsdc.Praktek_R4">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="250dp"
+            android:id="@+id/L"
+            android:textSize="20dp"
+            android:background="#CED5DD"
+            android:textColor="#000"
+            android:text="L" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="310dp"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@id/L"
+            android:textColor="#000"
+            android:text="T" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/L"
+            android:layout_marginTop="20dp"
+            android:textColor="#000"
+            android:text="A. Lajur Kiri"
+            android:id="@+id/R4A" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_A"
+            android:layout_below="@id/L"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RBL_R4A" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RBTL_R4A"
+                android:layout_marginLeft="25dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4A"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="B. Angka 8"
+            android:id="@+id/R4B" />
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_B"
+            android:layout_below="@id/grupR4_A"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RBL_R4B"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RBTL_R4B"
+                android:layout_marginStart="25dp"
+                />
+
+
+        </RadioGroup>
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4B"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="C. U Turn"
+            android:id="@+id/R4C" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_C"
+            android:layout_below="@id/grupR4_B"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4C"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4C"
+            android:layout_marginStart="25dp"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4C"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="D. Crack Shape"
+            android:id="@+id/R4D" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_D"
+            android:layout_below="@id/grupR4_C"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4D"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4D"
+            android:layout_marginStart="25dp"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4D"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="E. Tanjakan"
+            android:id="@+id/R4E" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_E"
+            android:layout_below="@id/grupR4_D"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4E" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4E"
+            android:layout_marginStart="25dp"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4E"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="F. Zig-Zag"
+            android:id="@+id/R4F" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_F"
+            android:layout_below="@id/grupR4_E"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4F" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4F"
+            android:layout_marginStart="25dp"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4F"
+            android:layout_marginTop="20dp"
+            android:textColor="#000"
+            android:text="G. Keseimbangan"
+            android:id="@+id/R4G" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_G"
+            android:layout_below="@id/grupR4_F"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4G"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4G"
+            android:layout_marginStart="25dp"/>
+
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4G"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="H. Traffic Light"
+            android:id="@+id/R4H" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_H"
+            android:layout_below="@id/grupR4_G"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4H" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4H"
+            android:layout_marginStart="25dp"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4H"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="I. P3K"
+            android:id="@+id/R4I" />
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_I"
+            android:layout_below="@id/grupR4_H"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4I" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4I"
+            android:layout_marginStart="25dp"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/R4I"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="J. Menurunkan\n    Penumpang"
+            android:id="@+id/R4J" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupR4_J"
+            android:layout_below="@id/grupR4_I"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBL_R4J"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBTL_R4J"
+            android:layout_marginStart="25dp"/>
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</FrameLayout>

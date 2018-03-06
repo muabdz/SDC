@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_penguji"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.app.jsdc.LoginPenguji">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JSDC"
+        android:textColor="#FF6C2C"
+        android:textSize="40dp"
+        android:id="@+id/jsdc"
+        android:textAlignment="center"
+        android:background="#0A243B"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jakarta Safety Driving Centre"
+        android:textColor="#ffff"
+        android:textStyle="italic"
+        android:textSize="22dp"
+        android:textAlignment="center"
+        android:background="#0A243B"
+        android:id="@+id/jscd_bawah"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="  Penguji :"
+        android:background="#FF6C2C"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/jscd_bawah"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sukri"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:id="@+id/penguji"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="98dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keluar"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:id="@+id/keluar"
+        android:layout_alignBaseline="@id/textView2"
+        android:layout_alignBottom="@id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="300dp"/>
+
+    <SurfaceView
+        android:layout_width="680px"
+        android:layout_height="620px"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/camera_scan" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scan QR Code Peserta"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:id="@+id/text4"
+        android:layout_above="@+id/camera_scan"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masuk"
+        android:id="@+id/b_scanPeserta"
+        android:background="#FF6C2C"
+        android:textColor="#fff"
+        android:layout_below="@+id/camera_scan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp" />
+
+
+</RelativeLayout>

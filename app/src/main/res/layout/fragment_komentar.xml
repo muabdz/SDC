@@ -1,0 +1,75 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.app.jsdc.Komentar">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A. Pengetahuan"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:id="@+id/T_pengetahuan"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/T_pengetahuan"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:background="#9999"
+            android:id="@+id/ET_Pengetahuan"
+            android:layout_marginStart="35dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B. Teknik Mengemudi"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:id="@+id/T_mengemudi"
+            android:layout_below="@id/ET_Pengetahuan"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/T_mengemudi"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:background="#9999"
+            android:id="@+id/ET_Mengemudi"
+            android:layout_marginStart="35dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C. Perilaku Mengemudi"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:id="@+id/T_perilaku"
+            android:layout_below="@id/ET_Mengemudi"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/T_perilaku"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:background="#9999"
+            android:id="@+id/ET_Perilaku"
+            android:layout_marginStart="35dp"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

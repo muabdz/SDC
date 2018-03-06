@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_test_peserta"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.app.jsdc.TestPeserta">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JSDC"
+        android:textColor="#FF6C2C"
+        android:textSize="40dp"
+        android:id="@+id/jsdc"
+        android:textAlignment="center"
+        android:background="#0A243B"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jakarta Safety Driving Centre"
+        android:textColor="#ffff"
+        android:textStyle="italic"
+        android:textSize="22dp"
+        android:textAlignment="center"
+        android:background="#0A243B"
+        android:id="@+id/jscd_bawah"
+        android:paddingBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="  Penguji :"
+        android:background="#FF6C2C"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:paddingTop="5dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/jscd_bawah"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sukri"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:id="@+id/penguji"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="98dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keluar"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:id="@+id/keluar"
+        android:layout_alignBaseline="@id/textView2"
+        android:layout_alignBottom="@id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="300dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Peserta : "
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/text_peserta"
+        android:layout_below="@id/textView2"/>
+
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:background="#999999"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:id="@+id/peserta"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        android:layout_alignBaseline="@id/text_peserta"
+        android:layout_marginStart="100dp"
+        />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="#999999"
+        android:textSize="20dp"
+        android:id="@+id/jenis_tes"
+        android:textColor="#C41414"
+        android:textAlignment="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_alignBaseline="@id/text_peserta"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Praktek"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginStart="2dp"
+        android:layout_below="@id/text_peserta"
+        android:id="@+id/b_praktek"
+        android:onClick="Menu_Fragment (TestPeserta)" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sikap"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_alignBaseline="@id/b_praktek"
+        android:layout_toRightOf="@id/b_praktek"
+        android:id="@+id/b_sikap"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Komentar"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_alignBaseline="@id/b_praktek"
+        android:layout_toRightOf="@id/b_sikap"
+        android:id="@+id/b_komentar" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_tes"
+        android:name="com.example.app.jsdc.Tes_Praktek"
+        android:layout_below="@id/b_praktek"
+        />
+
+
+
+
+</RelativeLayout>

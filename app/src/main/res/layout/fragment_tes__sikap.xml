@@ -1,0 +1,129 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tes_Sikap">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="250dp"
+            android:id="@+id/L"
+            android:textSize="20dp"
+            android:background="#CED5DD"
+            android:textColor="#000"
+            android:text="L" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="310dp"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@id/L"
+            android:textColor="#000"
+            android:text="T" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/L"
+            android:layout_marginTop="20dp"
+            android:textColor="#000"
+            android:text="A. Sikap"
+            android:id="@+id/sikap_A" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupSikap"
+            android:layout_below="@id/L"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBsikap_AL" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBsikap_ATL"
+            android:layout_marginStart="30dp"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/sikap_A"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="B. Bahasa Tubuh"
+            android:id="@+id/BTubuh_B" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupBtubuh"
+            android:layout_below="@id/grupSikap"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBBtubuh_BL"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBBtubuh_BTL"
+            android:layout_marginStart="30dp"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:layout_below="@id/BTubuh_B"
+            android:layout_marginTop="30dp"
+            android:textColor="#000"
+            android:text="C. Konsentrasi"
+            android:id="@+id/Ckonsen_C" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupKonsen"
+            android:layout_below="@id/grupBtubuh"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="240dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBBkonsen_BL"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RBBkonsen_BTL"
+            android:layout_marginStart="30dp"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+</FrameLayout>
