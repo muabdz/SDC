@@ -98,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MASUK"
-        android:id="@+id/b_scanPeserta"
+        android:id="@+id/b_loginPeserta"
         android:background="#FF6C2C"
         android:textColor="#fff"
         android:layout_below="@+id/No_daftar"

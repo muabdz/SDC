@@ -6,13 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
-public class LoginPenguji extends AppCompatActivity  {
+public class LoginPenguji extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,11 @@ public class LoginPenguji extends AppCompatActivity  {
         setContentView(R.layout.activity_login_penguji);
         final Activity activity = this;
         Button T_scanpeserta = (Button) findViewById(R.id.b_scanPeserta);
+        TextView b_loginkode = (TextView) findViewById(R.id.Bantuan);
+        TextView logout = (TextView) findViewById(R.id.keluar);
+
+        b_loginkode.setOnClickListener(this);
+        logout.setOnClickListener(this);
 
         T_scanpeserta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,5 +57,21 @@ public class LoginPenguji extends AppCompatActivity  {
 
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.Bantuan:
+                Intent kodePendaftaran = new Intent(this, Login_kode.class);
+                startActivity(kodePendaftaran);
+                break;
+            case R.id.keluar:
+                Intent logout = new Intent(this, ScanQR.class);
+                startActivity(logout);
+                break;
+        }
+
     }
 }

@@ -94,8 +94,6 @@
         android:layout_below="@id/camera_scan"
         />
 
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
