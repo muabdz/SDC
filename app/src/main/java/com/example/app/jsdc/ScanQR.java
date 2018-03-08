@@ -42,8 +42,8 @@ public class ScanQR extends AppCompatActivity {
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_LONG).show();
             } else
                 Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-            Intent movea = new Intent(this, LoginPenguji.class);
-            startActivity(movea);
+                Intent movea = new Intent(this, LoginPenguji.class);
+                startActivity(movea);
 
         } else {
 

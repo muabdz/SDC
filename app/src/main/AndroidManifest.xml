@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app.jsdc">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera2"/>
-    <uses-feature android:name="android.hardware.camera2.autofocus"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera2" />
+    <uses-feature android:name="android.hardware.camera2.autofocus" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,8 @@
         </activity>
         <activity android:name=".ScanQR" />
         <activity android:name=".LoginPenguji" />
-        <activity android:name=".TestPeserta"></activity>
+        <activity android:name=".TestPeserta" />
+        <activity android:name=".Login_kode"></activity>
     </application>
 
 </manifest>
