@@ -24,15 +24,22 @@
             android:textSize="20dp"
             android:layout_alignBaseline="@id/L"
             android:textColor="#000"
-            android:text="T" />
+            android:text="TL" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/L">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:textSize="20dp"
-            android:layout_below="@id/L"
             android:layout_marginTop="20dp"
             android:textColor="#000"
             android:text="A. Lajur Kiri"
@@ -42,7 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/grupR4_A"
-            android:layout_below="@id/L"
             android:layout_marginTop="15dp"
             android:layout_marginStart="240dp"
             android:orientation="horizontal">
@@ -362,6 +368,11 @@
             android:id="@+id/RBTL_R4J"
             android:layout_marginStart="25dp"/>
         </RadioGroup>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
 
     </RelativeLayout>
 

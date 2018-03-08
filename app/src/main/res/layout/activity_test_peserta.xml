@@ -116,10 +116,9 @@
         android:text="Praktek"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:layout_marginStart="2dp"
-        android:layout_below="@id/text_peserta"
         android:id="@+id/b_praktek"
-        android:onClick="Menu_Fragment (TestPeserta)" />
+        android:layout_below="@+id/text_peserta"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -141,15 +140,19 @@
         android:layout_toRightOf="@id/b_sikap"
         android:id="@+id/b_komentar" />
 
-    <fragment
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_tes"
-        android:name="com.example.app.jsdc.Tes_Praktek"
-        android:layout_below="@id/b_praktek"
-        />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/b_praktek">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_tes"
+            android:name="com.example.app.jsdc.Tes_Praktek"
+            tools:layout="@layout/fragment_tes__praktek" />
 
 
-
+    </ScrollView>
 
 </RelativeLayout>

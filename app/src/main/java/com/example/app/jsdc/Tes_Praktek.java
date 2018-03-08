@@ -14,14 +14,10 @@ import com.example.app.jsdc.R;
 
 public class Tes_Praktek extends Fragment {
 
-    View view;
-    Button firstButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tes__praktek, container, false);
     }

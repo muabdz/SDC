@@ -24,10 +24,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="JSDC"
+        android:text="ISDC"
         android:textColor="#FF6C2C"
         android:textSize="40dp"
-        android:id="@+id/jsdc"
+        android:id="@+id/isdc"
         android:layout_alignBottom="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="29dp" />
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jakarta Safety Driving Centre"
+        android:text="Indonesia Safety Driving Centre"
         android:textColor="#ffff"
         android:textStyle="italic"
         android:textSize="22dp"

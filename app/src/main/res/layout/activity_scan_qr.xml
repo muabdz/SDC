@@ -53,8 +53,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Masuk"
-        android:id="@+id/b_masuk"
+        android:text="SCAN"
+        android:id="@+id/b_scanpenguji"
         android:background="#FF6C2C"
         android:textColor="#fff"
         android:layout_below="@+id/camera_scan"
