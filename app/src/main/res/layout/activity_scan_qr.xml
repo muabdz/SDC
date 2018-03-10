@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_scan_qr"
     android:layout_width="match_parent"
@@ -9,6 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#0A243B"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.example.app.jsdc.ScanQR">
 
     <TextView
@@ -18,15 +20,8 @@
         android:textColor="#FF6C2C"
         android:textSize="40dp"
         android:id="@+id/jsdc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp" />
+        android:layout_gravity="top|center_horizontal"/>
 
-    <SurfaceView
-        android:layout_width="680px"
-        android:layout_height="620px"
-        android:id="@+id/camera_scan"
-        android:layout_centerInParent="true"
-        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,18 +31,16 @@
         android:textStyle="italic"
         android:textSize="22dp"
         android:id="@+id/jscd_bawah"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp" />
+        android:layout_gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scan QR Code Hari Ini"
+        android:text="Scan QR Code Penguji"
         android:textColor="#ffff"
         android:textSize="18dp"
-        android:layout_above="@+id/camera_scan"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="68dp"
         android:id="@+id/textView" />
 
     <Button
@@ -57,8 +50,7 @@
         android:id="@+id/b_scanpenguji"
         android:background="#FF6C2C"
         android:textColor="#fff"
-        android:layout_below="@+id/camera_scan"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="13dp" />
 
-</RelativeLayout>
+</LinearLayout>

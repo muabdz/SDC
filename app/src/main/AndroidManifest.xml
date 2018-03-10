@@ -17,10 +17,11 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScanQR" />
+        <activity android:name=".ScanQR" android:screenOrientation="portrait"/>
         <activity android:name=".LoginPenguji" />
         <activity android:name=".TestPeserta" />
         <activity android:name=".Login_kode"></activity>
