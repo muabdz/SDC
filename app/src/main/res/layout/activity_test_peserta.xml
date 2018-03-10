@@ -150,7 +150,7 @@
             android:layout_height="match_parent"
             android:id="@+id/fragment_tes"
             android:name="com.example.app.jsdc.Tes_Praktek"
-            tools:layout="@layout/fragment_tes__praktek" />
+            />
 
 
     </ScrollView>
