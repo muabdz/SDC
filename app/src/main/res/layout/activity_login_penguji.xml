@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_penguji"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top"
     tools:context="com.example.app.jsdc.LoginPenguji">
 
     <TextView
@@ -14,9 +16,7 @@
         android:textSize="40dp"
         android:id="@+id/jsdc"
         android:textAlignment="center"
-        android:background="#0A243B"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp" />
+        android:background="#0A243B"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -29,71 +29,54 @@
         android:background="#0A243B"
         android:id="@+id/jscd_bawah"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="  Penguji :"
-        android:background="#FF6C2C"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/jscd_bawah"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sukri"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:id="@+id/penguji"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="98dp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FF6C2C">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="  Penguji :"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:id="@+id/textView2"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="Sukri"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:id="@+id/penguji"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Keluar"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:id="@+id/keluar"
+            android:textAlignment="viewEnd"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Keluar"
-        android:textSize="20dp"
-        android:textColor="#fff"
-        android:id="@+id/keluar"
-        android:layout_alignBaseline="@id/textView2"
-        android:layout_alignBottom="@id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="300dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="Scan QR Code Peserta"
         android:textColor="#000"
         android:textSize="20dp"
         android:id="@+id/text4"
-        android:layout_above="@+id/camera_scan"
-        android:layout_centerHorizontal="true" />
-
-    <SurfaceView
-        android:layout_width="680px"
-        android:layout_height="620px"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:id="@+id/camera_scan" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Bantuan"
-        android:text="QR CODE GAGAL"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/camera_scan"
-        />
-
+        android:gravity="center"
+        android:textAlignment="center"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -101,9 +84,18 @@
         android:id="@+id/b_scanPeserta"
         android:background="#FF6C2C"
         android:textColor="#fff"
-        android:layout_below="@+id/camera_scan"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/Bantuan"
+        android:text="Gagal scan? Klik disini"
+        android:layout_marginTop="10dp"
+        />
 
-</RelativeLayout>
+
+
+
+</LinearLayout>
