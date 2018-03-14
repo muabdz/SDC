@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -42,13 +44,35 @@ public class ScanQR extends AppCompatActivity {
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_LONG).show();
             } else
                 Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-                Intent movea = new Intent(this, LoginPenguji.class);
-                startActivity(movea);
+            Intent movea = new Intent(this, LoginPenguji.class);
+            startActivity(movea);
 
         } else {
 
 
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_scan_penguji, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_logout:
+////                session.removeToken();
+//                startActivity(new Intent(ListUsers.this, Login.class));
+//                finish();
+                return true;
+//            case R.id.menu_edit:
+//                Toast.makeText(ListUsers.this, "kena", Toast.LENGTH_SHORT).show();
+//                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

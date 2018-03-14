@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
-    Button t_praktek, t_sikap, komen;
+    Button t_praktek, t_sikap, komen, selesai;
 
 
     @Override
@@ -20,31 +20,17 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         t_praktek = (Button) findViewById(R.id.b_praktek);
         t_sikap = (Button) findViewById(R.id.b_sikap);
         komen = (Button) findViewById(R.id.b_komentar);
+        selesai = (Button) findViewById(R.id.b_selesai);
         TextView logout = (TextView) findViewById(R.id.keluar);
 
         t_praktek.setOnClickListener(this);
         t_sikap.setOnClickListener(this);
         komen.setOnClickListener(this);
+        selesai.setOnClickListener(this);
         logout.setOnClickListener(this);
 
     }
 
-//    public void selectfrag(View view) {
-//        android.support.v4.app.Fragment FG;
-//
-//        if (view == findViewById(R.id.b_praktek))
-//            FG = new Tes_Praktek();
-//
-//        if (view == findViewById(R.id.b_sikap))
-//            FG = new Tes_Sikap();
-//        else
-//            FG = new Komentar();
-//
-//        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-//        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.replace(R.id.fragment_tes, FG);
-//        transaction.commit();
-//    }
 
     @Override
     public void onClick(View v) {
@@ -60,23 +46,15 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         else
             FG = new Komentar();
 
-//            case R.id.b_praktek:
-//                FG = new Tes_Praktek();
-//                break;
-//
-//
-//            case R.id.b_sikap:
-//                FG = new Tes_Sikap();
-//                break;
-//
-//            case R.id.b_komentar:
-//                FG = new Komentar();
-//                break;
 
         switch (v.getId()) {
             case R.id.keluar:
                 Intent logout = new Intent(this, ScanQR.class);
                 startActivity(logout);
+                break;
+            case R.id.b_selesai:
+                Intent selesai = new Intent(this, LoginPenguji.class);
+                startActivity(selesai);
                 break;
         }
 

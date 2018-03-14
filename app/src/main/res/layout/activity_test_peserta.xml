@@ -145,12 +145,36 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/b_praktek">
 
-        <fragment
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_tes"
-            android:name="com.example.app.jsdc.Tes_Praktek"
-            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:context="com.example.app.jsdc.TestPeserta">
+
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fragment_tes"
+                android:name="com.example.app.jsdc.Tes_Praktek"
+                tools:layout="@layout/fragment_tes__praktek" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SELESAI"
+                android:background="#FF6C2C"
+                android:textColor="#fff"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_below="@id/fragment_tes"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/b_selesai" />
+
+        </RelativeLayout>
+
 
 
     </ScrollView>
