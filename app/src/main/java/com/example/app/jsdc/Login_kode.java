@@ -7,6 +7,9 @@ import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +39,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_kode);
         Button masukpeserta = (Button) findViewById(R.id.b_loginPeserta);
-        TextView logout = (TextView) findViewById(R.id.keluar);
         etPeserta = (EditText) findViewById(R.id.No_daftar);
 
         progressDialog = new ProgressDialog(Login_kode.this);
@@ -44,7 +46,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         progressDialog.show();
 
         masukpeserta.setOnClickListener(this);
-        logout.setOnClickListener(this);
     }
 
     public void loginHandler() {
@@ -112,10 +113,44 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                 loginHandler();
                 break;
 
-            case R.id.keluar:
-                Intent logout = new Intent(this, ScanQR.class);
-                startActivity(logout);
-                break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.actionbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_logout:
+
+                Intent keluar = new Intent(this, ScanQR.class);
+                startActivity(keluar);
+
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                        builder.setTitle("Keluar");
+//                        builder.setMessage("Apakah Anda Yakin ?");
+//                        builder.setNegativeButton("Tidak", null);
+//                        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which, Intent keluar) {
+//
+//                                Intent keluar = new Intent(this, ScanQR.class);
+//                                startActivity(keluar);
+//
+//                            }
+//                        });
+
+            case R.id.menu_histori:
+                Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }
