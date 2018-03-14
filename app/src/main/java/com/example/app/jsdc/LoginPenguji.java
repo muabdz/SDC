@@ -2,6 +2,8 @@ package com.example.app.jsdc;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +16,9 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class LoginPenguji extends AppCompatActivity implements View.OnClickListener {
@@ -39,6 +44,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                 integrator.setCameraId(0);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
+                integrator.setCaptureActivity(captureActivityPortrait.class);
                 integrator.initiateScan();
             }
         });
@@ -73,7 +79,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         if (result != null) {
             if (result.getContents() == null) {
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_LONG).show();
-            } else
+            } //else
                 Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
             Intent movea = new Intent(this, TestPeserta.class);
             startActivity(movea);

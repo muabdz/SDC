@@ -3,7 +3,7 @@
     package="com.example.app.jsdc">
 
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera2.autofocus" />
 
@@ -22,7 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".ScanQR" android:screenOrientation="portrait" />
+=======
+        <activity android:name=".ScanQR" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".captureActivityPortrait"
+            android:screenOrientation="portrait"
+        android:stateNotNeeded="true"
+        android:theme="@style/zxing_CaptureTheme"
+        android:windowSoftInputMode="stateAlwaysHidden">
+    </activity>
+>>>>>>> 3bcff4d85fe80992e9852da8ccf6316e6f93e71d
         <activity android:name=".LoginPenguji" />
         <activity android:name=".TestPeserta" />
         <activity android:name=".Login_kode"></activity>

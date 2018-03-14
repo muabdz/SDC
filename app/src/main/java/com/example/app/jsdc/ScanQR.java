@@ -31,6 +31,7 @@ public class ScanQR extends AppCompatActivity {
                 integrator.setCameraId(0);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
+                integrator.setCaptureActivity(captureActivityPortrait.class);
                 integrator.initiateScan();
             }
         });
