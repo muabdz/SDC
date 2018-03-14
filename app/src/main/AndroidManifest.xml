@@ -22,10 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".ScanQR" android:screenOrientation="portrait" />
-=======
-        <activity android:name=".ScanQR" android:screenOrientation="portrait"/>
         <activity
             android:name=".captureActivityPortrait"
             android:screenOrientation="portrait"

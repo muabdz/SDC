@@ -4,157 +4,100 @@
     android:id="@+id/activity_login_penguji"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center|top"
+    android:orientation="vertical"
     tools:context="com.example.app.jsdc.LoginPenguji">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="  Penguji :"
-        android:background="#FF6C2C"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sukri"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:id="@+id/penguji"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="98dp" />
-
-
     <ImageView
+        android:id="@+id/logo_isdc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_isdc"
         android:layout_below="@id/penguji"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:id="@+id/logo_isdc"/>
-=======
-        android:text="JSDC"
-        android:textColor="#FF6C2C"
-        android:textSize="40dp"
-        android:id="@+id/jsdc"
-        android:textAlignment="center"
-        android:background="#0A243B"/>
+        android:src="@drawable/logo_isdc" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    android:text="JSDC"
+    android:textColor="#FF6C2C"
+    android:textSize="40dp"
+    android:id="@+id/jsdc"
+    android:textAlignment="center"
+    android:background="#0A243B"/>
+
+    <TextView
+        android:id="@+id/jscd_bawah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Jakarta Safety Driving Centre"
-        android:textColor="#ffff"
-        android:textStyle="italic"
-        android:textSize="22dp"
-        android:textAlignment="center"
-        android:background="#0A243B"
-        android:id="@+id/jscd_bawah"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:background="#0A243B"
+        android:text="Jakarta Safety Driving Centre"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="22dp"
+        android:textStyle="italic" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="#FF6C2C"
         android:gravity="center_vertical"
-        android:background="#FF6C2C">
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="  Penguji :"
             android:textColor="#fff"
-            android:textSize="20dp"
-            android:id="@+id/textView2"/>
+            android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/penguji"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:text="Sukri"
             android:textColor="#fff"
-            android:textSize="20dp"
-            android:id="@+id/penguji"/>
+            android:textSize="20dp" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Keluar"
-            android:textSize="20dp"
-            android:textColor="#fff"
             android:id="@+id/keluar"
-            android:textAlignment="viewEnd"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Keluar"
+            android:textAlignment="viewEnd"
+            android:textColor="#fff"
+            android:textSize="20dp" />
     </LinearLayout>
->>>>>>> 3bcff4d85fe80992e9852da8ccf6316e6f93e71d
 
     <Button
-        android:layout_width="wrap_content"
-<<<<<<< HEAD
-        android:layout_height="wrap_content"
-        android:text="SCAN QR CODE Peserta"
         android:id="@+id/b_scanPeserta"
-        android:background="#FF6C2C"
-        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/logo_isdc"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:background="#FF6C2C"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:text="SCAN QR CODE Peserta"
+        android:textColor="#fff" />
 
     <TextView
+        android:id="@+id/Bantuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Bantuan"
-        android:text="QR CODE GAGAL"
+        android:layout_below="@id/b_scanPeserta"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/b_scanPeserta"
-        />
-
-
-=======
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Scan QR Code Peserta"
-        android:textColor="#000"
-        android:textSize="20dp"
-        android:id="@+id/text4"
-        android:gravity="center"
-        android:textAlignment="center"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SCAN"
-        android:id="@+id/b_scanPeserta"
-        android:background="#FF6C2C"
-        android:textColor="#fff"
-        android:layout_marginTop="40dp" />
->>>>>>> 3bcff4d85fe80992e9852da8ccf6316e6f93e71d
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/Bantuan"
-        android:text="Gagal scan? Klik disini"
-        android:layout_marginTop="10dp"
-        />
-
-
+        android:text="QR CODE GAGAL" />
 
 
 </LinearLayout>

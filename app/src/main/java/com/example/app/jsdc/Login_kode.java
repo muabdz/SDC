@@ -40,7 +40,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         etPeserta = (EditText) findViewById(R.id.No_daftar);
 
         progressDialog = new ProgressDialog(Login_kode.this);
-        progressDialog.setMessage("Mohon Tungggu");
+        progressDialog.setMessage("Mohon Tunggu");
         progressDialog.show();
 
         masukpeserta.setOnClickListener(this);

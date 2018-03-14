@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ISDC-andro.iml" filepath="$PROJECT_DIR$/ISDC-andro.iml" />
       <module fileurl="file://$PROJECT_DIR$/JakartaSafetyDrivingCentre.iml" filepath="$PROJECT_DIR$/JakartaSafetyDrivingCentre.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
