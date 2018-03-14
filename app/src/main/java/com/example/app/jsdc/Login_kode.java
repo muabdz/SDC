@@ -26,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class Login_kode extends AppCompatActivity implements View.OnClickListener {
-    //String username, status, message;
+    String username, status, message;
     EditText etPeserta;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
@@ -63,9 +63,9 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
                         //TODO: Sampe sini...{"message": "Petugas Berhasil Login", "status": true, "username":"STAFF1"}
-                        String data = jsonObject.getString("data");
-
-                        JSONObject jsonToken = new JSONObject(data);
+                        username = jsonObject.getString("username");
+                        message = jsonObject.getString("message");
+                        status = jsonObject.getString("status");
 
 
 
