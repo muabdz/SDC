@@ -61,8 +61,10 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_logout:
-                startActivity(new Intent(this, ScanQR.class));
-                finish();
+                Intent keluar = new Intent(this, ScanQR.class);
+                startActivity(keluar);
+//                startActivity(new Intent(this, ScanQR.class));
+//                finish();
                 return true;
             case R.id.menu_histori:
                 Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
