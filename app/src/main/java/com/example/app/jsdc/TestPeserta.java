@@ -59,7 +59,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 //                        builder.setNegativeButton("Tidak", null);
 //                        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 //                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
+//                            public void onClick(DialogInterface dialog,   int which) {
 //                                    Intent keluar = new Intent(this, LoginPenguji.class);
 //                                    startActivity(keluar);
 //

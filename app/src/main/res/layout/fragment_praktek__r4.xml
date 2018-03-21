@@ -15,56 +15,19 @@
             android:textSize="20dp"
             android:background="#CED5DD"
             android:textColor="#000"
-            android:text="L" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="310dp"
-            android:textSize="20dp"
-            android:layout_alignBaseline="@id/L"
-            android:textColor="#000"
-            android:text="TL" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/L">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            android:text="Nilai" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:textSize="20dp"
+            android:layout_below="@id/L"
             android:layout_marginTop="20dp"
             android:textColor="#000"
             android:text="A. Lajur Kiri"
             android:id="@+id/R4A" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_A"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RBL_R4A" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RBTL_R4A"
-                android:layout_marginLeft="25dp" />
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,34 +41,6 @@
             android:id="@+id/R4B" />
 
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_B"
-            android:layout_below="@id/grupR4_A"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RBL_R4B"
-                />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/RBTL_R4B"
-                android:layout_marginStart="25dp"
-                />
-
-
-        </RadioGroup>
-
-
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -116,27 +51,7 @@
             android:textColor="#000"
             android:text="C. U Turn"
             android:id="@+id/R4C" />
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_C"
-            android:layout_below="@id/grupR4_B"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4C"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4C"
-            android:layout_marginStart="25dp"/>
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -149,27 +64,6 @@
             android:text="D. Crack Shape"
             android:id="@+id/R4D" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_D"
-            android:layout_below="@id/grupR4_C"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4D"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4D"
-            android:layout_marginStart="25dp"/>
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -182,26 +76,7 @@
             android:text="E. Tanjakan"
             android:id="@+id/R4E" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_E"
-            android:layout_below="@id/grupR4_D"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4E" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4E"
-            android:layout_marginStart="25dp"/>
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -214,28 +89,6 @@
             android:text="F. Zig-Zag"
             android:id="@+id/R4F" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_F"
-            android:layout_below="@id/grupR4_E"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4F" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4F"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -247,28 +100,6 @@
             android:text="G. Keseimbangan"
             android:id="@+id/R4G" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_G"
-            android:layout_below="@id/grupR4_F"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4G"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4G"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -280,27 +111,6 @@
             android:text="H. Traffic Light"
             android:id="@+id/R4H" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_H"
-            android:layout_below="@id/grupR4_G"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4H" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4H"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -314,28 +124,6 @@
             android:id="@+id/R4I" />
 
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupR4_I"
-            android:layout_below="@id/grupR4_H"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4I" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4I"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -347,33 +135,166 @@
             android:text="J. Menurunkan\n    Penumpang"
             android:id="@+id/R4J" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/grupR4_J"
-            android:layout_below="@id/grupR4_I"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4A"
+            android:layout_alignBottom="@+id/R4A"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4A" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/RBL_R4J"
-            />
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4B"
+            android:layout_alignBottom="@+id/R4B"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4B" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R4J"
-            android:layout_marginStart="25dp"/>
-        </RadioGroup>
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4C"
+            android:layout_alignBottom="@+id/R4C"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4C" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4D"
+            android:layout_alignBottom="@+id/R4D"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4D" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4E"
+            android:layout_alignBottom="@+id/R4E"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4E" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4F"
+            android:layout_alignBottom="@+id/R4F"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4F" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4G"
+            android:layout_alignBottom="@+id/R4G"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4G" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4H"
+            android:layout_alignBottom="@+id/R4H"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4H" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4I"
+            android:layout_alignBottom="@+id/R4I"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4I" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R4J"
+            android:layout_alignBottom="@+id/R4J"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R4J" />
 
             </RelativeLayout>
-
-        </ScrollView>
-
-
-    </RelativeLayout>
 
 </FrameLayout>

@@ -12,52 +12,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="250dp"
-            android:id="@+id/L"
+            android:id="@+id/Nilai"
             android:textSize="20dp"
             android:background="#CED5DD"
             android:textColor="#000"
-            android:text="L" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="310dp"
-            android:textSize="20dp"
-            android:layout_alignBaseline="@id/L"
-            android:textColor="#000"
-            android:text="T" />
+            android:text="Nilai" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:textSize="20dp"
-            android:layout_below="@id/L"
+            android:layout_below="@id/Nilai"
             android:layout_marginTop="20dp"
             android:textColor="#000"
             android:text="A. Sikap"
             android:id="@+id/sikap_A" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupSikap"
-            android:layout_below="@id/L"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBsikap_AL" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBsikap_ATL"
-            android:layout_marginStart="30dp"/>
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,28 +40,6 @@
             android:text="B. Bahasa Tubuh"
             android:id="@+id/BTubuh_B" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/grupBtubuh"
-            android:layout_below="@id/grupSikap"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBBtubuh_BL"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBBtubuh_BTL"
-            android:layout_marginStart="30dp"/>
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,27 +52,55 @@
             android:text="C. Konsentrasi"
             android:id="@+id/Ckonsen_C" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/grupKonsen"
-            android:layout_below="@id/grupBtubuh"
-            android:layout_marginTop="25dp"
-            android:layout_marginStart="240dp"
-            android:orientation="horizontal">
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/sikap_A"
+            android:layout_alignBottom="@+id/sikap_A"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_PerilakuA" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/RBBkonsen_BL"
-            />
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/BTubuh_B"
+            android:layout_alignBottom="@+id/BTubuh_B"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_PerilakuB" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/RBBkonsen_BTL"
-            android:layout_marginStart="30dp"/>
-        </RadioGroup>
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/Ckonsen_C"
+            android:layout_alignBottom="@+id/Ckonsen_C"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_PerilakuC" />
+
+
     </RelativeLayout>
 
 </FrameLayout>

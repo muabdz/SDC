@@ -15,16 +15,8 @@
             android:textSize="20dp"
             android:background="#CED5DD"
             android:textColor="#000"
-            android:text="L" />
+            android:text="Nilai" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="300dp"
-            android:textSize="20dp"
-            android:layout_alignBaseline="@id/L"
-            android:textColor="#000"
-            android:text="TL" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,32 +29,6 @@
             android:text="A. Lajur Kiri"
             android:id="@+id/R2A" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_A"
-            android:layout_toRightOf="@id/R2A"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="40dp"
-            android:orientation="horizontal"
-            >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2A"
-            android:layout_alignBaseline="@id/R2A"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2A"
-            android:layout_alignBaseline="@id/R2A"
-            android:layout_marginStart="25dp"
-            />
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,30 +41,6 @@
             android:text="B. Angka 8"
             android:id="@+id/R2B" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_B"
-            android:layout_below="@id/RGR2_A"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2B"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2B"
-            android:layout_marginStart="25dp"
-            />
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -111,29 +53,6 @@
             android:text="C. U Turn"
             android:id="@+id/R2C" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_C"
-            android:layout_below="@id/RGR2_B"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2C"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2C"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -146,30 +65,6 @@
             android:text="D. Crack Shape"
             android:id="@+id/R2D" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_D"
-            android:layout_below="@id/RGR2_C"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2D"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2D"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -181,29 +76,6 @@
             android:text="E. Tanjakan"
             android:id="@+id/R2E" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_E"
-            android:layout_below="@id/RGR2_D"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2E"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2E"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -216,29 +88,6 @@
             android:text="F. Zig-Zag"
             android:id="@+id/R2F" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_F"
-            android:layout_below="@id/RGR2_E"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2F"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2F"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -251,27 +100,6 @@
             android:text="G. Keseimbangan"
             android:id="@+id/R2G" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_G"
-            android:layout_below="@id/RGR2_F"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2G"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2G"
-            android:layout_marginStart="25dp"/>
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -284,28 +112,7 @@
             android:text="H. Traffic Light"
             android:id="@+id/R2H" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RGR2_H"
-            android:layout_below="@id/RGR2_G"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2H"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2H"
-            android:layout_marginStart="25dp"/>
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -318,26 +125,149 @@
             android:text="I. P3K"
             android:id="@+id/R2I" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/RGR2_I"
-            android:layout_below="@id/RGR2_H"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/RBL_R2I"/>
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2A"
+            android:layout_alignBottom="@+id/R2A"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2A" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:id="@+id/RBTL_R2I"
-            android:layout_marginStart="25dp"/>
-        </RadioGroup>
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2B"
+            android:layout_alignBottom="@+id/R2B"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2B" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2C"
+            android:layout_alignBottom="@+id/R2C"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2C" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2D"
+            android:layout_alignBottom="@+id/R2D"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2D" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2E"
+            android:layout_alignBottom="@+id/R2E"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2E" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2F"
+            android:layout_alignBottom="@+id/R2F"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2F" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2G"
+            android:layout_alignBottom="@+id/R2G"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2G" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2H"
+            android:layout_alignBottom="@+id/R2H"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2H" />
+
+        <EditText
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textAlignment="center"
+            android:background="#999"
+            android:textColor="#000"
+            android:layout_alignBaseline="@+id/R2I"
+            android:layout_alignBottom="@+id/R2I"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:id="@+id/ET_R2I" />
 
     </RelativeLayout>
 
