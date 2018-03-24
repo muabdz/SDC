@@ -128,7 +128,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -144,7 +144,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -160,7 +160,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -176,7 +176,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -192,7 +192,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -208,7 +208,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -224,7 +224,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -240,7 +240,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
@@ -256,7 +256,7 @@
         <EditText
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:hint="0"
             android:textSize="20sp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
