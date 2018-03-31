@@ -5,10 +5,11 @@ package com.example.app.jsdc.Utils;
  */
 
 public class ApiUtils {
+    static SessionManager sessionManager;
+    static String hostPort = sessionManager.getHostPort();
+    static String hostIp = sessionManager.getHostIp();
 
-
-
-    static String BASE_URL = "http://45.77.246.7/";
+    static String BASE_URL = "http://"+ hostIp + ":" + hostPort + "/";
     private ApiUtils(){
 
     }

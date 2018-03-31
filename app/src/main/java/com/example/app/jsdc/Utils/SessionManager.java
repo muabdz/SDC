@@ -12,9 +12,8 @@ import android.preference.PreferenceManager;
  */
 
 public class SessionManager {
-    private SharedPreferences prefs;
-
     String hostIp, hostPort;
+    private SharedPreferences prefs;
 
     public SessionManager(Context cntx) {
         prefs = PreferenceManager.getDefaultSharedPreferences(cntx);
@@ -32,12 +31,12 @@ public class SessionManager {
 
 
     public String getHostIp() {
-        String hostIp = prefs.getString("hostIp","");
+        hostIp = prefs.getString("hostIp","45.77.246.7");
         return hostIp;
     }
 
     public String getHostPort() {
-        String hostPort = prefs.getString("hostPort","");
+        hostPort = prefs.getString("hostPort","8080");
         return hostPort;
     }
 }
