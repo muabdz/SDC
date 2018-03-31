@@ -140,7 +140,9 @@ public class ScanQR extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_logout:
+            case R.id.configIP:
+                Intent configIp = new Intent(this, ConfigIP.class);
+                startActivity(configIp);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

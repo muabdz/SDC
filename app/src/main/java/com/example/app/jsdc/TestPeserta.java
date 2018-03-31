@@ -4,6 +4,7 @@ package com.example.app.jsdc;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
     Button t_praktek, t_sikap, komen, selesai;
+    boolean doubleBackToExitPressedOnce = false;
 
 
     @Override
@@ -53,24 +55,25 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
         switch (v.getId()) {
             case R.id.b_selesai:
-//                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                        builder.setTitle("Keluar");
-//                        builder.setMessage("Apakah Anda Yakin ?");
-//                        builder.setNegativeButton("Tidak", null);
-//                        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog,   int which) {
-//                                    Intent keluar = new Intent(this, LoginPenguji.class);
-//                                    startActivity(keluar);
-//
-//     Masih ERROR
-//                            }
-//                        });
-
-                Intent selesai = new Intent(this, LoginPenguji.class);
-                startActivity(selesai);
-                break;
-        }
+                AlertDialog.Builder keluar = new AlertDialog.Builder(this);
+                keluar.setMessage("Apakah Anda Yakin?")
+                        .setCancelable(false)
+                        .setPositiveButton("YA", new AlertDialog.OnClickListener(){
+                public void onClick(DialogInterface dialog, int arg1){
+                Intent exit = new Intent(Intent.ACTION_MAIN);
+                exit.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                startActivity(exit);
+            }
+        }).setNegativeButton("Tidak", new AlertDialog.OnClickListener(){
+            public void onClick(DialogInterface arg, int arg1){
+                arg.cancel();
+            }
+        });
+        AlertDialog arg1 = keluar.create();
+        arg1.setTitle("Selesai");
+        arg1.show();
+        break;
+    }
 
         transaction.replace(R.id.fragment_tes, FG);
         transaction.commit();
@@ -112,5 +115,21 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (doubleBackToExitPressedOnce){
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this,"Tekan tombol kembali lagi untuk keluar",Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                doubleBackToExitPressedOnce = false;
+            }
+        },2000);
     }
 }
