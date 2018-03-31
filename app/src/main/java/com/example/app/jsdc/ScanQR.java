@@ -2,20 +2,27 @@ package com.example.app.jsdc;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v4.util.ArrayMap;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.app.jsdc.Utils.ApiUtils;
 import com.example.app.jsdc.Utils.AuthService;
+import com.example.app.jsdc.Utils.SessionManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -28,9 +35,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class ScanQR extends AppCompatActivity {
-    String username, status, message;
+    String username, status, message, ipValue, portValue;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
+    SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +62,6 @@ public class ScanQR extends AppCompatActivity {
             }
         });
     }
-    public void activityTransition(){
-        Intent movea = new Intent(ScanQR.this, LoginPenguji.class);
-        startActivity(movea);
-    }
-
     public void loginHandler(String kodePenguji) {
         Map<String, Object> jsonParams = new ArrayMap<>();
         jsonParams.put("username", kodePenguji);
@@ -100,7 +103,7 @@ public class ScanQR extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(ScanQR.this, "Password / Username Salah",
+                    Toast.makeText(ScanQR.this, "Kode Penguji Salah",
                             Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
@@ -140,13 +143,70 @@ public class ScanQR extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+<<<<<<< HEAD
             case R.id.configIP:
                 Intent configIp = new Intent(this, ConfigIP.class);
                 startActivity(configIp);
+=======
+            case R.id.menu_config:
+                //ipConfig();
+>>>>>>> b263679398f5c16ee18243f4f32d01c4059c965b
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void ipConfig(){
+        LinearLayout linearLayout = new LinearLayout(ScanQR.this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        linearLayout.setLayoutParams(lp);
+
+        final EditText ConfigIpInput = new EditText(ScanQR.this);
+        ConfigIpInput.setHint("Contoh IP: 45.77.246.7");
+        //ConfigIpInput.setInputType(InputType.);
+        linearLayout.addView(ConfigIpInput);
+
+        final EditText ConfigPortInput = new EditText(ScanQR.this);
+        ConfigPortInput.setHint("Contoh Port: 8080");
+        ConfigPortInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        linearLayout.addView(ConfigPortInput);
+
+        AlertDialog.Builder info = new AlertDialog.Builder(ScanQR.this);
+        info.setMessage("Ubah IP dan Port:").setCancelable(true).setPositiveButton("Simpan", new AlertDialog.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                try{
+                    ipValue = ConfigIpInput.getText().toString();
+                    portValue = ConfigPortInput.getText().toString();
+                    sessionManager.setSession(ipValue, portValue);
+                    Toast.makeText(ScanQR.this,
+                            "Konfigurasi disimpan\n http://"+ ipValue + ":" + portValue + "/", Toast.LENGTH_SHORT).show();
+
+                }catch (NumberFormatException e){
+                    AlertDialog.Builder infoo = new AlertDialog.Builder(ScanQR.this);
+                    infoo.setMessage("Masukkan nilai IP dan Port").setCancelable(false).setPositiveButton("Coba Lagi", new AlertDialog.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int id){
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog dialog1 = infoo.create();
+                    dialog1.setTitle("Error");
+                    dialog1.show();
+                }
+            }
+        }).setNegativeButton("Batal", new AlertDialog.OnClickListener(){
+            public void onClick(DialogInterface dialog2, int id){
+                dialog2.cancel();
+            }
+        });
+        AlertDialog dialog = info.create();
+        dialog.setView(linearLayout);
+        dialog.setTitle("IP Config");
+        dialog.show();
+
     }
 }
 

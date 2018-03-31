@@ -1,18 +1,19 @@
 package com.example.app.jsdc;
 
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
+=======
+>>>>>>> b263679398f5c16ee18243f4f32d01c4059c965b
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
@@ -89,7 +90,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_logout:
+            case R.id.menu_config:
 
                 Intent keluar = new Intent(this, ScanQR.class);
                 startActivity(keluar);

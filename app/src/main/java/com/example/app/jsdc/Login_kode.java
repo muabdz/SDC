@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v4.util.ArrayMap;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,13 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.jsdc.Utils.ApiUtils;
 import com.example.app.jsdc.Utils.AuthService;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -63,7 +60,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        //TODO: Sampe sini...{"message": "Petugas Berhasil Login", "status": true, "username":"STAFF1"}
                         username = jsonObject.getString("username");
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
@@ -126,7 +122,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_logout:
+            case R.id.menu_config:
 
                 Intent keluar = new Intent(this, ScanQR.class);
                 startActivity(keluar);

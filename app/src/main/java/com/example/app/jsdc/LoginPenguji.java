@@ -1,12 +1,11 @@
 package com.example.app.jsdc;
 
 import android.app.Activity;
-import android.app.Notification;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
+import android.os.CountDownTimer;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,16 +16,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app.jsdc.Utils.ApiUtils;
+import com.example.app.jsdc.Utils.AuthService;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 public class LoginPenguji extends AppCompatActivity implements View.OnClickListener {
@@ -35,6 +40,9 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
+    String data, status, message;
+    AuthService mAuthAPIService;
+    ProgressDialog progressDialog;
     private GoogleApiClient client;
 
     @Override
@@ -67,6 +75,61 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    public void loginHandler(String kodePeserta) {
+        Map<String, Object> jsonParams = new ArrayMap<>();
+        jsonParams.put("username", kodePeserta);
+
+        mAuthAPIService = ApiUtils.getAuthAPIService();
+
+        Call<ResponseBody> response = mAuthAPIService.testloginPost(kodePeserta);
+
+        response.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> rawResponse) {
+                if (rawResponse.isSuccessful()) {
+                    try {
+
+                        JSONObject jsonObject = new JSONObject(rawResponse.body().string());
+                        data = jsonObject.getString("data");
+                        message = jsonObject.getString("message");
+                        status = jsonObject.getString("status");
+
+
+
+                        new CountDownTimer(1000, 1000) {
+
+                            public void onTick(long millisUntilFinished) {
+                                // You don't need anything here
+                            }
+
+                            public void onFinish() {
+                                Toast.makeText(LoginPenguji.this, message,
+                                        Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                                Intent movea = new Intent(LoginPenguji.this, TestPeserta.class);
+                                startActivity(movea);
+                                finish();
+                            }
+                        }.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(LoginPenguji.this, "Kode Peserta Salah",
+                            Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -77,7 +140,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_logout:
+            case R.id.menu_config:
 
                 Intent keluar = new Intent(this, ScanQR.class);
                 startActivity(keluar);
@@ -111,10 +174,11 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         if (result != null) {
             if (result.getContents() == null) {
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_LONG).show();
-            } //else
-            Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-            Intent movea = new Intent(this, TestPeserta.class);
-            startActivity(movea);
+            } else {
+                //Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                progressDialog.show();
+                loginHandler(result.getContents());
+            }
 
         } else {
 
