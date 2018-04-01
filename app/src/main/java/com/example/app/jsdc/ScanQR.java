@@ -35,14 +35,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class ScanQR extends AppCompatActivity {
-    String username, status, message, ipValue, portValue;
+    String username, message, ipValue, portValue, uid, time;
+    boolean status;
+    private static Context context;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
-    SessionManager sessionManager;
+    SessionManager sessionManager, sm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qr);
+        ScanQR.context = getApplicationContext();
         final Activity activity = this;
         Button T_scanpenguji = (Button) findViewById(R.id.b_scanpenguji);
         progressDialog = new ProgressDialog(ScanQR.this);
@@ -62,13 +65,21 @@ public class ScanQR extends AppCompatActivity {
             }
         });
     }
+
+    public static Context getAppContext() {
+        return ScanQR.context;
+    }
+
     public void loginHandler(String kodePenguji) {
+        time = kodePenguji.substring(0,10);
+        uid = kodePenguji.substring(10);
         Map<String, Object> jsonParams = new ArrayMap<>();
-        jsonParams.put("username", kodePenguji);
+        jsonParams.put("date", time);
+        jsonParams.put("username", uid);
+        mAuthAPIService = new ApiUtils().getAuthAPIService();
+        sessionManager = new SessionManager(this);
 
-        mAuthAPIService = ApiUtils.getAuthAPIService();
-
-        Call<ResponseBody> response = mAuthAPIService.testloginPost(kodePenguji);
+        Call<ResponseBody> response = mAuthAPIService.testloginPost(uid, time);
 
         response.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -77,28 +88,33 @@ public class ScanQR extends AppCompatActivity {
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        //TODO: Sampe sini...{"message": "Petugas Berhasil Login", "status": true, "username":"STAFF1"}
-                        username = jsonObject.getString("username");
+                        status = jsonObject.getBoolean("status");
                         message = jsonObject.getString("message");
-                        status = jsonObject.getString("status");
+                        if (!status){
+                            Toast.makeText(ScanQR.this, message,
+                                    Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        } else {
+                            username = jsonObject.getString("username");
 
 
+                            new CountDownTimer(1000, 1000) {
 
-                        new CountDownTimer(1000, 1000) {
+                                public void onTick(long millisUntilFinished) {
+                                    // You don't need anything here
+                                }
 
-                            public void onTick(long millisUntilFinished) {
-                                // You don't need anything here
-                            }
-
-                            public void onFinish() {
-                                Toast.makeText(ScanQR.this, message,
-                                        Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                                Intent movea = new Intent(ScanQR.this, LoginPenguji.class);
-                                startActivity(movea);
-                                finish();
-                            }
-                        }.start();
+                                public void onFinish() {
+                                    sessionManager.setUid(username);
+                                    Toast.makeText(ScanQR.this, message,
+                                            Toast.LENGTH_LONG).show();
+                                    progressDialog.dismiss();
+                                    Intent movea = new Intent(ScanQR.this, LoginPenguji.class);
+                                    startActivity(movea);
+                                    finish();
+                                }
+                            }.start();
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -143,6 +159,7 @@ public class ScanQR extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+<<<<<<< HEAD
 
             case R.id.configIP:
                 Intent configIp = new Intent(this, ConfigIP.class);
@@ -151,10 +168,33 @@ public class ScanQR extends AppCompatActivity {
 //            case R.id.menu_config:
 //                //ipConfig();
 
+=======
+            case R.id.configIP:
+                sm = new SessionManager(this);
+                ipConfig();
+>>>>>>> 1d9e37eac4342d1990ea6217360b286f95e7de8f
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Keluar")
+                .setMessage("Apakah anda yakin ingin keluar?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 
     public void ipConfig(){
@@ -167,12 +207,15 @@ public class ScanQR extends AppCompatActivity {
 
         final EditText ConfigIpInput = new EditText(ScanQR.this);
         ConfigIpInput.setHint("Contoh IP: 45.77.246.7");
-        //ConfigIpInput.setInputType(InputType.);
+        String ipNow = sm.getHostIp();
+        ConfigIpInput.setText(ipNow);
         linearLayout.addView(ConfigIpInput);
 
         final EditText ConfigPortInput = new EditText(ScanQR.this);
         ConfigPortInput.setHint("Contoh Port: 8080");
         ConfigPortInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        String portNow = sm.getHostPort();
+        ConfigPortInput.setText(portNow);
         linearLayout.addView(ConfigPortInput);
 
         AlertDialog.Builder info = new AlertDialog.Builder(ScanQR.this);
@@ -181,7 +224,7 @@ public class ScanQR extends AppCompatActivity {
                 try{
                     ipValue = ConfigIpInput.getText().toString();
                     portValue = ConfigPortInput.getText().toString();
-                    sessionManager.setSession(ipValue, portValue);
+                    sm.setSession(ipValue, portValue);
                     Toast.makeText(ScanQR.this,
                             "Konfigurasi disimpan\n http://"+ ipValue + ":" + portValue + "/", Toast.LENGTH_SHORT).show();
 

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,19 +13,38 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.astuetz.PagerSlidingTabStrip;
+import com.example.app.jsdc.Utils.FragmentUtils.TestFragmentAdapter;
+import com.example.app.jsdc.Utils.SessionManager;
 
 public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
     Button t_praktek, t_sikap, komen, selesai;
     boolean doubleBackToExitPressedOnce = false;
+    SessionManager sessionManager;
+    TestFragmentAdapter testFragmentAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_peserta);
+        sessionManager = new SessionManager(this);
+        TextView penguji = (TextView) findViewById(R.id.penguji2);
+        penguji.setText(sessionManager.getUid());
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        testFragmentAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(testFragmentAdapter);
 
-        t_praktek = (Button) findViewById(R.id.b_praktek);
+        // Give the PagerSlidingTabStrip the ViewPager
+        PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        // Attach the view pager to the tab strip
+        tabsStrip.setViewPager(viewPager);
+
+        /*t_praktek = (Button) findViewById(R.id.b_praktek);
         t_sikap = (Button) findViewById(R.id.b_sikap);
         komen = (Button) findViewById(R.id.b_komentar);
         selesai = (Button) findViewById(R.id.b_selesai);
@@ -32,14 +52,14 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         t_praktek.setOnClickListener(this);
         t_sikap.setOnClickListener(this);
         komen.setOnClickListener(this);
-        selesai.setOnClickListener(this);
+        selesai.setOnClickListener(this);*/
 
     }
 
 
     @Override
     public void onClick(View v) {
-        android.support.v4.app.Fragment FG ;
+        /*android.support.v4.app.Fragment FG ;
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
 
@@ -57,7 +77,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 AlertDialog.Builder keluar = new AlertDialog.Builder(this);
                 keluar.setMessage("Apakah Anda Yakin?")
                         .setCancelable(false)
-                        .setPositiveButton("YA", new AlertDialog.OnClickListener(){
+                        .setPositiveButton("Ya", new AlertDialog.OnClickListener(){
                 public void onClick(DialogInterface dialog, int arg1){
                 Intent exit = new Intent(Intent.ACTION_MAIN);
                 exit.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
@@ -75,7 +95,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     }
 
         transaction.replace(R.id.fragment_tes, FG);
-        transaction.commit();
+        transaction.commit();*/
     }
 
     @Override
@@ -88,6 +108,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+<<<<<<< HEAD
             case R.id.configIP:
 
                 Intent keluar = new Intent(this, ScanQR.class);
@@ -107,6 +128,25 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 //                            }
 //                        });
 
+=======
+            case R.id.menu_logout:
+              /*  new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Logout")
+                        .setMessage("Apakah anda yakin ingin keluar?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                progressDialog.show();
+                                logoutHandler();
+                            }
+
+                        })
+                        .setNegativeButton("Tidak", null)
+                        .show();*/
+                return true;
+>>>>>>> 1d9e37eac4342d1990ea6217360b286f95e7de8f
             case R.id.menu_histori:
                 Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
                 return true;

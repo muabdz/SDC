@@ -1,106 +1,115 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    tools:context=".Tes_Sikap">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="250dp"
-            android:id="@+id/Nilai"
-            android:textSize="20dp"
-            android:background="#CED5DD"
-            android:textColor="#000"
-            android:text="Nilai" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:paddingBottom="10sp"
+        tools:context=".Tes_Sikap">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:textSize="20dp"
-            android:layout_below="@id/Nilai"
-            android:layout_marginTop="20dp"
-            android:textColor="#000"
-            android:text="A. Sikap"
-            android:id="@+id/sikap_A" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:textSize="20dp"
-            android:layout_below="@id/sikap_A"
-            android:layout_marginTop="30dp"
-            android:textColor="#000"
-            android:text="B. Bahasa Tubuh"
-            android:id="@+id/BTubuh_B" />
+            <TextView
+                android:id="@+id/Nilai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CED5DD"
+                android:paddingLeft="250dp"
+                android:text="Nilai"
+                android:textColor="#000"
+                android:textSize="20dp" />
 
+            <TextView
+                android:id="@+id/sikap_A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Nilai"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:text="A. Sikap"
+                android:textColor="#000"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:textSize="20dp"
-            android:layout_below="@id/BTubuh_B"
-            android:layout_marginTop="30dp"
-            android:textColor="#000"
-            android:text="C. Konsentrasi"
-            android:id="@+id/Ckonsen_C" />
-
-        <EditText
-            android:layout_width="80sp"
-            android:layout_height="wrap_content"
-            android:hint="0"
-            android:textSize="20sp"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:textAlignment="center"
-            android:background="#999"
-            android:textColor="#000"
-            android:layout_alignBaseline="@+id/sikap_A"
-            android:layout_alignBottom="@+id/sikap_A"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="41dp"
-            android:id="@+id/ET_PerilakuA" />
-
-        <EditText
-            android:layout_width="80sp"
-            android:layout_height="wrap_content"
-            android:hint="0"
-            android:textSize="20sp"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:textAlignment="center"
-            android:background="#999"
-            android:textColor="#000"
-            android:layout_alignBaseline="@+id/BTubuh_B"
-            android:layout_alignBottom="@+id/BTubuh_B"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="41dp"
-            android:id="@+id/ET_PerilakuB" />
-
-        <EditText
-            android:layout_width="80sp"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="20sp"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:textAlignment="center"
-            android:background="#999"
-            android:textColor="#000"
-            android:layout_alignBaseline="@+id/Ckonsen_C"
-            android:layout_alignBottom="@+id/Ckonsen_C"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="41dp"
-            android:id="@+id/ET_PerilakuC" />
+            <TextView
+                android:id="@+id/BTubuh_B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sikap_A"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="20dp"
+                android:text="B. Bahasa Tubuh"
+                android:textColor="#000"
+                android:textSize="20dp" />
 
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/Ckonsen_C"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/BTubuh_B"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="20dp"
+                android:text="C. Konsentrasi"
+                android:textColor="#000"
+                android:textSize="20dp" />
 
-</FrameLayout>
+            <EditText
+                android:id="@+id/ET_PerilakuA"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/sikap_A"
+                android:layout_alignBottom="@+id/sikap_A"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="41dp"
+                android:background="#999"
+                android:hint="0"
+                android:paddingBottom="5sp"
+                android:paddingTop="5sp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/ET_PerilakuB"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/BTubuh_B"
+                android:layout_alignBottom="@+id/BTubuh_B"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="41dp"
+                android:background="#999"
+                android:hint="0"
+                android:paddingBottom="5sp"
+                android:paddingTop="5sp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/ET_PerilakuC"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/Ckonsen_C"
+                android:layout_alignBottom="@+id/Ckonsen_C"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="41dp"
+                android:background="#999"
+                android:paddingBottom="5sp"
+                android:paddingTop="5sp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
