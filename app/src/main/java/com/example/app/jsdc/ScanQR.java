@@ -37,13 +37,15 @@ import retrofit2.Callback;
 public class ScanQR extends AppCompatActivity {
     String username, message, ipValue, portValue, uid, time;
     boolean status;
+    private static Context context;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
-    SessionManager sessionManager;
+    SessionManager sessionManager, sm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qr);
+        ScanQR.context = getApplicationContext();
         final Activity activity = this;
         Button T_scanpenguji = (Button) findViewById(R.id.b_scanpenguji);
         progressDialog = new ProgressDialog(ScanQR.this);
@@ -63,13 +65,19 @@ public class ScanQR extends AppCompatActivity {
             }
         });
     }
+
+    public static Context getAppContext() {
+        return ScanQR.context;
+    }
+
     public void loginHandler(String kodePenguji) {
         time = kodePenguji.substring(0,10);
         uid = kodePenguji.substring(10);
         Map<String, Object> jsonParams = new ArrayMap<>();
         jsonParams.put("date", time);
         jsonParams.put("username", uid);
-        mAuthAPIService = ApiUtils.getAuthAPIService();
+        mAuthAPIService = new ApiUtils().getAuthAPIService();
+        sessionManager = new SessionManager(this);
 
         Call<ResponseBody> response = mAuthAPIService.testloginPost(uid, time);
 
@@ -97,7 +105,7 @@ public class ScanQR extends AppCompatActivity {
                                 }
 
                                 public void onFinish() {
-                                    //sessionManager.setUid(username);
+                                    sessionManager.setUid(username);
                                     Toast.makeText(ScanQR.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
@@ -151,12 +159,9 @@ public class ScanQR extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.btn_ConfigIP:
-                Intent configIp = new Intent(this, ConfigIP.class);
-                startActivity(configIp);
-                return true;
-            case R.id.menu_config:
-                //ipConfig();
+            case R.id.configIP:
+                sm = new SessionManager(this);
+                ipConfig();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -173,8 +178,6 @@ public class ScanQR extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent out = new Intent(ScanQR.this, ScanQR.class);
-                        startActivity(out);
                         finish();
                     }
 
@@ -193,7 +196,7 @@ public class ScanQR extends AppCompatActivity {
 
         final EditText ConfigIpInput = new EditText(ScanQR.this);
         ConfigIpInput.setHint("Contoh IP: 45.77.246.7");
-        //ConfigIpInput.setInputType(InputType.);
+        //ConfigIpInput.setInputType(InputType.TYPE_CLASS_NUMBER);
         linearLayout.addView(ConfigIpInput);
 
         final EditText ConfigPortInput = new EditText(ScanQR.this);
@@ -207,7 +210,7 @@ public class ScanQR extends AppCompatActivity {
                 try{
                     ipValue = ConfigIpInput.getText().toString();
                     portValue = ConfigPortInput.getText().toString();
-                    sessionManager.setSession(ipValue, portValue);
+                    sm.setSession(ipValue, portValue);
                     Toast.makeText(ScanQR.this,
                             "Konfigurasi disimpan\n http://"+ ipValue + ":" + portValue + "/", Toast.LENGTH_SHORT).show();
 

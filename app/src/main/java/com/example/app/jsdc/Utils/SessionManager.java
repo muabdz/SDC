@@ -37,7 +37,7 @@ public class SessionManager {
     }
 
     public String getHostPort() {
-        hostPort = prefs.getString("hostPort","8080");
+        hostPort = prefs.getString("hostPort","8080"); //gua rasa dari sini
         return hostPort;
     }
 

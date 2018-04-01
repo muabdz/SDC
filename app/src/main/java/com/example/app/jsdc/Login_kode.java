@@ -41,8 +41,9 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_login_kode);
         Button masukpeserta = (Button) findViewById(R.id.b_loginPeserta);
         etPeserta = (EditText) findViewById(R.id.No_daftar);
+        sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.pengujiKode);
-        //penguji.setText(sessionManager.getUid());
+        penguji.setText(sessionManager.getUid());
 
         progressDialog = new ProgressDialog(Login_kode.this);
         progressDialog.setMessage("Mohon Tunggu");
@@ -55,7 +56,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         Map<String, Object> jsonParams = new ArrayMap<>();
         jsonParams.put("username", kodePeserta);
 
-        mAuthAPIService = ApiUtils.getAuthAPIService();
+        mAuthAPIService = new ApiUtils().getAuthAPIService();
 
         Call<ResponseBody> response = mAuthAPIService.loginPeserta(kodePeserta);
 
@@ -65,9 +66,9 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                 if (rawResponse.isSuccessful()) {
                     try {
 
-                        JSONArray jsonSoal = new JSONArray("soal");
-                        JSONArray jsonData = new JSONArray("data");
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
+                        JSONArray jsonSoal = jsonObject.getJSONArray("soal");
+                        JSONArray jsonData = jsonObject.getJSONArray("data");
                         String p_id = jsonData.getString(0);
                         String nama = jsonData.getString(1);
                         int cate = jsonData.getInt(2);

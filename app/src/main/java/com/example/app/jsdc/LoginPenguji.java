@@ -44,7 +44,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    String status, message, p_id, nama;
+    String status, message, p_id, nama, usernamePenguji;
     int cate;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
@@ -55,13 +55,14 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_penguji);
+        sessionManager = new SessionManager(this);
         final Activity activity = this;
         Button T_scanpeserta = (Button) findViewById(R.id.b_scanPeserta);
         TextView b_loginkode = (TextView) findViewById(R.id.Bantuan);
         TextView penguji = (TextView) findViewById(R.id.penguji);
         progressDialog = new ProgressDialog(LoginPenguji.this);
         progressDialog.setMessage("Mohon Tunggu");
-        //penguji.setText(sessionManager.getUid());
+        penguji.setText(sessionManager.getUid());
 
 
         b_loginkode.setOnClickListener(this);
@@ -89,7 +90,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         Map<String, Object> jsonParams = new ArrayMap<>();
         jsonParams.put("username", kodePeserta);
 
-        mAuthAPIService = ApiUtils.getAuthAPIService();
+        mAuthAPIService = new ApiUtils().getAuthAPIService();
 
         Call<ResponseBody> response = mAuthAPIService.loginPeserta(kodePeserta);
 
@@ -100,8 +101,8 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        JSONArray jsonSoal = new JSONArray("soal");
-                        JSONArray jsonData = new JSONArray("data");
+                        JSONArray jsonSoal = jsonObject.getJSONArray("soal");
+                        JSONArray jsonData = jsonObject.getJSONArray("data");
                         p_id = jsonData.getString(0);
                         nama = jsonData.getString(1);
                         cate = jsonData.getInt(2);
@@ -260,6 +261,58 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         client.disconnect();
     }
 
+    public void logoutHandler() {
+        Map<String, Object> jsonParams = new ArrayMap<>();
+        usernamePenguji = sessionManager.getUid();
+        jsonParams.put("username", usernamePenguji);
+
+        mAuthAPIService = ApiUtils.getAuthAPIService();
+
+        Call<ResponseBody> response = mAuthAPIService.logoutPost(usernamePenguji);
+
+        response.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> rawResponse) {
+                if (rawResponse.isSuccessful()) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(rawResponse.body().string());
+                        message = jsonObject.getString("message");
+                        status = jsonObject.getString("status");
+                        //TAMBAHIN REMOVE SESI
+
+                        new CountDownTimer(1000, 1000) {
+
+                            public void onTick(long millisUntilFinished) {
+                                // You don't need anything here
+                            }
+
+                            public void onFinish() {
+                                Toast.makeText(LoginPenguji.this, message,
+                                        Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                                Intent movea = new Intent(LoginPenguji.this, ScanQR.class);
+                                startActivity(movea);
+                                finish();
+                            }
+                        }.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(LoginPenguji.this, "Logout Gagal",
+                            Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -270,9 +323,8 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent out = new Intent(LoginPenguji.this, ScanQR.class);
-                        startActivity(out);
-                        finish();
+                        progressDialog.show();
+                        logoutHandler();
                     }
 
                 })

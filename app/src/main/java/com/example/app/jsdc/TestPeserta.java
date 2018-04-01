@@ -27,9 +27,9 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_peserta);
-
+        sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.penguji2);
-        //penguji.setText(sessionManager.getUid());
+        penguji.setText(sessionManager.getUid());
 
         t_praktek = (Button) findViewById(R.id.b_praktek);
         t_sikap = (Button) findViewById(R.id.b_sikap);
