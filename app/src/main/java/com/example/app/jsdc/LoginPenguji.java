@@ -2,10 +2,12 @@ package com.example.app.jsdc;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v4.util.ArrayMap;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.app.jsdc.Utils.ApiUtils;
 import com.example.app.jsdc.Utils.AuthService;
+import com.example.app.jsdc.Utils.SessionManager;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -25,6 +28,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -40,10 +44,12 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    String data, status, message;
+    String status, message, p_id, nama;
+    int cate;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
     private GoogleApiClient client;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,10 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         final Activity activity = this;
         Button T_scanpeserta = (Button) findViewById(R.id.b_scanPeserta);
         TextView b_loginkode = (TextView) findViewById(R.id.Bantuan);
+        TextView penguji = (TextView) findViewById(R.id.penguji);
+        progressDialog = new ProgressDialog(LoginPenguji.this);
+        progressDialog.setMessage("Mohon Tunggu");
+        //penguji.setText(sessionManager.getUid());
 
 
         b_loginkode.setOnClickListener(this);
@@ -81,7 +91,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
 
         mAuthAPIService = ApiUtils.getAuthAPIService();
 
-        Call<ResponseBody> response = mAuthAPIService.testloginPost(kodePeserta);
+        Call<ResponseBody> response = mAuthAPIService.loginPeserta(kodePeserta);
 
         response.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -90,9 +100,23 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        data = jsonObject.getString("data");
+                        JSONArray jsonSoal = new JSONArray("soal");
+                        JSONArray jsonData = new JSONArray("data");
+                        p_id = jsonData.getString(0);
+                        nama = jsonData.getString(1);
+                        cate = jsonData.getInt(2);
+                        sessionManager.setData(p_id, nama, cate);
+
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
+
+                        for (int i = 0; i<jsonSoal.length(); i++){
+                            jsonObject = jsonSoal.getJSONObject(i);
+                            int id = jsonObject.getInt("id");
+                            int nomor = jsonObject.getInt("nomor");
+                            String soal = jsonObject.getString("soal");
+                            sessionManager.setQuestion(id, nomor, soal);
+                        }
 
 
 
@@ -234,5 +258,25 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Logout")
+                .setMessage("Apakah anda yakin ingin keluar?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent out = new Intent(LoginPenguji.this, ScanQR.class);
+                        startActivity(out);
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 }

@@ -12,11 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.jsdc.Utils.ApiUtils;
 import com.example.app.jsdc.Utils.AuthService;
+import com.example.app.jsdc.Utils.SessionManager;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -30,6 +33,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
     EditText etPeserta;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_login_kode);
         Button masukpeserta = (Button) findViewById(R.id.b_loginPeserta);
         etPeserta = (EditText) findViewById(R.id.No_daftar);
+        TextView penguji = (TextView) findViewById(R.id.pengujiKode);
+        //penguji.setText(sessionManager.getUid());
 
         progressDialog = new ProgressDialog(Login_kode.this);
         progressDialog.setMessage("Mohon Tunggu");
@@ -45,13 +51,13 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         masukpeserta.setOnClickListener(this);
     }
 
-    public void loginHandler() {
+    public void loginHandler(String kodePeserta) {
         Map<String, Object> jsonParams = new ArrayMap<>();
-        jsonParams.put("username", etPeserta.getText().toString());
+        jsonParams.put("username", kodePeserta);
 
         mAuthAPIService = ApiUtils.getAuthAPIService();
 
-        Call<ResponseBody> response = mAuthAPIService.testloginPost(etPeserta.getText().toString());
+        Call<ResponseBody> response = mAuthAPIService.loginPeserta(kodePeserta);
 
         response.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -59,11 +65,24 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                 if (rawResponse.isSuccessful()) {
                     try {
 
+                        JSONArray jsonSoal = new JSONArray("soal");
+                        JSONArray jsonData = new JSONArray("data");
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        username = jsonObject.getString("username");
+                        String p_id = jsonData.getString(0);
+                        String nama = jsonData.getString(1);
+                        int cate = jsonData.getInt(2);
+                        sessionManager.setData(p_id, nama, cate);
+
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
 
+                        for (int i = 0; i<jsonSoal.length(); i++){
+                            jsonObject = jsonSoal.getJSONObject(i);
+                            int id = jsonObject.getInt("id");
+                            int nomor = jsonObject.getInt("nomor");
+                            String soal = jsonObject.getString("soal");
+                            sessionManager.setQuestion(id, nomor, soal);
+                        }
 
 
                         new CountDownTimer(1000, 1000) {
@@ -84,7 +103,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(Login_kode.this, "Password / Username Salah",
+                    Toast.makeText(Login_kode.this, "Nomor Pendaftaran salah",
                             Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
@@ -106,7 +125,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.b_loginPeserta:
-                loginHandler();
+                loginHandler(etPeserta.getText().toString());
                 break;
 
         }

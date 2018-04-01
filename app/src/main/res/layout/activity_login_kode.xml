@@ -26,7 +26,7 @@
         android:text="Sukri"
         android:textColor="#fff"
         android:textSize="20dp"
-        android:id="@+id/penguji"
+        android:id="@+id/pengujiKode"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentStart="true"
@@ -41,7 +41,7 @@
         android:textColor="#000"
         android:textSize="20dp"
         android:id="@+id/text4"
-        android:layout_below="@id/penguji"
+        android:layout_below="@id/pengujiKode"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true" />
 

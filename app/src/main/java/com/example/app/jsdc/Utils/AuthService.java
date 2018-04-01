@@ -1,4 +1,9 @@
 package com.example.app.jsdc.Utils;
+import org.json.JSONArray;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -13,6 +18,16 @@ import retrofit2.http.Path;
  */
 
 public interface AuthService {
-    @POST("/signin/{uid}")
-    Call<ResponseBody> testloginPost(@Path("uid") String postfix);
+    @POST("/signin/{uid}/{time}")
+    Call<ResponseBody> testloginPost(@Path("uid") String usernameId, @Path("time")String date);
+
+    @POST("/peserta/{id}")
+    Call<ResponseBody> loginPeserta(@Path("id") String idPeserta);
+
+    @POST("/soal/{hasil}")
+    Call<ResponseBody> submitPeserta(@Path("hasil")JSONArray hasil);
+
+    @POST("/signout/{uid}")
+    Call<ResponseBody> logoutPost(@Path("uid") String userId);
+
 }

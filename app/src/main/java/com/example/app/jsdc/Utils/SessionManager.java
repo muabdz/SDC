@@ -12,7 +12,8 @@ import android.preference.PreferenceManager;
  */
 
 public class SessionManager {
-    String hostIp, hostPort;
+    String hostIp, hostPort, question, uid;
+    int jumlahSoal;
     private SharedPreferences prefs;
 
     public SessionManager(Context cntx) {
@@ -38,5 +39,41 @@ public class SessionManager {
     public String getHostPort() {
         hostPort = prefs.getString("hostPort","8080");
         return hostPort;
+    }
+
+    public void setQuestion(int id, int num, String question){
+        prefs.edit().putInt(String.valueOf(num), id).apply();
+        prefs.edit().putString(String.valueOf(id)+"id", question).apply();
+        prefs.edit().putInt("num", num).apply();
+    }
+
+    public String getQuestion(int id){
+        question = prefs.getString(String.valueOf(id)+"id","error");
+        return question;
+    }
+
+    public int getQuestionId(int num){
+        num = prefs.getInt(String.valueOf(num), 0);
+        return num;
+    }
+
+    public int getJumlahSoal(){
+        jumlahSoal = prefs.getInt("num", 0);
+        return jumlahSoal;
+    }
+
+    public void setData(String p_id, String nama, int cate){
+        prefs.edit().putString("p_id", p_id).apply();
+        prefs.edit().putString("nama", nama).apply();
+        prefs.edit().putInt("cate", cate).apply();
+    }
+
+    public void setUid(String username){
+        prefs.edit().putString("uid", username).apply();
+    }
+
+    public String getUid(){
+        uid = prefs.getString("uid", "error");
+        return uid;
     }
 }

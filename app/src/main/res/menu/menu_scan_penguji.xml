@@ -5,11 +5,7 @@
     <item
         app:showAsAction="never"
         android:title="Config IP"
-<<<<<<< HEAD
         android:id="@+id/configIP"
-=======
-        android:id="@+id/menu_config"
->>>>>>> b263679398f5c16ee18243f4f32d01c4059c965b
         />
 
 </menu>

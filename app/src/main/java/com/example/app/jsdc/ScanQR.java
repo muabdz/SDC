@@ -35,7 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class ScanQR extends AppCompatActivity {
-    String username, status, message, ipValue, portValue;
+    String username, message, ipValue, portValue, uid, time;
+    boolean status;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
     SessionManager sessionManager;
@@ -63,12 +64,14 @@ public class ScanQR extends AppCompatActivity {
         });
     }
     public void loginHandler(String kodePenguji) {
+        time = kodePenguji.substring(0,10);
+        uid = kodePenguji.substring(10);
         Map<String, Object> jsonParams = new ArrayMap<>();
-        jsonParams.put("username", kodePenguji);
-
+        jsonParams.put("date", time);
+        jsonParams.put("username", uid);
         mAuthAPIService = ApiUtils.getAuthAPIService();
 
-        Call<ResponseBody> response = mAuthAPIService.testloginPost(kodePenguji);
+        Call<ResponseBody> response = mAuthAPIService.testloginPost(uid, time);
 
         response.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -77,28 +80,33 @@ public class ScanQR extends AppCompatActivity {
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        //TODO: Sampe sini...{"message": "Petugas Berhasil Login", "status": true, "username":"STAFF1"}
-                        username = jsonObject.getString("username");
+                        status = jsonObject.getBoolean("status");
                         message = jsonObject.getString("message");
-                        status = jsonObject.getString("status");
+                        if (!status){
+                            Toast.makeText(ScanQR.this, message,
+                                    Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        } else {
+                            username = jsonObject.getString("username");
 
 
+                            new CountDownTimer(1000, 1000) {
 
-                        new CountDownTimer(1000, 1000) {
+                                public void onTick(long millisUntilFinished) {
+                                    // You don't need anything here
+                                }
 
-                            public void onTick(long millisUntilFinished) {
-                                // You don't need anything here
-                            }
-
-                            public void onFinish() {
-                                Toast.makeText(ScanQR.this, message,
-                                        Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                                Intent movea = new Intent(ScanQR.this, LoginPenguji.class);
-                                startActivity(movea);
-                                finish();
-                            }
-                        }.start();
+                                public void onFinish() {
+                                    //sessionManager.setUid(username);
+                                    Toast.makeText(ScanQR.this, message,
+                                            Toast.LENGTH_LONG).show();
+                                    progressDialog.dismiss();
+                                    Intent movea = new Intent(ScanQR.this, LoginPenguji.class);
+                                    startActivity(movea);
+                                    finish();
+                                }
+                            }.start();
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -143,18 +151,36 @@ public class ScanQR extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-<<<<<<< HEAD
-            case R.id.configIP:
+            case R.id.btn_ConfigIP:
                 Intent configIp = new Intent(this, ConfigIP.class);
                 startActivity(configIp);
-=======
+                return true;
             case R.id.menu_config:
                 //ipConfig();
->>>>>>> b263679398f5c16ee18243f4f32d01c4059c965b
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Keluar")
+                .setMessage("Apakah anda yakin ingin keluar?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent out = new Intent(ScanQR.this, ScanQR.class);
+                        startActivity(out);
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 
     public void ipConfig(){

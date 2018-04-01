@@ -1,30 +1,35 @@
 package com.example.app.jsdc;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
-=======
->>>>>>> b263679398f5c16ee18243f4f32d01c4059c965b
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.app.jsdc.Utils.SessionManager;
 
 public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
     Button t_praktek, t_sikap, komen, selesai;
     boolean doubleBackToExitPressedOnce = false;
+    SessionManager sessionManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_peserta);
+
+        TextView penguji = (TextView) findViewById(R.id.penguji2);
+        //penguji.setText(sessionManager.getUid());
 
         t_praktek = (Button) findViewById(R.id.b_praktek);
         t_sikap = (Button) findViewById(R.id.b_sikap);
@@ -59,7 +64,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 AlertDialog.Builder keluar = new AlertDialog.Builder(this);
                 keluar.setMessage("Apakah Anda Yakin?")
                         .setCancelable(false)
-                        .setPositiveButton("YA", new AlertDialog.OnClickListener(){
+                        .setPositiveButton("Ya", new AlertDialog.OnClickListener(){
                 public void onClick(DialogInterface dialog, int arg1){
                 Intent exit = new Intent(Intent.ACTION_MAIN);
                 exit.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);

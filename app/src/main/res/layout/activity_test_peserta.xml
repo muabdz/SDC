@@ -44,7 +44,7 @@
         android:layout_marginStart="20sp"
         android:textColor="#fff"
         android:textSize="20dp"
-        android:id="@+id/penguji" />
+        android:id="@+id/penguji2" />
 </LinearLayout>
 
     <LinearLayout
