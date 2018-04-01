@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -15,12 +16,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.astuetz.PagerSlidingTabStrip;
+import com.example.app.jsdc.Utils.FragmentUtils.TestFragmentAdapter;
 import com.example.app.jsdc.Utils.SessionManager;
 
 public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
     Button t_praktek, t_sikap, komen, selesai;
     boolean doubleBackToExitPressedOnce = false;
     SessionManager sessionManager;
+    TestFragmentAdapter testFragmentAdapter;
 
 
     @Override
@@ -30,8 +34,17 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.penguji2);
         penguji.setText(sessionManager.getUid());
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        testFragmentAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(testFragmentAdapter);
 
-        t_praktek = (Button) findViewById(R.id.b_praktek);
+        // Give the PagerSlidingTabStrip the ViewPager
+        PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        // Attach the view pager to the tab strip
+        tabsStrip.setViewPager(viewPager);
+
+        /*t_praktek = (Button) findViewById(R.id.b_praktek);
         t_sikap = (Button) findViewById(R.id.b_sikap);
         komen = (Button) findViewById(R.id.b_komentar);
         selesai = (Button) findViewById(R.id.b_selesai);
@@ -39,14 +52,14 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         t_praktek.setOnClickListener(this);
         t_sikap.setOnClickListener(this);
         komen.setOnClickListener(this);
-        selesai.setOnClickListener(this);
+        selesai.setOnClickListener(this);*/
 
     }
 
 
     @Override
     public void onClick(View v) {
-        android.support.v4.app.Fragment FG ;
+        /*android.support.v4.app.Fragment FG ;
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
 
@@ -82,7 +95,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     }
 
         transaction.replace(R.id.fragment_tes, FG);
-        transaction.commit();
+        transaction.commit();*/
     }
 
     @Override
