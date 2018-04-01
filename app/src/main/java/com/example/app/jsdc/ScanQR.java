@@ -196,12 +196,15 @@ public class ScanQR extends AppCompatActivity {
 
         final EditText ConfigIpInput = new EditText(ScanQR.this);
         ConfigIpInput.setHint("Contoh IP: 45.77.246.7");
-        //ConfigIpInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        String ipNow = sm.getHostIp();
+        ConfigIpInput.setText(ipNow);
         linearLayout.addView(ConfigIpInput);
 
         final EditText ConfigPortInput = new EditText(ScanQR.this);
         ConfigPortInput.setHint("Contoh Port: 8080");
         ConfigPortInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        String portNow = sm.getHostPort();
+        ConfigPortInput.setText(portNow);
         linearLayout.addView(ConfigPortInput);
 
         AlertDialog.Builder info = new AlertDialog.Builder(ScanQR.this);

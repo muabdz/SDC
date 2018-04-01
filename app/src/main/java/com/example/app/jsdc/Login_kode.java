@@ -1,9 +1,11 @@
 package com.example.app.jsdc;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v4.util.ArrayMap;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,7 +49,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
 
         progressDialog = new ProgressDialog(Login_kode.this);
         progressDialog.setMessage("Mohon Tunggu");
-        progressDialog.show();
 
         masukpeserta.setOnClickListener(this);
     }
@@ -126,47 +127,10 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.b_loginPeserta:
+                progressDialog.show();
                 loginHandler(etPeserta.getText().toString());
                 break;
 
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.actionbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_config:
-
-                Intent keluar = new Intent(this, ScanQR.class);
-                startActivity(keluar);
-
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                        builder.setTitle("Keluar");
-//                        builder.setMessage("Apakah Anda Yakin ?");
-//                        builder.setNegativeButton("Tidak", null);
-//                        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which, Intent keluar) {
-//
-//                                Intent keluar = new Intent(this, ScanQR.class);
-//                                startActivity(keluar);
-//
-//                            }
-//                        });
-
-            case R.id.menu_histori:
-                Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
     }
 }

@@ -102,10 +102,10 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
                         JSONArray jsonSoal = jsonObject.getJSONArray("soal");
-                        JSONArray jsonData = jsonObject.getJSONArray("data");
-                        p_id = jsonData.getString(0);
-                        nama = jsonData.getString(1);
-                        cate = jsonData.getInt(2);
+                        JSONObject jsonData = jsonObject.getJSONObject("data");
+                        p_id = jsonData.getString("p_id");
+                        nama = jsonData.getString("nama");
+                        cate = jsonData.getInt("cate");
                         sessionManager.setData(p_id, nama, cate);
 
                         message = jsonObject.getString("message");
@@ -165,25 +165,23 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_config:
+            case R.id.menu_logout:
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Logout")
+                        .setMessage("Apakah anda yakin ingin keluar?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                progressDialog.show();
+                                logoutHandler();
+                            }
 
-                Intent keluar = new Intent(this, ScanQR.class);
-                startActivity(keluar);
-
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                        builder.setTitle("Keluar");
-//                        builder.setMessage("Apakah Anda Yakin ?");
-//                        builder.setNegativeButton("Tidak", null);
-//                        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which, Intent keluar) {
-//
-//                                Intent keluar = new Intent(this, ScanQR.class);
-//                                startActivity(keluar);
-//
-//                            }
-//                        });
-
+                        })
+                        .setNegativeButton("Tidak", null)
+                        .show();
+                return true;
             case R.id.menu_histori:
                 Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
                 return true;
