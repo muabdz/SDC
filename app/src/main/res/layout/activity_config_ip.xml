@@ -12,15 +12,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Configurasi IP"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:textColor="#000"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubah IP dan Port:"
+        android:textColor="#000"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        android:hint="Masukan Alamat IP"
+        android:hint="Contoh IP: 45.77.246.7"
         android:textAlignment="center"
         android:id="@+id/ED_AlamatIP"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="#9999"
+        android:textSize="25sp"
+        />
+
+    <EditText
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:hint="Contoh Port: 8080"
+        android:textAlignment="center"
+        android:id="@+id/ED_Port"
         android:paddingStart="10sp"
         android:paddingEnd="10sp"
         android:paddingTop="5sp"

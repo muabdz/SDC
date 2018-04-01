@@ -143,14 +143,14 @@ public class ScanQR extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-<<<<<<< HEAD
+
             case R.id.configIP:
                 Intent configIp = new Intent(this, ConfigIP.class);
                 startActivity(configIp);
-=======
-            case R.id.menu_config:
-                //ipConfig();
->>>>>>> b263679398f5c16ee18243f4f32d01c4059c965b
+
+//            case R.id.menu_config:
+//                //ipConfig();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
