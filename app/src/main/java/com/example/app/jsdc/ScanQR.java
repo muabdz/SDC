@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.jsdc.Utils.ApiUtils;
@@ -34,7 +35,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class ScanQR extends AppCompatActivity {
+public class ScanQR extends AppCompatActivity implements View.OnClickListener {
     String username, message, ipValue, portValue, uid, time;
     boolean status;
     private static Context context;
@@ -47,6 +48,8 @@ public class ScanQR extends AppCompatActivity {
         setContentView(R.layout.activity_scan_qr);
         ScanQR.context = getApplicationContext();
         final Activity activity = this;
+        TextView TombolMasukKodePetugas = (TextView) findViewById(R.id.scanGagalPenguji);
+        TombolMasukKodePetugas.setOnClickListener(this);
         Button T_scanpenguji = (Button) findViewById(R.id.b_scanpenguji);
         progressDialog = new ProgressDialog(ScanQR.this);
         progressDialog.setMessage("Mohon Tunggu");
@@ -159,20 +162,20 @@ public class ScanQR extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-<<<<<<< HEAD
 
-            case R.id.configIP:
-                Intent configIp = new Intent(this, ConfigIP.class);
-                startActivity(configIp);
+
+//            case R.id.configIP:
+//                Intent configIp = new Intent(this, ConfigIP.class);
+//                startActivity(configIp);
 
 //            case R.id.menu_config:
 //                //ipConfig();
 
-=======
+
             case R.id.configIP:
                 sm = new SessionManager(this);
                 ipConfig();
->>>>>>> 1d9e37eac4342d1990ea6217360b286f95e7de8f
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -250,6 +253,16 @@ public class ScanQR extends AppCompatActivity {
         dialog.setTitle("IP Config");
         dialog.show();
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.scanGagalPenguji:
+                Intent masukLoginKodePetugas = new Intent(this, LoginKodePetugas.class);
+                startActivity(masukLoginKodePetugas);
+                break;
+        }
     }
 }
 

@@ -108,7 +108,6 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-<<<<<<< HEAD
             case R.id.configIP:
 
                 Intent keluar = new Intent(this, ScanQR.class);
@@ -128,7 +127,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 //                            }
 //                        });
 
-=======
+
             case R.id.menu_logout:
               /*  new AlertDialog.Builder(this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -146,7 +145,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                         .setNegativeButton("Tidak", null)
                         .show();*/
                 return true;
->>>>>>> 1d9e37eac4342d1990ea6217360b286f95e7de8f
+
             case R.id.menu_histori:
                 Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
                 return true;

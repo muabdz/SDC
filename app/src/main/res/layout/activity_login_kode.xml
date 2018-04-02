@@ -32,16 +32,8 @@
         android:text="Sukri"
         android:textColor="#fff"
         android:textSize="20dp"
-<<<<<<< HEAD
         android:layout_marginStart="15sp"
-        android:id="@+id/penguji" />
-=======
-        android:id="@+id/pengujiKode"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="98dp" />
->>>>>>> 1d9e37eac4342d1990ea6217360b286f95e7de8f
+        android:id="@+id/pengujiKode" />
 
 </LinearLayout>
 
@@ -58,13 +50,8 @@
         android:text="Masukan Nomer Pendaftaran"
         android:textColor="#000"
         android:textSize="20dp"
-        android:id="@+id/text4"
-<<<<<<< HEAD
-=======
-        android:layout_below="@id/pengujiKode"
->>>>>>> 1d9e37eac4342d1990ea6217360b286f95e7de8f
-        android:layout_marginTop="50dp"
-        />
+        android:id="@+id/text4"/>
+
 
     <EditText
         android:layout_width="300dp"

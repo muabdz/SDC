@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_kode_petugas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.example.app.jsdc.LoginKodePetugas">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masukan Kode Petugas"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:id="@+id/text4"/>
+
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/NoKodePetugas"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="34dp"
+            android:hint="Contoh : 431214"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:background="#9999"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MASUK"
+            android:id="@+id/b_MasukKodePetugas"
+            android:background="#FF6C2C"
+            android:textColor="#fff"
+            android:layout_marginTop="40dp" />
+
+</LinearLayout>
