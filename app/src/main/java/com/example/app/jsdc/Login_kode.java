@@ -80,10 +80,13 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
 
                         for (int i = 0; i<jsonSoal.length(); i++){
                             jsonObject = jsonSoal.getJSONObject(i);
+                            int sesi = jsonObject.getInt("sesi");
                             int id = jsonObject.getInt("id");
                             int nomor = jsonObject.getInt("nomor");
                             String soal = jsonObject.getString("soal");
-                            sessionManager.setQuestion(id, nomor, soal);
+                            if (sesi == 2) {
+                                sessionManager.setQuestion(nomor, jsonSoal.length(), soal, sesi, id);
+                            }
                         }
 
 

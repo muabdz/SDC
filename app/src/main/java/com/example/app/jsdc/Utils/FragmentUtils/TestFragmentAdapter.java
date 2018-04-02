@@ -3,6 +3,9 @@ package com.example.app.jsdc.Utils.FragmentUtils;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.app.jsdc.Komentar;
 import com.example.app.jsdc.Tes_Praktek;
@@ -14,7 +17,7 @@ import com.example.app.jsdc.Tes_Sikap;
 
 public class TestFragmentAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Praktek", "Sikap", "Komentar" };
+    private String tabTitles[] = new String[]{"Praktek", "Sikap", "Komentar"};
 
     public TestFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -45,4 +48,5 @@ public class TestFragmentAdapter extends FragmentPagerAdapter {
         // Generate title based on item position
         return tabTitles[position];
     }
+
 }

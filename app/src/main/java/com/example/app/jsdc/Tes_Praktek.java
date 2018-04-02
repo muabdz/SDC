@@ -4,18 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.app.jsdc.R;
+import com.example.app.jsdc.Utils.SelectedFragment;
+import com.example.app.jsdc.Utils.SessionManager;
 
 
-public class Tes_Praktek extends Fragment {
+public class Tes_Praktek extends Fragment implements SelectedFragment {
     // Store instance variables
     private int page;
-
+    int jumlahSoal;
     // newInstance constructor for creating fragment with arguments
     public static Tes_Praktek newInstance(int page) {
         Tes_Praktek tesPraktek = new Tes_Praktek();
@@ -36,7 +39,16 @@ public class Tes_Praktek extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /*jumlahSoal = sessionManager.getJumlahSoal();
+        for (int i = 0; i<jumlahSoal; i++){
+            String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
+        }*/
         View view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
         return view;
+    }
+
+    @Override
+    public void OnSelectedView(int position) {
+        Log.d("asd","asda");
     }
 }
