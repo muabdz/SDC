@@ -2,24 +2,27 @@ package com.example.app.jsdc;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
-=======
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.app.jsdc.R;
 import com.example.app.jsdc.Utils.SelectedFragment;
 import com.example.app.jsdc.Utils.SessionManager;
->>>>>>> f58a6028c08a874005f4241fc8a50bf07c7777d4
-
 
 public class Tes_Praktek extends Fragment implements SelectedFragment {
     // Store instance variables
     private int page;
     int jumlahSoal;
+    View view;
+    SessionManager sessionManager;
     // newInstance constructor for creating fragment with arguments
     public static Tes_Praktek newInstance(int page) {
         Tes_Praktek tesPraktek = new Tes_Praktek();
@@ -44,12 +47,62 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         for (int i = 0; i<jumlahSoal; i++){
             String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
         }*/
-        View view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
+        view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
         return view;
     }
 
     @Override
     public void OnSelectedView(int position) {
         Log.d("asd","asda");
+    }
+
+    public void getDataPraktek() {
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.layoutSoal);
+        counter++;
+
+
+
+        int jumlahSoal = sessionManager.getJumlahSoal();
+        for (int i = 0; i < jumlahSoal; i++) {
+            Log.d("panjang", "cek" + jumlahSoal);
+            Log.d("hasil", "adalah" + sessionManager.getQuestionId(i));
+            String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
+
+
+
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
+            );
+
+            LinearLayout linearLayoutHorizontal = new LinearLayout(Tes_Praktek.this);
+            linearLayoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
+            linearLayoutHorizontal.setLayoutParams(lp);
+            linearLayoutHorizontal.setGravity(17);
+
+            LinearLayout.LayoutParams lpEt = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                    , LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            lpEt.gravity = Gravity.RIGHT;
+
+            TextView tvSoal = new TextView(TestPeserta.this);
+            tvSoal.setText(pertanyaan);
+            tvSoal.setPadding(10, 10, 10, 10);
+            tvSoal.setWidth(500);
+
+
+            EditText etSoal = new EditText(TestPeserta.this);
+            etSoal.setHint("0");
+            etSoal.setId(i);
+            etSoal.setLayoutParams(lpEt);
+            etSoal.setInputType(InputType.TYPE_CLASS_NUMBER);
+            etSoal.setWidth(200);
+            etSoal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+            linearLayoutHorizontal.addView(tvSoal);
+            linearLayoutHorizontal.addView(etSoal);
+            linearLayout.addView(linearLayoutHorizontal);
+        }
     }
 }
