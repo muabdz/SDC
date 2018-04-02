@@ -41,11 +41,18 @@ public class SessionManager {
         return hostPort;
     }
 
-    public void setQuestion(int id, int num, String question){
-        prefs.edit().putInt(String.valueOf(num), id).apply();
+    public void setQuestion(int nomor, int jumlah, String question, int sesi, int id){
+        prefs.edit().putInt(String.valueOf(nomor), id).apply();
+        prefs.edit().putInt(String.valueOf(nomor)+"sesi", sesi).apply();
         prefs.edit().putString(String.valueOf(id)+"id", question).apply();
-        prefs.edit().putInt("num", num).apply();
+        prefs.edit().putInt("num", jumlah).apply();
     }
+
+    public int getSesi(int num){
+        int sesi = prefs.getInt(String.valueOf(num)+"sesi", 2);
+        return sesi;
+    }
+
 
     public String getQuestion(int id){
         question = prefs.getString(String.valueOf(id)+"id","error");

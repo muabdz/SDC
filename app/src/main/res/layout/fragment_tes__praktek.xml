@@ -289,5 +289,13 @@
         </RelativeLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10sp"
+        android:id="@+id/layoutSoal"/>
+
     </LinearLayout>
 </ScrollView>

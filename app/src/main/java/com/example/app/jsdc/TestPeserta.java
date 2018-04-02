@@ -3,21 +3,29 @@ package com.example.app.jsdc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.app.jsdc.Utils.FragmentUtils.TestFragmentAdapter;
+import com.example.app.jsdc.Utils.SelectedFragment;
 import com.example.app.jsdc.Utils.SessionManager;
 
 public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
@@ -25,11 +33,13 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     boolean doubleBackToExitPressedOnce = false;
     SessionManager sessionManager;
     TestFragmentAdapter testFragmentAdapter;
-
+    SelectedFragment selectedFrag;
+    int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        counter = 0;
         setContentView(R.layout.activity_test_peserta);
         sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.penguji2);
@@ -43,6 +53,40 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
+        tabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            // This method will be invoked when a new page becomes selected.
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            // This method will be invoked when the current page is scrolled
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // Code goes here
+                switch (position) {
+                    case 0:
+
+                            getDataPraktek();
+
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
+
+
+            }
+
+            // Called when the scroll state changes:
+            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         /*t_praktek = (Button) findViewById(R.id.b_praktek);
         t_sikap = (Button) findViewById(R.id.b_sikap);
@@ -155,19 +199,74 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    public void getDataPraktek() {
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.layoutSoal);
+        counter++;
+
+
+
+        int jumlahSoal = sessionManager.getJumlahSoal();
+        for (int i = 0; i < jumlahSoal; i++) {
+            Log.d("panjang", "cek" + jumlahSoal);
+            Log.d("hasil", "adalah" + sessionManager.getQuestionId(i));
+            String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
+
+
+
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
+            );
+
+            LinearLayout linearLayoutHorizontal = new LinearLayout(TestPeserta.this);
+            linearLayoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
+            linearLayoutHorizontal.setLayoutParams(lp);
+            linearLayoutHorizontal.setGravity(17);
+
+            LinearLayout.LayoutParams lpEt = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                    , LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            lpEt.gravity = Gravity.RIGHT;
+
+            TextView tvSoal = new TextView(TestPeserta.this);
+            tvSoal.setText(pertanyaan);
+            tvSoal.setPadding(10, 10, 10, 10);
+            tvSoal.setWidth(500);
+
+
+            EditText etSoal = new EditText(TestPeserta.this);
+            etSoal.setHint("0");
+            etSoal.setId(i);
+            etSoal.setLayoutParams(lpEt);
+            etSoal.setInputType(InputType.TYPE_CLASS_NUMBER);
+            etSoal.setWidth(200);
+            etSoal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+
+            linearLayoutHorizontal.addView(tvSoal);
+            linearLayoutHorizontal.addView(etSoal);
+            linearLayout.addView(linearLayoutHorizontal);
+        }
+
+
+    }
+
     @Override
-    public void onBackPressed(){
-        if (doubleBackToExitPressedOnce){
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
             return;
         }
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this,"Tekan tombol kembali lagi untuk keluar",Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable(){
+        Toast.makeText(this, "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 doubleBackToExitPressedOnce = false;
             }
-        },2000);
+        }, 2000);
     }
+
+
 }

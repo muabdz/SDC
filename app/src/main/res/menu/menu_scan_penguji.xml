@@ -7,5 +7,4 @@
         android:title="Config IP"
         android:id="@+id/configIP"/>
 
-
 </menu>
