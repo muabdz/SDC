@@ -199,59 +199,6 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    public void getDataPraktek() {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.layoutSoal);
-        counter++;
-
-
-
-        int jumlahSoal = sessionManager.getJumlahSoal();
-        for (int i = 0; i < jumlahSoal; i++) {
-            Log.d("panjang", "cek" + jumlahSoal);
-            Log.d("hasil", "adalah" + sessionManager.getQuestionId(i));
-            String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
-
-
-
-
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
-            );
-
-            LinearLayout linearLayoutHorizontal = new LinearLayout(TestPeserta.this);
-            linearLayoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
-            linearLayoutHorizontal.setLayoutParams(lp);
-            linearLayoutHorizontal.setGravity(17);
-
-            LinearLayout.LayoutParams lpEt = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                    , LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            lpEt.gravity = Gravity.RIGHT;
-
-            TextView tvSoal = new TextView(TestPeserta.this);
-            tvSoal.setText(pertanyaan);
-            tvSoal.setPadding(10, 10, 10, 10);
-            tvSoal.setWidth(500);
-
-
-            EditText etSoal = new EditText(TestPeserta.this);
-            etSoal.setHint("0");
-            etSoal.setId(i);
-            etSoal.setLayoutParams(lpEt);
-            etSoal.setInputType(InputType.TYPE_CLASS_NUMBER);
-            etSoal.setWidth(200);
-            etSoal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
-
-            linearLayoutHorizontal.addView(tvSoal);
-            linearLayoutHorizontal.addView(etSoal);
-            linearLayout.addView(linearLayoutHorizontal);
-        }
-
-
-    }
-
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
