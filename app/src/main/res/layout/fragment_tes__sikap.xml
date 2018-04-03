@@ -68,14 +68,14 @@
                 android:layout_alignBottom="@+id/sikap_A"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="41dp"
-                android:background="#999"
                 android:hint="0"
                 android:inputType="phone"
                 android:paddingBottom="5sp"
                 android:paddingTop="5sp"
                 android:textAlignment="center"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
 
             <EditText
                 android:id="@+id/ET_PerilakuB"
@@ -85,7 +85,6 @@
                 android:layout_alignBottom="@+id/BTubuh_B"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="41dp"
-                android:background="#999"
                 android:hint="0"
                 android:inputType="phone"
                 android:paddingBottom="5sp"
@@ -102,7 +101,6 @@
                 android:layout_alignBottom="@+id/Ckonsen_C"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="41dp"
-                android:background="#999"
                 android:paddingBottom="5sp"
                 android:paddingTop="5sp"
                 android:hint="0"

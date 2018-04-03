@@ -105,4 +105,12 @@
 
         </android.support.v4.view.ViewPager>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:id="@+id/bsubmit"
+        android:background="#FF6C2C"
+        android:textColor="#fff" />
+
 </LinearLayout>
