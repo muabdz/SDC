@@ -37,6 +37,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     SelectedFragment selectedFrag;
     int counter;
     ProgressDialog progressDialog;
+    Tes_Praktek tes_praktek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,6 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 // Code goes here
                 switch (position) {
                     case 0:
-                        //getDataPraktek();
                         break;
                     case 1:
                         break;

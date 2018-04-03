@@ -21,6 +21,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     int jumlahSoal;
     View view;
     SessionManager sessionManager;
+    EditText etSoal;
     // newInstance constructor for creating fragment with arguments
     public static Tes_Praktek newInstance(int page) {
         Tes_Praktek tesPraktek = new Tes_Praktek();
@@ -74,7 +75,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
                 tvSoal.setWidth(500);
 
 
-                EditText etSoal = new EditText(getActivity());
+                etSoal = new EditText(getActivity());
                 etSoal.setHint("0");
                 etSoal.setId(i);
                 etSoal.setLayoutParams(lpEt);
