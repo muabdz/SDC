@@ -75,6 +75,21 @@ public class SessionManager {
         prefs.edit().putInt("cate", cate).apply();
     }
 
+    public String getNama(){
+        String nama = prefs.getString("nama", "");
+        return nama;
+    }
+
+    public String getPId(){
+        String p_id = prefs.getString("p_id", "");
+        return p_id;
+    }
+
+    public Integer getCate(){
+        int cate = prefs.getInt("cate", 0);
+        return cate;
+    }
+
     public void setUid(String username){
         prefs.edit().putString("uid", username).apply();
     }

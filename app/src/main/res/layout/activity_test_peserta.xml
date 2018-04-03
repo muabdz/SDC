@@ -69,7 +69,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:background="#999999"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textColor="#000"
         android:id="@+id/peserta"
         android:paddingTop="5dp"

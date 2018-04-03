@@ -50,11 +50,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
             LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
             int jumlahSoal = sessionManager.getJumlahSoal();
             for (int i = 0; i < jumlahSoal; i++) {
-                Log.d("panjang", "cek" + jumlahSoal);
-                Log.d("hasil", "adalah" + sessionManager.getQuestionId(i));
                 String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
-
-
 
 
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

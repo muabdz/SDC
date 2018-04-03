@@ -42,9 +42,16 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         counter = 0;
+        progressDialog = new ProgressDialog(TestPeserta.this);
+        progressDialog.setMessage("Mohon Tunggu");
         setContentView(R.layout.activity_test_peserta);
         sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.penguji2);
+        TextView peserta = (TextView) findViewById(R.id.peserta);
+        TextView kategori = (TextView) findViewById(R.id.jenis_tes);
+
+        peserta.setText(sessionManager.getNama());
+        kategori.setText(sessionManager.getCate().toString());
         penguji.setText(sessionManager.getUid());
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
