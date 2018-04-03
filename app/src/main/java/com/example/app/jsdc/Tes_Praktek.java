@@ -6,14 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
-=======
-import android.widget.Button;
 
-import com.example.app.jsdc.R;
 import com.example.app.jsdc.Utils.SelectedFragment;
-import com.example.app.jsdc.Utils.SessionManager;
->>>>>>> f58a6028c08a874005f4241fc8a50bf07c7777d4
 
 
 public class Tes_Praktek extends Fragment implements SelectedFragment {
