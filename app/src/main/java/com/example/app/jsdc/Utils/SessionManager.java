@@ -37,7 +37,7 @@ public class SessionManager {
     }
 
     public String getHostPort() {
-        hostPort = prefs.getString("hostPort","8080"); //gua rasa dari sini
+        hostPort = prefs.getString("hostPort","8080");
         return hostPort;
     }
 
@@ -45,7 +45,7 @@ public class SessionManager {
         prefs.edit().putInt(String.valueOf(nomor), id).apply();
         prefs.edit().putInt(String.valueOf(nomor)+"sesi", sesi).apply();
         prefs.edit().putString(String.valueOf(id)+"id", question).apply();
-        prefs.edit().putInt("num", jumlah).apply();
+        prefs.edit().putInt("jumlah", jumlah).apply();
     }
 
     public int getSesi(int num){
@@ -65,7 +65,7 @@ public class SessionManager {
     }
 
     public int getJumlahSoal(){
-        jumlahSoal = prefs.getInt("num", 0);
+        jumlahSoal = prefs.getInt("jumlah", 0);
         return jumlahSoal;
     }
 
@@ -112,6 +112,32 @@ public class SessionManager {
     }
 
     public void removeSessionJumlahSoal(){
-        prefs.edit().remove("num").apply();
+        prefs.edit().remove("jumlah").apply();
     }
+
+    public void setSessionSikap(String sikap, int id){
+        prefs.edit().putInt(String.valueOf(id)+"idsikap", id).apply();
+        prefs.edit().putString(String.valueOf(id)+"sikap", sikap).apply();
+    }
+
+    public int getIdSikap(int id){
+        int idSikap = prefs.getInt(id+"idsikap", 0);
+        return idSikap;
+    }
+
+    public void removeSessionSikap(int id){
+        prefs.edit().remove(String.valueOf(id)+"sikap").apply();
+        prefs.edit().remove(String.valueOf(id)+"idsikap").apply();
+    }
+
+    public void setJumlahTotal(int jumlah){
+        prefs.edit().putInt("jumlahTotal", jumlah).apply();
+    }
+
+    public int getJumlahTotal(){
+        int jumlah = prefs.getInt("jumlahTotal", 0);
+        return jumlah;
+    }
+
+
 }

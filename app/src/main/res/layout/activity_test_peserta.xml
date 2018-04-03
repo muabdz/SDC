@@ -101,7 +101,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="300sp">
 
         </android.support.v4.view.ViewPager>
 
@@ -111,6 +111,8 @@
         android:text="SUBMIT"
         android:id="@+id/bsubmit"
         android:background="#FF6C2C"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:layout_margin="10sp"/>
 
 </LinearLayout>

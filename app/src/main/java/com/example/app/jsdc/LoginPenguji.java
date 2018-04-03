@@ -45,7 +45,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     String status, message, p_id, nama, usernamePenguji;
-    int cate;
+    int cate, jumsol;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
     private GoogleApiClient client;
@@ -61,8 +61,10 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         TextView b_loginkode = (TextView) findViewById(R.id.Bantuan);
         TextView penguji = (TextView) findViewById(R.id.penguji);
         progressDialog = new ProgressDialog(LoginPenguji.this);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
         penguji.setText(sessionManager.getUid());
+        jumsol = 0;
 
 
         b_loginkode.setOnClickListener(this);
@@ -110,7 +112,6 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
 
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
-                        int jumsol = 0;
                         for (int i = 0; i<jsonSoal.length(); i++){
                             jsonObject = jsonSoal.getJSONObject(i);
                             int sesi = jsonObject.getInt("sesi");
@@ -120,7 +121,10 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                             if (sesi == 2) {
                                 jumsol++;
                                 sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                            }else{
+                                sessionManager.setSessionSikap(soal, id);
                             }
+                            sessionManager.setJumlahTotal(jsonSoal.length());
                         }
 
 
@@ -186,9 +190,6 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         .setNegativeButton("Tidak", null)
                         .show();
                 return true;
-            case R.id.menu_histori:
-                Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -208,8 +209,6 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
             }
 
         } else {
-
-
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -281,6 +280,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
                         //TAMBAHIN REMOVE SESI
+
 
                         new CountDownTimer(1000, 1000) {
 

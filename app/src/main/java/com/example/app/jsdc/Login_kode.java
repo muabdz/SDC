@@ -50,6 +50,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
 
         progressDialog = new ProgressDialog(Login_kode.this);
         progressDialog.setMessage("Mohon Tunggu");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         masukpeserta.setOnClickListener(this);
     }

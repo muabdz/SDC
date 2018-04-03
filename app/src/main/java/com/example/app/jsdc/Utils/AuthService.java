@@ -1,5 +1,6 @@
 package com.example.app.jsdc.Utils;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public interface AuthService {
     Call<ResponseBody> loginPeserta(@Path("id") String idPeserta);
 
     @POST("/soal/{hasil}")
-    Call<ResponseBody> submitPeserta(@Path("hasil")JSONArray hasil);
+    Call<ResponseBody> submitPeserta(@Path("hasil")JSONObject hasil);
 
     @POST("/signout/{uid}")
     Call<ResponseBody> logoutPost(@Path("uid") String userId);

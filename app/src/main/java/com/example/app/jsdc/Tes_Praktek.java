@@ -1,5 +1,7 @@
 package com.example.app.jsdc;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -15,13 +17,18 @@ import android.widget.TextView;
 import com.example.app.jsdc.Utils.SelectedFragment;
 import com.example.app.jsdc.Utils.SessionManager;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Tes_Praktek extends Fragment implements SelectedFragment {
     // Store instance variables
     private int page;
     int jumlahSoal;
     View view;
-    SessionManager sessionManager;
-    EditText etSoal;
+    SessionManager sessionManager, sm;
+    EditText[] etSoal;
+    ArrayList<String> arrayList;
+    TestPeserta testPeserta;
     // newInstance constructor for creating fragment with arguments
     public static Tes_Praktek newInstance(int page) {
         Tes_Praktek tesPraktek = new Tes_Praktek();
@@ -37,6 +44,8 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("0");
         sessionManager = new SessionManager(getContext());
+        testPeserta = new TestPeserta();
+        //SharedPreferences preferences = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
     }
 
     // Inflate the view for the fragment based on layout XML
@@ -49,7 +58,9 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         }*/
         view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
             LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
-            int jumlahSoal = sessionManager.getJumlahSoal();
+            jumlahSoal = sessionManager.getJumlahSoal();
+
+            etSoal = new EditText[jumlahSoal];
             for (int i = 0; i < jumlahSoal; i++) {
                 String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
 
@@ -74,17 +85,17 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
                 tvSoal.setPadding(10, 10, 10, 10);
                 tvSoal.setWidth(500);
 
-
-                etSoal = new EditText(getActivity());
-                etSoal.setHint("0");
-                etSoal.setId(i);
-                etSoal.setLayoutParams(lpEt);
-                etSoal.setInputType(InputType.TYPE_CLASS_NUMBER);
-                etSoal.setWidth(200);
-                etSoal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                etSoal[i] = new EditText(getActivity());
+                etSoal[i].setHint("0");
+                etSoal[i].setId(i);
+                etSoal[i].setLayoutParams(lpEt);
+                etSoal[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+                etSoal[i].setWidth(200);
+                etSoal[i].setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//                testPeserta.setJawab(etSoal[i], i);
 
                 linearLayoutHorizontal.addView(tvSoal);
-                linearLayoutHorizontal.addView(etSoal);
+                linearLayoutHorizontal.addView(etSoal[i]);
                 linearLayout.addView(linearLayoutHorizontal);
 
         }
@@ -94,6 +105,17 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     @Override
     public void OnSelectedView(int position) {
         Log.d("asd","asda");
+    }
+
+    public ArrayList<String> arrayJawaban(Context ctx){
+        arrayList = new ArrayList<String>();
+        sm = new SessionManager(ctx);
+        jumlahSoal = sm.getJumlahSoal();
+        for (int i=1;i<=jumlahSoal;i++){
+            String jawaban = etSoal[i].getText().toString();
+            arrayList.add(i, jawaban);
+        }
+        return arrayList;
     }
 
 }
