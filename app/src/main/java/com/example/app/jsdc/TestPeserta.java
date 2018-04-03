@@ -1,6 +1,7 @@
 package com.example.app.jsdc;
 
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -35,6 +36,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     TestFragmentAdapter testFragmentAdapter;
     SelectedFragment selectedFrag;
     int counter;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +69,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 // Code goes here
                 switch (position) {
                     case 0:
-
-                            getDataPraktek();
-
+                        //getDataPraktek();
                         break;
                     case 1:
                         break;
@@ -88,58 +88,12 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-        /*t_praktek = (Button) findViewById(R.id.b_praktek);
-        t_sikap = (Button) findViewById(R.id.b_sikap);
-        komen = (Button) findViewById(R.id.b_komentar);
-        selesai = (Button) findViewById(R.id.b_selesai);
-
-        t_praktek.setOnClickListener(this);
-        t_sikap.setOnClickListener(this);
-        komen.setOnClickListener(this);
-        selesai.setOnClickListener(this);*/
-
     }
 
 
     @Override
     public void onClick(View v) {
-        /*android.support.v4.app.Fragment FG ;
-        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
 
-        if (v == findViewById(R.id.b_praktek))
-            FG = new Tes_Praktek();
-
-        else if (v == findViewById(R.id.b_sikap))
-            FG = new Tes_Sikap();
-        else
-            FG = new Komentar();
-
-
-        switch (v.getId()) {
-            case R.id.b_selesai:
-                AlertDialog.Builder keluar = new AlertDialog.Builder(this);
-                keluar.setMessage("Apakah Anda Yakin?")
-                        .setCancelable(false)
-                        .setPositiveButton("Ya", new AlertDialog.OnClickListener(){
-                public void onClick(DialogInterface dialog, int arg1){
-                Intent exit = new Intent(Intent.ACTION_MAIN);
-                exit.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                startActivity(exit);
-            }
-        }).setNegativeButton("Tidak", new AlertDialog.OnClickListener(){
-            public void onClick(DialogInterface arg, int arg1){
-                arg.cancel();
-            }
-        });
-        AlertDialog arg1 = keluar.create();
-        arg1.setTitle("Selesai");
-        arg1.show();
-        break;
-    }
-
-        transaction.replace(R.id.fragment_tes, FG);
-        transaction.commit();*/
     }
 
     @Override
@@ -152,25 +106,6 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.configIP:
-
-                Intent keluar = new Intent(this, ScanQR.class);
-                startActivity(keluar);
-
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                        builder.setTitle("Keluar");
-//                        builder.setMessage("Apakah Anda Yakin ?");
-//                        builder.setNegativeButton("Tidak", null);
-//                        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which, Intent keluar) {
-//
-//                                Intent keluar = new Intent(this, ScanQR.class);
-//                                startActivity(keluar);
-//
-//                            }
-//                        });
-
 
             case R.id.menu_logout:
               /*  new AlertDialog.Builder(this)
@@ -201,19 +136,31 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Logout")
+                .setMessage("Apakah anda yakin ingin keluar?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        progressDialog.show();
+                        cancelHandler();
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 
-
+    public void cancelHandler() {
+        sessionManager.removeSessionPeserta();
+        for (int i = 1; i <= sessionManager.getJumlahSoal(); i++) {
+            sessionManager.removeSessionSoal(i, sessionManager.getQuestionId(i));
+        }
+        sessionManager.removeSessionJumlahSoal();
+        progressDialog.dismiss();
+        Intent movea = new Intent(TestPeserta.this, LoginPenguji.class);
+        startActivity(movea);
+        finish();
+    }
 }

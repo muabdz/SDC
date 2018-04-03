@@ -110,7 +110,6 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
 
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
-                        int banyakSoal = 0;
                         for (int i = 0; i<jsonSoal.length(); i++){
                             jsonObject = jsonSoal.getJSONObject(i);
                             int sesi = jsonObject.getInt("sesi");
@@ -118,8 +117,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                             int nomor = jsonObject.getInt("nomor");
                             String soal = jsonObject.getString("soal");
                             if (sesi == 2) {
-                                banyakSoal++;
-                                sessionManager.setQuestion(nomor, banyakSoal, soal, sesi, id);
+                                sessionManager.setQuestion(nomor, jsonSoal.length(), soal, sesi, id);
                             }
                         }
 

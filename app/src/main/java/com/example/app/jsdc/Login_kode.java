@@ -31,7 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class Login_kode extends AppCompatActivity implements View.OnClickListener {
-    String username, status, message;
+    String username, status, message, p_id, nama;
+    int cate;
     EditText etPeserta;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
@@ -69,10 +70,10 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
                         JSONArray jsonSoal = jsonObject.getJSONArray("soal");
-                        JSONArray jsonData = jsonObject.getJSONArray("data");
-                        String p_id = jsonData.getString(0);
-                        String nama = jsonData.getString(1);
-                        int cate = jsonData.getInt(2);
+                        JSONObject jsonData = jsonObject.getJSONObject("data");
+                        p_id = jsonData.getString("p_id");
+                        nama = jsonData.getString("nama");
+                        cate = jsonData.getInt("cate");
                         sessionManager.setData(p_id, nama, cate);
 
                         message = jsonObject.getString("message");
@@ -97,6 +98,8 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                             }
 
                             public void onFinish() {
+                                Toast.makeText(Login_kode.this, message,
+                                    Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                                 Intent login = new Intent(Login_kode.this, TestPeserta.class);
                                 startActivity(login);

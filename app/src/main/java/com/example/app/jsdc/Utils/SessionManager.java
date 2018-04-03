@@ -83,4 +83,20 @@ public class SessionManager {
         uid = prefs.getString("uid", "error");
         return uid;
     }
+
+    public void removeSessionSoal(int nomor, int id){
+        prefs.edit().remove(String.valueOf(nomor)).apply();
+        prefs.edit().remove(String.valueOf(nomor)+"sesi").apply();
+        prefs.edit().remove(String.valueOf(id)+"id").apply();
+    }
+
+    public void removeSessionPeserta(){
+        prefs.edit().remove("p_id").apply();
+        prefs.edit().remove("nama").apply();
+        prefs.edit().remove("cate").apply();
+    }
+
+    public void removeSessionJumlahSoal(){
+        prefs.edit().remove("num").apply();
+    }
 }

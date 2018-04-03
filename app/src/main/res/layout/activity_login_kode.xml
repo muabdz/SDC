@@ -53,7 +53,6 @@
         android:textSize="20dp"
         android:id="@+id/text4"/>
 
-
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
