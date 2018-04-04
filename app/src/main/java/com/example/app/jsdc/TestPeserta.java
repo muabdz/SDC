@@ -55,6 +55,8 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     Tes_Sikap tes_sikap;
     Komentar komentar;
     AuthService mAuthAPIService;
+    EditText[] etSoal, etJawab;
+    int[] questionId;
 //    EditText[] etJawaban;
 
     @Override
@@ -63,11 +65,14 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         tes_praktek = new Tes_Praktek();
         tes_sikap = new Tes_Sikap();
         komentar = new Komentar();
+        etJawab = new EditText[jumlahSoal];
+        questionId = new int[jumlahSoal];
         progressDialog = new ProgressDialog(TestPeserta.this);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
         setContentView(R.layout.activity_test_peserta);
         sessionManager = new SessionManager(this);
+        jumlahSoal = sessionManager.getJumlahSoal();
         bSubmit = (Button) findViewById(R.id.bsubmit);
         bSubmit.setOnClickListener(this);
 //        etJawaban = new EditText[(sessionManager.getJumlahSoal())];
@@ -141,6 +146,10 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             String stringPengetahuan = ((EditText) findViewById(R.id.ET_Pengetahuan)).getText().toString();
             String stringTeknik = ((EditText) findViewById(R.id.ET_Mengemudi)).getText().toString();
             String stringPerilaku = ((EditText) findViewById(R.id.ET_Perilaku)).getText().toString();
+
+//            for (int i=0;i<sessionManager.getJumlahSoal();i++){
+//                String stringJawab = (tes_praktek.etSoal[i]).getText().toString();
+//            }
 //            new AlertDialog.Builder(this)
 //                    .setIcon(android.R.drawable.ic_dialog_alert)
 //                    .setTitle("Error")
@@ -230,6 +239,20 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         }catch (JSONException e){
             e.printStackTrace();
         }
+//        for (int i=0;i<sessionManager.getJumlahSoal();i++){
+//            String stringJawab = (getEtJawab(i)).getText().toString();
+//            int intId = getQuestId(i);
+//
+//            JSONObject jsonJawab= new JSONObject();
+//            try {
+//                jsonJawab.put("soal_id", intId);
+//                jsonJawab.put("peserta_id", sessionManager.getPId());
+//                jsonJawab.put("hasil", stringJawab);
+//                jsonParams.put("soal",jsonJawab);
+//            }catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         mAuthAPIService = ApiUtils.getAuthAPIService();
 
@@ -283,6 +306,26 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+    }
+
+    public void setEtJawab(EditText et, int i){
+        etJawab[i] = new EditText(getParent());
+        etJawab[i] = et;
+    }
+
+    public void setQuestionId(int i, int id){
+        questionId[i] = new Integer(id);
+        questionId[i] = id;
+    }
+
+    public  int getQuestId(int i){
+        int id = questionId[i];
+        return id;
+    }
+
+    public EditText getEtJawab(int i){
+        EditText et = etJawab[i];
+        return et;
     }
 
 

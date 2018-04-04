@@ -26,7 +26,8 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     int jumlahSoal;
     View view;
     SessionManager sessionManager, sm;
-    EditText[] etSoal;
+    EditText[] etSoal; //, etJawab;
+//    int[] questionId;
     ArrayList<String> arrayList;
     TestPeserta testPeserta;
     // newInstance constructor for creating fragment with arguments
@@ -45,6 +46,11 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         page = getArguments().getInt("0");
         sessionManager = new SessionManager(getContext());
         testPeserta = new TestPeserta();
+        jumlahSoal = sessionManager.getJumlahSoal();
+        etSoal = new EditText[jumlahSoal];
+//        etJawab = new EditText[jumlahSoal];
+//        questionId = new int[jumlahSoal];
+
         //SharedPreferences preferences = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
     }
 
@@ -58,7 +64,6 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         }*/
         view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
             LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
-            jumlahSoal = sessionManager.getJumlahSoal();
 
             etSoal = new EditText[jumlahSoal];
             for (int i = 0; i < jumlahSoal; i++) {
@@ -92,6 +97,9 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
                 etSoal[i].setInputType(InputType.TYPE_CLASS_NUMBER);
                 etSoal[i].setWidth(200);
                 etSoal[i].setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//                testPeserta.setEtJawab(etSoal[i], i);
+//                testPeserta.setQuestionId(i, sessionManager.getQuestionId(i));
+
 //                testPeserta.setJawab(etSoal[i], i);
 
                 linearLayoutHorizontal.addView(tvSoal);
@@ -117,5 +125,24 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         }
         return arrayList;
     }
+//    public void setEtJawab(EditText et, int i){
+//        etJawab[i] = new EditText(getActivity());
+//        etJawab[i] = et;
+//    }
+//
+//    public void setQuestionId(int i, int id){
+//        questionId[i] = new Integer(id);
+//        questionId[i] = id;
+//    }
+//
+//    public  int getQuestId(int i){
+//        int id = questionId[i];
+//        return id;
+//    }
+//
+//    public EditText getEtJawab(int i){
+//        EditText et = etJawab[i];
+//        return et;
+//    }
 
 }

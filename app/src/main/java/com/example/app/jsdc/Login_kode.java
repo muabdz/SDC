@@ -89,8 +89,12 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                             if (sesi == 2) {
                                 jumsol++;
                                 sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                            }else{
+                                sessionManager.setSessionSikap(soal, id);
                             }
+                            sessionManager.setJumlahTotal(jsonSoal.length());
                         }
+
 
 
                         new CountDownTimer(1000, 1000) {
