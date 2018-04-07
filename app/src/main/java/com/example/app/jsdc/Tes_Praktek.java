@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.example.app.jsdc.Utils.SelectedFragment;
 import com.example.app.jsdc.Utils.SessionManager;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Tes_Praktek extends Fragment implements SelectedFragment {
@@ -26,9 +25,10 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     int jumlahSoal;
     View view;
     SessionManager sessionManager, sm;
-    EditText[] etSoal; //, etJawab;
+    static EditText[] etSoal; //, etJawab;
 //    int[] questionId;
-    ArrayList<String> arrayList;
+    ArrayList<String> arrayListJawaban;
+    ArrayList<Integer> arrayListIdJawban;
     TestPeserta testPeserta;
     // newInstance constructor for creating fragment with arguments
     public static Tes_Praktek newInstance(int page) {
@@ -47,7 +47,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         sessionManager = new SessionManager(getContext());
         testPeserta = new TestPeserta();
         jumlahSoal = sessionManager.getJumlahSoal();
-        etSoal = new EditText[jumlahSoal];
+
 //        etJawab = new EditText[jumlahSoal];
 //        questionId = new int[jumlahSoal];
 
@@ -66,7 +66,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
             LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
 
             etSoal = new EditText[jumlahSoal];
-            for (int i = 0; i < jumlahSoal; i++) {
+            for (int i = 1; i < jumlahSoal; i++) {
                 String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
 
 
@@ -75,6 +75,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
                 );
 
                 LinearLayout linearLayoutHorizontal = new LinearLayout(getActivity());
+                linearLayoutHorizontal.setId(99);
                 linearLayoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
                 linearLayoutHorizontal.setLayoutParams(lp);
                 linearLayoutHorizontal.setGravity(17);
@@ -97,6 +98,9 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
                 etSoal[i].setInputType(InputType.TYPE_CLASS_NUMBER);
                 etSoal[i].setWidth(200);
                 etSoal[i].setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                etSoal[i].setText("5");
+
+
 //                testPeserta.setEtJawab(etSoal[i], i);
 //                testPeserta.setQuestionId(i, sessionManager.getQuestionId(i));
 
@@ -115,34 +119,30 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         Log.d("asd","asda");
     }
 
-    public ArrayList<String> arrayJawaban(Context ctx){
-        arrayList = new ArrayList<String>();
-        sm = new SessionManager(ctx);
-        jumlahSoal = sm.getJumlahSoal();
-        for (int i=1;i<=jumlahSoal;i++){
-            String jawaban = etSoal[i].getText().toString();
-            arrayList.add(i, jawaban);
-        }
-        return arrayList;
-    }
-//    public void setEtJawab(EditText et, int i){
-//        etJawab[i] = new EditText(getActivity());
-//        etJawab[i] = et;
+//    public ArrayList<String> arrayJawaban(Context ctx){
+//        arrayListJawaban = new ArrayList<String>();
+//        sm = new SessionManager(ctx);
+//        jumlahSoal = sm.getJumlahSoal();
+//        for (int i=1;i<=jumlahSoal;i++){
+//            String jawaban = ((EditText) view.findViewById(i)).getText().toString();
+//            arrayListJawaban.add(i, jawaban);
+//        }
+//        return arrayListJawaban;
 //    }
 //
-//    public void setQuestionId(int i, int id){
-//        questionId[i] = new Integer(id);
-//        questionId[i] = id;
-//    }
-//
-//    public  int getQuestId(int i){
-//        int id = questionId[i];
-//        return id;
-//    }
-//
-//    public EditText getEtJawab(int i){
-//        EditText et = etJawab[i];
-//        return et;
-//    }
+//    public ArrayList<Integer> arrayIdJawaban(Context ctx){
+//        arrayListIdJawban = new ArrayList<Integer>();
+//        sm = new SessionManager(ctx);
+//        jumlahSoal = sm.getJumlahSoal();
+//        for (int i=1;i<=jumlahSoal;i++){
+//            int jawaban = view.findViewById(i).getId();
+//            arrayListIdJawban.add(i, jawaban);
+//        }
+//        return arrayListIdJawban;
+//        }
+
+
+
+
 
 }

@@ -39,19 +39,4 @@ public class Komentar extends Fragment {
         etPerilaku = (EditText) view.findViewById(R.id.ET_Perilaku);
         return view;
     }
-
-    public String getPengetahuan(){
-        String string = etPengetahuan.getText().toString();
-        return string;
-    }
-
-    public String getTeknik(){
-        String string = etTeknik.getText().toString();
-        return string;
-    }
-
-    public String getPerilaku(){
-        String string = etPerilaku.getText().toString();
-        return string;
-    }
 }

@@ -46,6 +46,7 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
         Button bMasukPetugas = (Button) findViewById(R.id.b_MasukKodePetugas);
         bMasukPetugas.setOnClickListener(this);
         etKodePetugas = (EditText) findViewById(R.id.NoKodePetugas);
+        etKodePetugas.setText("2018-04-04STAFF1");
     }
 
     public void loginHandler(String kodePenguji) {

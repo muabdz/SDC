@@ -26,7 +26,7 @@ public interface AuthService {
     Call<ResponseBody> loginPeserta(@Path("id") String idPeserta);
 
     @POST("/soal/")
-    Call<ResponseBody> submitPeserta(@Body JSONObject hasil);
+    Call<ResponseBody> submitPeserta(@Body RequestBody hasil);
 
     @POST("/signout/{uid}")
     Call<ResponseBody> logoutPost(@Path("uid") String userId);
