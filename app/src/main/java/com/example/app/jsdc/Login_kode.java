@@ -44,12 +44,14 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_login_kode);
         Button masukpeserta = (Button) findViewById(R.id.b_loginPeserta);
         etPeserta = (EditText) findViewById(R.id.No_daftar);
+        etPeserta.setText("2013.09.00251");
         sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.pengujiKode);
         penguji.setText(sessionManager.getUid());
 
         progressDialog = new ProgressDialog(Login_kode.this);
         progressDialog.setMessage("Mohon Tunggu");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         masukpeserta.setOnClickListener(this);
     }
@@ -88,8 +90,12 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                             if (sesi == 2) {
                                 jumsol++;
                                 sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                            }else{
+                                sessionManager.setSessionSikap(soal, id);
                             }
+                            sessionManager.setJumlahTotal(jsonSoal.length());
                         }
+
 
 
                         new CountDownTimer(1000, 1000) {

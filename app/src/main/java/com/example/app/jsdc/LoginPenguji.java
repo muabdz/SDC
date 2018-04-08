@@ -111,7 +111,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
                         int jumsol = 0;
-                        for (int i = 0; i < jsonSoal.length(); i++) {
+                        for (int i = 0; i<jsonSoal.length(); i++){
                             jsonObject = jsonSoal.getJSONObject(i);
                             int sesi = jsonObject.getInt("sesi");
                             int id = jsonObject.getInt("id");
@@ -122,6 +122,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                                 sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
                             }
                         }
+
 
 
                         new CountDownTimer(1000, 1000) {
@@ -173,7 +174,8 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle("Logout")
                         .setMessage("Apakah anda yakin ingin keluar?")
-                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener()
+                        {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 progressDialog.show();
@@ -184,12 +186,14 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         .setNegativeButton("Tidak", null)
                         .show();
                 return true;
+//            case R.id.menu_histori:
+//                Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

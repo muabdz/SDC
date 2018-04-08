@@ -41,10 +41,12 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_kode_petugas);
         progressDialog = new ProgressDialog(LoginKodePetugas.this);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
         Button bMasukPetugas = (Button) findViewById(R.id.b_MasukKodePetugas);
         bMasukPetugas.setOnClickListener(this);
         etKodePetugas = (EditText) findViewById(R.id.NoKodePetugas);
+        etKodePetugas.setText("2018-04-04STAFF1");
     }
 
     public void loginHandler(String kodePenguji) {
@@ -75,7 +77,7 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
                             username = jsonObject.getString("username");
 
 
-                            new CountDownTimer(1000, 1000) {
+                            new CountDownTimer(5000, 5000) {
 
                                 public void onTick(long millisUntilFinished) {
                                     // You don't need anything here

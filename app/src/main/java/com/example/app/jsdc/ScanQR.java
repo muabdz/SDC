@@ -52,6 +52,7 @@ public class ScanQR extends AppCompatActivity implements View.OnClickListener {
         TombolMasukKodePetugas.setOnClickListener(this);
         Button T_scanpenguji = (Button) findViewById(R.id.b_scanpenguji);
         progressDialog = new ProgressDialog(ScanQR.this);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
 
         T_scanpenguji.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +132,9 @@ public class ScanQR extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(ScanQR.this, "Login Gagal",
+                        Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
 
             }
         });
@@ -192,7 +196,7 @@ public class ScanQR extends AppCompatActivity implements View.OnClickListener {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        finishAffinity();
                     }
 
                 })
