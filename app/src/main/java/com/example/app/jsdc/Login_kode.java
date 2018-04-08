@@ -134,9 +134,14 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.b_loginPeserta:
-                progressDialog.show();
-                loginHandler(etPeserta.getText().toString());
-                break;
+                if(etPeserta.getText().toString().length()==0){
+                    etPeserta.setError("Masukan Nomer Pendaftaran");
+                }
+                else {
+                    progressDialog.show();
+                    loginHandler(etPeserta.getText().toString());
+                    break;
+                }
 
         }
     }

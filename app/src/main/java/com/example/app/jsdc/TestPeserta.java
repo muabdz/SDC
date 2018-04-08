@@ -103,12 +103,12 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.actionbar_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.actionbar_menu, menu);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -131,12 +131,9 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                         .setNegativeButton("Tidak", null)
                         .show();*/
                 return true;
-
-            case R.id.menu_histori:
-                Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
+                 default:
                 return super.onOptionsItemSelected(item);
+
         }
 
     }

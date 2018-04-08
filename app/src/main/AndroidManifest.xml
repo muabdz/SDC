@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Opening"
-            android:theme="@style/AppThemeNoActionBar">
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,9 +33,12 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".LoginPenguji" />
-        <activity android:name=".TestPeserta" />
-        <activity android:name=".Login_kode" />
+        <activity android:name=".LoginPenguji"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TestPeserta"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login_kode"
+            android:screenOrientation="portrait"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -43,7 +47,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".LoginKodePetugas"></activity>
+        <activity android:name=".LoginKodePetugas"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

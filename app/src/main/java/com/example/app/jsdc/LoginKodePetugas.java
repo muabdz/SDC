@@ -131,9 +131,15 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.b_MasukKodePetugas:
-                progressDialog.show();
-                loginHandler(etKodePetugas.getText().toString());
-                break;
+                if (etKodePetugas.getText().toString().length()==0){
+                    etKodePetugas.setError("Kode Masih Kosong");
+                    //Toast.makeText(this, "Kode Petugas Masih Kosong", Toast.LENGTH_SHORT).show();
+                }
+            else {
+                    progressDialog.show();
+                    loginHandler(etKodePetugas.getText().toString());
+                    break;
+                }
         }
     }
 }
