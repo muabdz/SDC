@@ -101,7 +101,13 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
         switch (v.getId()) {
             case R.id.bsubmit:
-                setSubmit();
+                if (tes_sikap.toString().length()==0){
+                Toast.makeText(TestPeserta.this, "Submit Gagal",
+                        Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+            }
+                else {
+                setSubmit();}
                 break;
         }
 
@@ -138,7 +144,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     }
 
     public void setSubmit() {
-        String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
+        final String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
         String stringBahasa = ((EditText) findViewById(R.id.ET_PerilakuB)).getText().toString();
         String stringKonsen = ((EditText) findViewById(R.id.ET_PerilakuC)).getText().toString();
         String stringPengetahuan = ((EditText) findViewById(R.id.ET_Pengetahuan)).getText().toString();
@@ -267,8 +273,9 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    } else {
-                        Toast.makeText(TestPeserta.this, "Submit Gagal",
+                    }
+                    else {
+                            Toast.makeText(TestPeserta.this, "Submit Gagal",
                                 Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
                     }

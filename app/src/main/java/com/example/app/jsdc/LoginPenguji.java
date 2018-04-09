@@ -61,6 +61,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         TextView b_loginkode = (TextView) findViewById(R.id.Bantuan);
         TextView penguji = (TextView) findViewById(R.id.penguji);
         progressDialog = new ProgressDialog(LoginPenguji.this);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
         penguji.setText(sessionManager.getUid());
 

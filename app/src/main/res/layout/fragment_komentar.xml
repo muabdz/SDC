@@ -7,30 +7,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
-        android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="10sp"
+        android:paddingRight="35sp"
         tools:context="com.example.app.jsdc.Komentar">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/T_pengetahuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="A. Pengetahuan"
+            android:textColor="#000"
+            android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/T_pengetahuan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="A. Pengetahuan"
-                android:textColor="#000"
-                android:textSize="20dp" />
-
-            <EditText
+        <EditText
                 android:id="@+id/ET_Pengetahuan"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@id/T_pengetahuan"
                 android:layout_marginStart="35dp"
                 android:background="#9999"
                 android:paddingLeft="10dp"
@@ -40,7 +35,6 @@
                 android:id="@+id/T_mengemudi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ET_Pengetahuan"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="B. Teknik Mengemudi"
@@ -49,9 +43,8 @@
 
             <EditText
                 android:id="@+id/ET_Mengemudi"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@id/T_mengemudi"
                 android:layout_marginStart="35dp"
                 android:background="#9999"
                 android:paddingLeft="10dp"
@@ -61,7 +54,6 @@
                 android:id="@+id/T_perilaku"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ET_Mengemudi"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="C. Perilaku Mengemudi"
@@ -70,15 +62,11 @@
 
             <EditText
                 android:id="@+id/ET_Perilaku"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@id/T_perilaku"
                 android:layout_marginStart="35dp"
                 android:background="#9999"
                 android:paddingLeft="10dp"
                 android:textSize="20dp" />
-
-        </RelativeLayout>
-
     </LinearLayout>
 </ScrollView>

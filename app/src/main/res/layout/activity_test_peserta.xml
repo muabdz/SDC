@@ -81,7 +81,7 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:background="#999999"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:id="@+id/jenis_tes"
         android:textColor="#C41414"
         android:textAlignment="center"
@@ -102,7 +102,6 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="300sp">
-
         </android.support.v4.view.ViewPager>
 
     <Button

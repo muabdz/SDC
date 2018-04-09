@@ -26,7 +26,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     View view;
     SessionManager sessionManager, sm;
     static EditText[] etSoal; //, etJawab;
-//    int[] questionId;
+    //    int[] questionId;
     ArrayList<String> arrayListJawaban;
     ArrayList<Integer> arrayListIdJawban;
     TestPeserta testPeserta;
@@ -63,42 +63,42 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
             String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
         }*/
         view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
 
-            etSoal = new EditText[jumlahSoal];
-            for (int i = 1; i < jumlahSoal; i++) {
-                String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
+        etSoal = new EditText[jumlahSoal];
+        for (int i = 1; i < jumlahSoal; i++) {
+            String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
 
 
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
-                );
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
+            );
 
-                LinearLayout linearLayoutHorizontal = new LinearLayout(getActivity());
-                linearLayoutHorizontal.setId(99);
-                linearLayoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
-                linearLayoutHorizontal.setLayoutParams(lp);
-                linearLayoutHorizontal.setGravity(17);
+            LinearLayout linearLayoutHorizontal = new LinearLayout(getActivity());
+            linearLayoutHorizontal.setId(99);
+            linearLayoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
+            linearLayoutHorizontal.setLayoutParams(lp);
+            linearLayoutHorizontal.setGravity(17);
 
-                LinearLayout.LayoutParams lpEt = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                        , LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                lpEt.gravity = Gravity.RIGHT;
+            LinearLayout.LayoutParams lpEt = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                    , LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            lpEt.gravity = Gravity.RIGHT;
 
-                TextView tvSoal = new TextView(getActivity());
-                tvSoal.setText(pertanyaan);
-                tvSoal.setPadding(10, 10, 10, 10);
-                tvSoal.setWidth(500);
+            TextView tvSoal = new TextView(getActivity());
+            tvSoal.setText(pertanyaan);
+            tvSoal.setPadding(10, 10, 10, 10);
+            tvSoal.setWidth(500);
 
-                etSoal[i] = new EditText(getActivity());
-                etSoal[i].setHint("0");
-                etSoal[i].setId(i);
-                etSoal[i].setLayoutParams(lpEt);
-                etSoal[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-                etSoal[i].setWidth(200);
-                etSoal[i].setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                etSoal[i].setText("5");
+            etSoal[i] = new EditText(getActivity());
+            etSoal[i].setHint("0");
+            etSoal[i].setId(i);
+            etSoal[i].setLayoutParams(lpEt);
+            etSoal[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+            etSoal[i].setWidth(200);
+            etSoal[i].setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            etSoal[i].setText("5");
 
 
 //                testPeserta.setEtJawab(etSoal[i], i);
@@ -106,9 +106,9 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
 
 //                testPeserta.setJawab(etSoal[i], i);
 
-                linearLayoutHorizontal.addView(tvSoal);
-                linearLayoutHorizontal.addView(etSoal[i]);
-                linearLayout.addView(linearLayoutHorizontal);
+            linearLayoutHorizontal.addView(tvSoal);
+            linearLayoutHorizontal.addView(etSoal[i]);
+            linearLayout.addView(linearLayoutHorizontal);
 
         }
         return view;
