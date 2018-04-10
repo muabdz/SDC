@@ -144,17 +144,56 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
     }
 
     public void setSubmit() {
+
+        try {
+
+        JSONObject jsonParams = new JSONObject();
+
+        JSONArray soal = new JSONArray();
+
+        for (int i = 1; i < sessionManager.getJumlahSoal(); i++) {
+
+            if(Tes_Praktek.etSoal[i].getText().toString().isEmpty()){
+                Toast.makeText(this, "Harap isi semua soal praktek", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String jawabanSoal = Tes_Praktek.etSoal[i].getText().toString();
+            int idSoal = Tes_Praktek.etSoal[i].getId();
+
+            JSONObject jsonJawab = new JSONObject();
+
+            jsonJawab.put("soal_id", idSoal);
+            jsonJawab.put("peserta_id", sessionManager.getPId());
+            jsonJawab.put("hasil", Integer.parseInt(jawabanSoal));
+            soal.put(jsonJawab);
+        }
+
+        jsonParams.put("soal", soal);
+
         final String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
         String stringBahasa = ((EditText) findViewById(R.id.ET_PerilakuB)).getText().toString();
         String stringKonsen = ((EditText) findViewById(R.id.ET_PerilakuC)).getText().toString();
-        String stringPengetahuan = ((EditText) findViewById(R.id.ET_Pengetahuan)).getText().toString();
-        String stringTeknik = ((EditText) findViewById(R.id.ET_Mengemudi)).getText().toString();
-        String stringPerilaku = ((EditText) findViewById(R.id.ET_Perilaku)).getText().toString();
 
-        try {
-            JSONObject jsonParams = new JSONObject();
+        String stringPengetahuan = Komentar.getPengatahuan();
+        String stringTeknik = Komentar.getTeknik();
+        String stringPerilaku = Komentar.getPerilaku();
 
-            JSONArray soal = new JSONArray();
+        if (stringSikap.isEmpty()){
+            Toast.makeText(this, "Harap isi nilai sikap", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (stringBahasa.isEmpty()){
+            Toast.makeText(this, "Harap isi nilai bahasa", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (stringKonsen.isEmpty()){
+            Toast.makeText(this, "Harap isi nilai konsen", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+
+
+
             if (sessionManager.getIdSikap(67) == 67) {
                 JSONObject jsonSikap = new JSONObject();
 
@@ -201,20 +240,6 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 soal.put(jsonKonsen);
             }
 
-            for (int i = 1; i < sessionManager.getJumlahSoal(); i++) {
-
-                String jawabanSoal = Tes_Praktek.etSoal[i].getText().toString();
-                int idSoal = Tes_Praktek.etSoal[i].getId();
-
-                JSONObject jsonJawab = new JSONObject();
-
-                jsonJawab.put("soal_id", idSoal);
-                jsonJawab.put("peserta_id", sessionManager.getPId());
-                jsonJawab.put("hasil", Integer.parseInt(jawabanSoal));
-                soal.put(jsonJawab);
-            }
-
-            jsonParams.put("soal", soal);
 
             JSONObject jsonKomen = new JSONObject();
 

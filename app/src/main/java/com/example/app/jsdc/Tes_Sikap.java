@@ -12,13 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+
 
 public class Tes_Sikap extends Fragment {
     //private OnDataSikapSelected fCallback = null;
 
     // Store instance variables
     private int page;
-    EditText etSikap, etBahasa, etKonsentrasi;
+
+
+    EditText etSikap;
+    EditText etBahasa;
+    EditText etKonsentrasi;
 
     // newInstance constructor for creating fragment with arguments
     public static Tes_Sikap newInstance(int page) {

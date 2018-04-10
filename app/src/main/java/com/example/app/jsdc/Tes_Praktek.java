@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class Tes_Praktek extends Fragment implements SelectedFragment {
     // Store instance variables
     private int page;
+
     int jumlahSoal;
     View view;
     SessionManager sessionManager, sm;
@@ -94,11 +96,14 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
             etSoal[i] = new EditText(getActivity());
             etSoal[i].setHint("0");
             etSoal[i].setId(i);
+            etSoal[i].setFilters(new InputFilter[] { new InputFilter.LengthFilter(3) });
+
             etSoal[i].setLayoutParams(lpEt);
             etSoal[i].setInputType(InputType.TYPE_CLASS_NUMBER);
             etSoal[i].setWidth(200);
             etSoal[i].setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            etSoal[i].setText("5");
+            etSoal[i].setHint("0");
+
 
 
 //                testPeserta.setEtJawab(etSoal[i], i);

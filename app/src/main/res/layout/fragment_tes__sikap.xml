@@ -69,6 +69,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="41dp"
                 android:hint="0"
+                android:maxLength="3"
                 android:inputType="phone"
                 android:paddingBottom="5sp"
                 android:paddingTop="5sp"
@@ -90,6 +91,7 @@
                 android:paddingBottom="5sp"
                 android:paddingTop="5sp"
                 android:textAlignment="center"
+                android:maxLength="3"
                 android:textColor="#000"
                 android:textSize="20sp" />
 
@@ -104,6 +106,7 @@
                 android:paddingBottom="5sp"
                 android:paddingTop="5sp"
                 android:hint="0"
+                android:maxLength="3"
                 android:inputType="phone"
                 android:textAlignment="center"
                 android:textColor="#000"

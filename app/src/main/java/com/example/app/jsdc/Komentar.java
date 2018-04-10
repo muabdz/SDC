@@ -12,7 +12,9 @@ import android.widget.EditText;
 public class Komentar extends Fragment {
     // Store instance variables
     private int page;
-    EditText etPengetahuan, etTeknik, etPerilaku;
+    static EditText etPengetahuan;
+    static EditText etTeknik;
+    static EditText etPerilaku;
     // newInstance constructor for creating fragment with arguments
     public static Komentar newInstance(int page) {
         Komentar komentar = new Komentar();
@@ -39,4 +41,24 @@ public class Komentar extends Fragment {
         etPerilaku = (EditText) view.findViewById(R.id.ET_Perilaku);
         return view;
     }
+
+
+
+    public static String getPengatahuan(){
+        String sikap = etPengetahuan.getText().toString();
+        return sikap;
+    }
+
+    public static String getTeknik(){
+        String bahasa = etTeknik.getText().toString();
+        return bahasa;
+    }
+
+    public static String getPerilaku(){
+        String konsen = etPerilaku.getText().toString();
+        return konsen;
+    }
+
+
+
 }
