@@ -2,6 +2,7 @@ package com.example.app.jsdc;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
@@ -90,14 +91,17 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
 
             TextView tvSoal = new TextView(getActivity());
             tvSoal.setText(pertanyaan);
+            tvSoal.setTextSize(17);
+            tvSoal.setTextColor(Color.BLACK);
             tvSoal.setPadding(10, 10, 10, 10);
             tvSoal.setWidth(500);
 
             etSoal[i] = new EditText(getActivity());
             etSoal[i].setHint("0");
             etSoal[i].setId(i);
+            etSoal[i].setTextSize(17);
+            etSoal[i].setTextColor(Color.BLACK);
             etSoal[i].setFilters(new InputFilter[] { new InputFilter.LengthFilter(3) });
-
             etSoal[i].setLayoutParams(lpEt);
             etSoal[i].setInputType(InputType.TYPE_CLASS_NUMBER);
             etSoal[i].setWidth(200);

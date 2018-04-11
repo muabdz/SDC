@@ -169,7 +169,9 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             soal.put(jsonJawab);
         }
 
-        jsonParams.put("soal", soal);
+        jsonParams.put("soal"
+
+                , soal);
 
         final String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
         String stringBahasa = ((EditText) findViewById(R.id.ET_PerilakuB)).getText().toString();
