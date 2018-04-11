@@ -201,13 +201,13 @@ public class ScanQR extends AppCompatActivity implements View.OnClickListener {
         linearLayout.setLayoutParams(lp);
 
         final EditText ConfigIpInput = new EditText(ScanQR.this);
-        ConfigIpInput.setHint("Contoh IP: 45.77.246.7");
+        ConfigIpInput.setHint("Contoh IP: 192.168.100.50");
         String ipNow = sm.getHostIp();
         ConfigIpInput.setText(ipNow);
         linearLayout.addView(ConfigIpInput);
 
         final EditText ConfigPortInput = new EditText(ScanQR.this);
-        ConfigPortInput.setHint("Contoh Port: 8080");
+        ConfigPortInput.setHint("Contoh Port: 7777");
         ConfigPortInput.setInputType(InputType.TYPE_CLASS_NUMBER);
         String portNow = sm.getHostPort();
         ConfigPortInput.setText(portNow);
