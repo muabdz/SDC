@@ -10,12 +10,10 @@ import android.widget.EditText;
 
 
 public class Komentar extends Fragment {
-    // Store instance variables
     private int page;
     static EditText etPengetahuan;
     static EditText etTeknik;
     static EditText etPerilaku;
-    // newInstance constructor for creating fragment with arguments
     public static Komentar newInstance(int page) {
         Komentar komentar = new Komentar();
         Bundle args = new Bundle();
@@ -24,14 +22,12 @@ public class Komentar extends Fragment {
         return komentar;
     }
 
-    // Store instance variables based on arguments passed
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("2");
     }
 
-    // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -148,7 +147,6 @@ public class ScanQR extends AppCompatActivity implements View.OnClickListener {
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_SHORT).show();
             } else {
                 progressDialog.show();
-                //Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                 loginHandler(result.getContents());
             }
 
@@ -166,16 +164,6 @@ public class ScanQR extends AppCompatActivity implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
-
-//            case R.id.configIP:
-//                Intent configIp = new Intent(this, ConfigIP.class);
-//                startActivity(configIp);
-
-//            case R.id.menu_config:
-//                //ipConfig();
-
-
             case R.id.configIP:
                 sm = new SessionManager(this);
                 ipConfig();

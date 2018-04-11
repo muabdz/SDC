@@ -187,9 +187,6 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         .setNegativeButton("Tidak", null)
                         .show();
                 return true;
-//            case R.id.menu_histori:
-//                Toast.makeText(this, "History Sedang Dibuat", Toast.LENGTH_SHORT).show();
-//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -203,14 +200,11 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
             if (result.getContents() == null) {
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_LONG).show();
             } else {
-                //Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                 progressDialog.show();
                 loginHandler(result.getContents());
             }
 
         } else {
-
-
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -281,7 +275,6 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
                         message = jsonObject.getString("message");
                         status = jsonObject.getString("status");
-                        //TAMBAHIN REMOVE SESI
 
                         new CountDownTimer(1000, 1000) {
 

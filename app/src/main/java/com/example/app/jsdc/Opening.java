@@ -3,19 +3,12 @@ package com.example.app.jsdc;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 public class Opening extends AppCompatActivity {
-    ProgressBar progressBar;
-    int status = 0;
-    int proses = 0;
-    Handler handle = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +51,6 @@ public class Opening extends AppCompatActivity {
 
 
     }
-
-
-
-    private int getDisplayHeight() {
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        return metrics.widthPixels;
-    }
-
 
     @Override
     protected void onPause() {

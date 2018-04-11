@@ -1,16 +1,11 @@
 package com.example.app.jsdc;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v4.util.ArrayMap;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class Login_kode extends AppCompatActivity implements View.OnClickListener {
-    String username, status, message, p_id, nama;
+    String status, message, p_id, nama;
     int cate;
     EditText etPeserta;
     AuthService mAuthAPIService;
@@ -44,7 +39,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_login_kode);
         Button masukpeserta = (Button) findViewById(R.id.b_loginPeserta);
         etPeserta = (EditText) findViewById(R.id.No_daftar);
-        etPeserta.setText("2013.09.00251");
         sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.pengujiKode);
         penguji.setText(sessionManager.getUid());
@@ -131,10 +125,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
             }
         });
     }
-
-    //Intent login = new Intent(this, TestPeserta.class);
-    //startActivity(login);
-
 
     @Override
     public void onClick(View v) {

@@ -19,15 +19,11 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.example.app.jsdc.Utils.ApiUtils;
 import com.example.app.jsdc.Utils.AuthService;
 import com.example.app.jsdc.Utils.FragmentUtils.TestFragmentAdapter;
-import com.example.app.jsdc.Utils.SelectedFragment;
 import com.example.app.jsdc.Utils.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
