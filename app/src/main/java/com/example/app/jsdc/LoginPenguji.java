@@ -44,7 +44,8 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    String status, message, p_id, nama, usernamePenguji;
+    String message, p_id, nama, usernamePenguji;
+    Boolean status;
     int cate;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
@@ -102,45 +103,51 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        JSONArray jsonSoal = jsonObject.getJSONArray("soal");
-                        JSONObject jsonData = jsonObject.getJSONObject("data");
-                        p_id = jsonData.getString("p_id");
-                        nama = jsonData.getString("nama");
-                        cate = jsonData.getInt("cate");
-                        sessionManager.setData(p_id, nama, cate);
-
                         message = jsonObject.getString("message");
-                        status = jsonObject.getString("status");
-                        int jumsol = 0;
-                        for (int i = 0; i<jsonSoal.length(); i++){
-                            jsonObject = jsonSoal.getJSONObject(i);
-                            int sesi = jsonObject.getInt("sesi");
-                            int id = jsonObject.getInt("id");
-                            int nomor = jsonObject.getInt("nomor");
-                            String soal = jsonObject.getString("soal");
-                            if (sesi == 2) {
-                                jumsol++;
-                                sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                        status = jsonObject.getBoolean("status");
+                        if (!status){
+                            Toast.makeText(LoginPenguji.this, message,
+                                    Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        } else {
+                            JSONArray jsonSoal = jsonObject.getJSONArray("soal");
+                            JSONObject jsonData = jsonObject.getJSONObject("data");
+                            p_id = jsonData.getString("p_id");
+                            nama = jsonData.getString("nama");
+                            cate = jsonData.getInt("cate");
+                            sessionManager.setData(p_id, nama, cate);
+
+
+                            int jumsol = 0;
+                            for (int i = 0; i < jsonSoal.length(); i++) {
+                                jsonObject = jsonSoal.getJSONObject(i);
+                                int sesi = jsonObject.getInt("sesi");
+                                int id = jsonObject.getInt("id");
+                                int nomor = jsonObject.getInt("nomor");
+                                String soal = jsonObject.getString("soal");
+                                if (sesi == 2) {
+                                    jumsol++;
+                                    sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                                }
                             }
+
+
+                            new CountDownTimer(1000, 1000) {
+
+                                public void onTick(long millisUntilFinished) {
+                                    // You don't need anything here
+                                }
+
+                                public void onFinish() {
+                                    Toast.makeText(LoginPenguji.this, message,
+                                            Toast.LENGTH_LONG).show();
+                                    progressDialog.dismiss();
+                                    Intent movea = new Intent(LoginPenguji.this, TestPeserta.class);
+                                    startActivity(movea);
+                                    finish();
+                                }
+                            }.start();
                         }
-
-
-
-                        new CountDownTimer(1000, 1000) {
-
-                            public void onTick(long millisUntilFinished) {
-                                // You don't need anything here
-                            }
-
-                            public void onFinish() {
-                                Toast.makeText(LoginPenguji.this, message,
-                                        Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                                Intent movea = new Intent(LoginPenguji.this, TestPeserta.class);
-                                startActivity(movea);
-                                finish();
-                            }
-                        }.start();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -274,28 +281,33 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                     try {
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
                         message = jsonObject.getString("message");
-                        status = jsonObject.getString("status");
+                        status = jsonObject.getBoolean("status");
+                        if (!status){
+                            Toast.makeText(LoginPenguji.this, message,
+                                    Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        } else {
+                            new CountDownTimer(1000, 1000) {
 
-                        new CountDownTimer(1000, 1000) {
+                                public void onTick(long millisUntilFinished) {
+                                    // You don't need anything here
+                                }
 
-                            public void onTick(long millisUntilFinished) {
-                                // You don't need anything here
-                            }
-
-                            public void onFinish() {
-                                Toast.makeText(LoginPenguji.this, message,
-                                        Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                                Intent movea = new Intent(LoginPenguji.this, ScanQR.class);
-                                startActivity(movea);
-                                finish();
-                            }
-                        }.start();
+                                public void onFinish() {
+                                    Toast.makeText(LoginPenguji.this, message,
+                                            Toast.LENGTH_LONG).show();
+                                    progressDialog.dismiss();
+                                    Intent movea = new Intent(LoginPenguji.this, ScanQR.class);
+                                    startActivity(movea);
+                                    finish();
+                                }
+                            }.start();
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(LoginPenguji.this, "Logout Gagal",
+                    Toast.makeText(LoginPenguji.this, "Petugas Gagal Logout",
                             Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
