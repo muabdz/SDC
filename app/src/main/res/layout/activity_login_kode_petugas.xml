@@ -25,7 +25,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="34dp"
-            android:hint="Contoh : 431214"
+            android:hint="Kode Hari Ini"
             android:layout_marginTop="10dp"
             android:textAlignment="center"
             android:background="#9999"/>
