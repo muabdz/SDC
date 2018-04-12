@@ -145,7 +145,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
             JSONObject jsonJawab = new JSONObject();
 
-            jsonJawab.put("soal_id", idSoal);
+            jsonJawab.put("soal_id", sessionManager.getQuestionId(idSoal));
             jsonJawab.put("peserta_id", sessionManager.getPId());
             jsonJawab.put("hasil", Integer.parseInt(jawabanSoal));
             soal.put(jsonJawab);
@@ -186,21 +186,21 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             if (sessionManager.getIdSikap(67) == 67) {
                 JSONObject jsonSikap = new JSONObject();
 
-                jsonSikap.put("soal_id", sessionManager.getIdSikap(67));
+                jsonSikap.put("soal_id", 67);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
 
-                jsonBahasa.put("soal_id", sessionManager.getIdSikap(68));
+                jsonBahasa.put("soal_id", 68);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
 
-                jsonKonsen.put("soal_id", sessionManager.getIdSikap(69));
+                jsonKonsen.put("soal_id", 69);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
 
@@ -208,21 +208,21 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             } else if (sessionManager.getIdSikap(16) == 16) {
                 JSONObject jsonSikap = new JSONObject();
 
-                jsonSikap.put("soal_id", sessionManager.getIdSikap(16));
+                jsonSikap.put("soal_id", 16);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
 
-                jsonBahasa.put("soal_id", sessionManager.getIdSikap(17));
+                jsonBahasa.put("soal_id", 17);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
 
-                jsonKonsen.put("soal_id", sessionManager.getIdSikap(18));
+                jsonKonsen.put("soal_id", 18);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
 
@@ -236,6 +236,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             jsonKomen.put("pengetahuan", stringPengetahuan);
             jsonKomen.put("teknik", stringTeknik);
             jsonKomen.put("perilaku", stringPerilaku);
+            jsonKomen.put("penguji", sessionManager.getUid());
 
             JSONArray comments = new JSONArray();
             comments.put(jsonKomen);
@@ -275,7 +276,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                                     sessionManager.removeSessionSikap(69);
                                     sessionManager.removeSessionSikap(17);
                                     sessionManager.removeSessionSikap(18);
-                                    sessionManager.removeSessionSikap(19);
+                                    sessionManager.removeSessionSikap(16);
                                     Toast.makeText(TestPeserta.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();

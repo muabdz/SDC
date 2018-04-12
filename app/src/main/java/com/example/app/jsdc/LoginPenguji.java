@@ -128,7 +128,10 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                                 if (sesi == 2) {
                                     jumsol++;
                                     sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                                } else {
+                                    sessionManager.setSessionSikap(soal, id);
                                 }
+                                sessionManager.setJumlahTotal(jsonSoal.length());
                             }
 
 
