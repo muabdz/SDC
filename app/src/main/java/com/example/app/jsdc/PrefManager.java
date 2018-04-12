@@ -32,8 +32,4 @@ public class PrefManager {
         editor.commit();
     }
 
-    public boolean isFirstTimeLaunch() {
-        return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
-    }
-
 }

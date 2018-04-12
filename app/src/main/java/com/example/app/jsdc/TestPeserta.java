@@ -19,15 +19,11 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.example.app.jsdc.Utils.ApiUtils;
 import com.example.app.jsdc.Utils.AuthService;
 import com.example.app.jsdc.Utils.FragmentUtils.TestFragmentAdapter;
-import com.example.app.jsdc.Utils.SelectedFragment;
 import com.example.app.jsdc.Utils.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -88,29 +84,12 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-
-
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.actionbar_menu, menu);
-//        return true;
-//    }
-
-
         switch (v.getId()) {
             case R.id.bsubmit:
-                if (tes_sikap.toString().length()==0){
-                Toast.makeText(TestPeserta.this, "Submit Gagal",
-                        Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
-            }
-                else {
-                setSubmit();}
+                progressDialog.show();
+                setSubmit();
                 break;
         }
-
     }
 
     @Override
@@ -156,6 +135,9 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             if(Tes_Praktek.etSoal[i].getText().toString().isEmpty()){
                 Toast.makeText(this, "Harap isi semua soal praktek", Toast.LENGTH_SHORT).show();
                 return;
+            }else if(Integer.parseInt(Tes_Praktek.etSoal[i].getText().toString())>100||Integer.parseInt(Tes_Praktek.etSoal[i].getText().toString())<0||Tes_Praktek.etSoal[i].getText().toString().contains("-")){
+                Toast.makeText(this, "Masukkan nilai 0 - 100", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             String jawabanSoal = Tes_Praktek.etSoal[i].getText().toString();
@@ -173,7 +155,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
                 , soal);
 
-        final String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
+        String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
         String stringBahasa = ((EditText) findViewById(R.id.ET_PerilakuB)).getText().toString();
         String stringKonsen = ((EditText) findViewById(R.id.ET_PerilakuC)).getText().toString();
 
@@ -189,6 +171,11 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             return;
         }else if (stringKonsen.isEmpty()){
             Toast.makeText(this, "Harap isi nilai konsen", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(Integer.parseInt(stringSikap)>100||Integer.parseInt(stringSikap)<0||stringSikap.contains("-")||
+                Integer.parseInt(stringBahasa)>100||Integer.parseInt(stringBahasa)<0||stringBahasa.contains("-")||
+                Integer.parseInt(stringKonsen)>100||Integer.parseInt(stringKonsen)<0||stringKonsen.contains("-")){
+            Toast.makeText(this, "Masukkan nilai 0 - 100", Toast.LENGTH_SHORT).show();
             return;
         }
 

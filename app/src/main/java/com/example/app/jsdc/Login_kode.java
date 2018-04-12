@@ -1,16 +1,11 @@
 package com.example.app.jsdc;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v4.util.ArrayMap;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +26,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class Login_kode extends AppCompatActivity implements View.OnClickListener {
-    String username, status, message, p_id, nama;
+    String  message, p_id, nama;
+    Boolean status;
     int cate;
     EditText etPeserta;
     AuthService mAuthAPIService;
@@ -44,7 +40,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_login_kode);
         Button masukpeserta = (Button) findViewById(R.id.b_loginPeserta);
         etPeserta = (EditText) findViewById(R.id.No_daftar);
-        etPeserta.setText("2013.09.00251");
         sessionManager = new SessionManager(this);
         TextView penguji = (TextView) findViewById(R.id.pengujiKode);
         penguji.setText(sessionManager.getUid());
@@ -71,49 +66,55 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        JSONArray jsonSoal = jsonObject.getJSONArray("soal");
-                        JSONObject jsonData = jsonObject.getJSONObject("data");
-                        p_id = jsonData.getString("p_id");
-                        nama = jsonData.getString("nama");
-                        cate = jsonData.getInt("cate");
-                        sessionManager.setData(p_id, nama, cate);
-
                         message = jsonObject.getString("message");
-                        status = jsonObject.getString("status");
-                        int jumsol = 0;
-                        for (int i = 0; i<jsonSoal.length(); i++){
-                            jsonObject = jsonSoal.getJSONObject(i);
-                            int sesi = jsonObject.getInt("sesi");
-                            int id = jsonObject.getInt("id");
-                            int nomor = jsonObject.getInt("nomor");
-                            String soal = jsonObject.getString("soal");
-                            if (sesi == 2) {
-                                jumsol++;
-                                sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
-                            }else{
-                                sessionManager.setSessionSikap(soal, id);
-                            }
-                            sessionManager.setJumlahTotal(jsonSoal.length());
-                        }
-
-
-
-                        new CountDownTimer(1000, 1000) {
-
-                            public void onTick(long millisUntilFinished) {
-                                // You don't need anything here
-                            }
-
-                            public void onFinish() {
-                                Toast.makeText(Login_kode.this, message,
+                        status = jsonObject.getBoolean("status");
+                        if (!status){
+                            Toast.makeText(Login_kode.this, message,
                                     Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                                Intent login = new Intent(Login_kode.this, TestPeserta.class);
-                                startActivity(login);
-                                finish();
+                            progressDialog.dismiss();
+                        } else {
+                            JSONArray jsonSoal = jsonObject.getJSONArray("soal");
+                            JSONObject jsonData = jsonObject.getJSONObject("data");
+                            p_id = jsonData.getString("p_id");
+                            nama = jsonData.getString("nama");
+                            cate = jsonData.getInt("cate");
+                            sessionManager.setData(p_id, nama, cate);
 
+
+                            int jumsol = 0;
+                            for (int i = 0; i < jsonSoal.length(); i++) {
+                                jsonObject = jsonSoal.getJSONObject(i);
+                                int sesi = jsonObject.getInt("sesi");
+                                int id = jsonObject.getInt("id");
+                                int nomor = jsonObject.getInt("nomor");
+                                String soal = jsonObject.getString("soal");
+                                if (sesi == 2) {
+                                    jumsol++;
+                                    sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                                } else {
+                                    sessionManager.setSessionSikap(soal, id);
+                                }
+                                sessionManager.setJumlahTotal(jsonSoal.length());
                             }
-                        }.start();
+
+
+                            new CountDownTimer(1000, 1000) {
+
+                                public void onTick(long millisUntilFinished) {
+                                    // You don't need anything here
+                                }
+
+                                public void onFinish() {
+                                    Toast.makeText(Login_kode.this, message,
+                                            Toast.LENGTH_LONG).show();
+                                    progressDialog.dismiss();
+                                    Intent login = new Intent(Login_kode.this, TestPeserta.class);
+                                    startActivity(login);
+                                    finish();
+
+                                }
+                            }.start();
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -131,10 +132,6 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
             }
         });
     }
-
-    //Intent login = new Intent(this, TestPeserta.class);
-    //startActivity(login);
-
 
     @Override
     public void onClick(View v) {

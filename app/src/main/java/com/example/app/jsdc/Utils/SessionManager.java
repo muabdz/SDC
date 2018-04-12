@@ -32,12 +32,12 @@ public class SessionManager {
 
 
     public String getHostIp() {
-        hostIp = prefs.getString("hostIp","45.77.246.7");
+        hostIp = prefs.getString("hostIp","192.168.100.50");
         return hostIp;
     }
 
     public String getHostPort() {
-        hostPort = prefs.getString("hostPort","8080");
+        hostPort = prefs.getString("hostPort","7777");
         return hostPort;
     }
 

@@ -1,8 +1,6 @@
 package com.example.app.jsdc;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v4.util.ArrayMap;
@@ -28,12 +26,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class LoginKodePetugas extends AppCompatActivity implements View.OnClickListener{
-    String username, message, ipValue, portValue, uid, time;
+    String username, message, uid, time;
     boolean status;
-    private static Context context;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
-    SessionManager sessionManager, sm;
+    SessionManager sessionManager;
     EditText etKodePetugas;
 
     @Override
@@ -46,7 +43,6 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
         Button bMasukPetugas = (Button) findViewById(R.id.b_MasukKodePetugas);
         bMasukPetugas.setOnClickListener(this);
         etKodePetugas = (EditText) findViewById(R.id.NoKodePetugas);
-        etKodePetugas.setText("2018-04-04STAFF1");
     }
 
     public void loginHandler(String kodePenguji) {
@@ -120,7 +116,6 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_SHORT).show();
             } else {
                 progressDialog.show();
-                //Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                 loginHandler(result.getContents());
             }
 
@@ -135,7 +130,6 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
             case R.id.b_MasukKodePetugas:
                 if (etKodePetugas.getText().toString().length()==0){
                     etKodePetugas.setError("Kode Masih Kosong");
-                    //Toast.makeText(this, "Kode Petugas Masih Kosong", Toast.LENGTH_SHORT).show();
                 }
             else {
                     progressDialog.show();

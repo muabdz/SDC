@@ -1,7 +1,5 @@
 package com.example.app.jsdc;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +10,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,10 +25,8 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     int jumlahSoal;
     View view;
     SessionManager sessionManager, sm;
-    static EditText[] etSoal; //, etJawab;
+    static EditText[] etSoal;
     //    int[] questionId;
-    ArrayList<String> arrayListJawaban;
-    ArrayList<Integer> arrayListIdJawban;
     TestPeserta testPeserta;
     // newInstance constructor for creating fragment with arguments
     public static Tes_Praktek newInstance(int page) {
@@ -50,21 +45,12 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         sessionManager = new SessionManager(getContext());
         testPeserta = new TestPeserta();
         jumlahSoal = sessionManager.getJumlahSoal();
-
-//        etJawab = new EditText[jumlahSoal];
-//        questionId = new int[jumlahSoal];
-
-        //SharedPreferences preferences = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
     }
 
     // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /*jumlahSoal = sessionManager.getJumlahSoal();
-        for (int i = 0; i<jumlahSoal; i++){
-            String pertanyaan = sessionManager.getQuestion(sessionManager.getQuestionId(i));
-        }*/
         view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
 
@@ -108,13 +94,6 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
             etSoal[i].setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             etSoal[i].setHint("0");
 
-
-
-//                testPeserta.setEtJawab(etSoal[i], i);
-//                testPeserta.setQuestionId(i, sessionManager.getQuestionId(i));
-
-//                testPeserta.setJawab(etSoal[i], i);
-
             linearLayoutHorizontal.addView(tvSoal);
             linearLayoutHorizontal.addView(etSoal[i]);
             linearLayout.addView(linearLayoutHorizontal);
@@ -127,31 +106,4 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     public void OnSelectedView(int position) {
         Log.d("asd","asda");
     }
-
-//    public ArrayList<String> arrayJawaban(Context ctx){
-//        arrayListJawaban = new ArrayList<String>();
-//        sm = new SessionManager(ctx);
-//        jumlahSoal = sm.getJumlahSoal();
-//        for (int i=1;i<=jumlahSoal;i++){
-//            String jawaban = ((EditText) view.findViewById(i)).getText().toString();
-//            arrayListJawaban.add(i, jawaban);
-//        }
-//        return arrayListJawaban;
-//    }
-//
-//    public ArrayList<Integer> arrayIdJawaban(Context ctx){
-//        arrayListIdJawban = new ArrayList<Integer>();
-//        sm = new SessionManager(ctx);
-//        jumlahSoal = sm.getJumlahSoal();
-//        for (int i=1;i<=jumlahSoal;i++){
-//            int jawaban = view.findViewById(i).getId();
-//            arrayListIdJawban.add(i, jawaban);
-//        }
-//        return arrayListIdJawban;
-//        }
-
-
-
-
-
 }
