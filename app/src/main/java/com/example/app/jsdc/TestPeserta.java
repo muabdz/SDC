@@ -148,6 +148,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             jsonJawab.put("soal_id", sessionManager.getQuestionId(idSoal));
             jsonJawab.put("peserta_id", sessionManager.getPId());
             jsonJawab.put("hasil", Integer.parseInt(jawabanSoal));
+            jsonJawab.put("start", sessionManager.getStartTime());
             soal.put(jsonJawab);
         }
 
@@ -189,20 +190,23 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 jsonSikap.put("soal_id", 67);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
+                jsonSikap.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
 
-                jsonBahasa.put("soal_id", 68);
+                jsonBahasa.put("soal_id", 69);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
+                jsonBahasa.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
 
-                jsonKonsen.put("soal_id", 69);
+                jsonKonsen.put("soal_id", 68);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
+                jsonKonsen.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonKonsen);
             } else if (sessionManager.getIdSikap(16) == 16) {
@@ -211,20 +215,23 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 jsonSikap.put("soal_id", 16);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
+                jsonSikap.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
 
-                jsonBahasa.put("soal_id", 17);
+                jsonBahasa.put("soal_id", 18);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
+                jsonBahasa.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
 
-                jsonKonsen.put("soal_id", 18);
+                jsonKonsen.put("soal_id", 17);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
+                jsonKonsen.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonKonsen);
             }

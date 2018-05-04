@@ -115,6 +115,8 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                             p_id = jsonData.getString("p_id");
                             nama = jsonData.getString("nama");
                             cate = jsonData.getInt("cate");
+                            String testTime = jsonObject.getString("start");
+                            sessionManager.setStartTime(testTime);
                             sessionManager.setData(p_id, nama, cate);
 
 

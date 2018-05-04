@@ -90,6 +90,15 @@ public class SessionManager {
         return cate;
     }
 
+    public void setStartTime(String time){
+        prefs.edit().putString("startTime", time).apply();
+    }
+
+    public String getStartTime(){
+        String startTime = prefs.getString("startTime", "");
+        return startTime;
+    }
+
     public void setUid(String username){
         prefs.edit().putString("uid", username).apply();
     }
@@ -109,6 +118,7 @@ public class SessionManager {
         prefs.edit().remove("p_id").apply();
         prefs.edit().remove("nama").apply();
         prefs.edit().remove("cate").apply();
+        prefs.edit().remove("startTime").apply();
     }
 
     public void removeSessionJumlahSoal(){
