@@ -16,9 +16,7 @@ import android.widget.TextView;
 import com.example.app.jsdc.Utils.SelectedFragment;
 import com.example.app.jsdc.Utils.SessionManager;
 
-import java.util.ArrayList;
-
-public class Tes_Praktek extends Fragment implements SelectedFragment {
+public class TesPraktek extends Fragment implements SelectedFragment {
     // Store instance variables
     private int page;
 
@@ -27,10 +25,10 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     SessionManager sessionManager, sm;
     static EditText[] etSoal;
     //    int[] questionId;
-    TestPeserta testPeserta;
+    TestPraktekAll testPraktekAll;
     // newInstance constructor for creating fragment with arguments
-    public static Tes_Praktek newInstance(int page) {
-        Tes_Praktek tesPraktek = new Tes_Praktek();
+    public static TesPraktek newInstance(int page) {
+        TesPraktek tesPraktek = new TesPraktek();
         Bundle args = new Bundle();
         args.putInt("0", page);
         tesPraktek.setArguments(args);
@@ -43,7 +41,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("0");
         sessionManager = new SessionManager(getContext());
-        testPeserta = new TestPeserta();
+        testPraktekAll = new TestPraktekAll();
         jumlahSoal = sessionManager.getJumlahSoal();
     }
 
@@ -51,7 +49,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_tes__praktek, container, false);
+        view = inflater.inflate(R.layout.fragment_tes_praktek, container, false);
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.layoutSoal);
 
         etSoal = new EditText[jumlahSoal];
@@ -84,7 +82,7 @@ public class Tes_Praktek extends Fragment implements SelectedFragment {
 
             etSoal[i] = new EditText(getActivity());
             etSoal[i].setHint("0");
-            etSoal[i].setId(i);
+            etSoal[i].setId(i+300);
             etSoal[i].setTextSize(17);
             etSoal[i].setTextColor(Color.BLACK);
             etSoal[i].setFilters(new InputFilter[] { new InputFilter.LengthFilter(3) });

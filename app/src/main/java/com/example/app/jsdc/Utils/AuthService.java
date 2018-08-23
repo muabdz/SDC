@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -19,16 +20,16 @@ import retrofit2.http.Path;
  */
 
 public interface AuthService {
-    @POST("/signin/{uid}/{time}")
-    Call<ResponseBody> testloginPost(@Path("uid") String usernameId, @Path("time")String date);
+    @POST("/loginpenguji/{uid}")
+    Call<ResponseBody> testloginPost(@Path("uid") String usernameId);
 
-    @POST("/peserta/{id}")
+    @GET("/peserta/{id}")
     Call<ResponseBody> loginPeserta(@Path("id") String idPeserta);
 
     @POST("/soal/")
     Call<ResponseBody> submitPeserta(@Body RequestBody hasil);
 
-    @POST("/signout/{uid}")
+    @POST("/logout/{uid}")
     Call<ResponseBody> logoutPost(@Path("uid") String userId);
 
 }

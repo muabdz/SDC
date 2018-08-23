@@ -30,16 +30,16 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class TestPeserta extends AppCompatActivity implements View.OnClickListener {
+public class TestPraktekAll extends AppCompatActivity implements View.OnClickListener {
     Button bSubmit;
     SessionManager sessionManager;
     TestFragmentAdapter testFragmentAdapter;
     int jumlahSoal;
     String status, message;
     ProgressDialog progressDialog;
-    Tes_Praktek tes_praktek;
-    Tes_Sikap tes_sikap;
-    Komentar komentar;
+    TesPraktek tes_praktek;
+    TesSikap tes_sikap;
+    TesKomentar tesKomentar;
     AuthService mAuthAPIService;
     EditText[]  etJawab;
     int[] questionId;
@@ -53,12 +53,12 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         sessionManager = new SessionManager(this);
         jumlahSoal = sessionManager.getJumlahSoal();
 
-        tes_praktek = new Tes_Praktek();
-        tes_sikap = new Tes_Sikap();
-        komentar = new Komentar();
+        tes_praktek = new TesPraktek();
+        tes_sikap = new TesSikap();
+        tesKomentar = new TesKomentar();
         etJawab = new EditText[jumlahSoal];
         questionId = new int[jumlahSoal];
-        progressDialog = new ProgressDialog(TestPeserta.this);
+        progressDialog = new ProgressDialog(TestPraktekAll.this);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
 
@@ -117,7 +117,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
         }
         sessionManager.removeSessionJumlahSoal();
         progressDialog.dismiss();
-        Intent movea = new Intent(TestPeserta.this, LoginPenguji.class);
+        Intent movea = new Intent(TestPraktekAll.this, LoginPeserta.class);
         startActivity(movea);
         finish();
     }
@@ -132,16 +132,16 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
 
         for (int i = 1; i < sessionManager.getJumlahSoal(); i++) {
 
-            if(Tes_Praktek.etSoal[i].getText().toString().isEmpty()){
+            if(TesPraktek.etSoal[i].getText().toString().isEmpty()){
                 Toast.makeText(this, "Harap isi semua soal praktek", Toast.LENGTH_SHORT).show();
                 return;
-            }else if(Integer.parseInt(Tes_Praktek.etSoal[i].getText().toString())>100||Integer.parseInt(Tes_Praktek.etSoal[i].getText().toString())<0||Tes_Praktek.etSoal[i].getText().toString().contains("-")){
+            }else if(Integer.parseInt(TesPraktek.etSoal[i].getText().toString())>100||Integer.parseInt(TesPraktek.etSoal[i].getText().toString())<0|| TesPraktek.etSoal[i].getText().toString().contains("-")){
                 Toast.makeText(this, "Masukkan nilai 0 - 100", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            String jawabanSoal = Tes_Praktek.etSoal[i].getText().toString();
-            int idSoal = Tes_Praktek.etSoal[i].getId();
+            String jawabanSoal = TesPraktek.etSoal[i].getText().toString();
+            int idSoal = TesPraktek.etSoal[i].getId();
 
             JSONObject jsonJawab = new JSONObject();
 
@@ -152,17 +152,15 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             soal.put(jsonJawab);
         }
 
-        jsonParams.put("soal"
-
-                , soal);
+        jsonParams.put("soal", soal);
 
         String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
         String stringBahasa = ((EditText) findViewById(R.id.ET_PerilakuB)).getText().toString();
         String stringKonsen = ((EditText) findViewById(R.id.ET_PerilakuC)).getText().toString();
 
-        String stringPengetahuan = Komentar.getPengatahuan();
-        String stringTeknik = Komentar.getTeknik();
-        String stringPerilaku = Komentar.getPerilaku();
+        String stringPengetahuan = TesKomentar.getPengatahuan();
+        String stringTeknik = TesKomentar.getTeknik();
+        String stringPerilaku = TesKomentar.getPerilaku();
 
         if (stringSikap.isEmpty()){
             Toast.makeText(this, "Harap isi nilai sikap", Toast.LENGTH_SHORT).show();
@@ -179,15 +177,10 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
             Toast.makeText(this, "Masukkan nilai 0 - 100", Toast.LENGTH_SHORT).show();
             return;
         }
-
-
-
-
-
-            if (sessionManager.getIdSikap(67) == 67) {
+            if (sessionManager.getIdSikap(1) == 1) {
                 JSONObject jsonSikap = new JSONObject();
 
-                jsonSikap.put("soal_id", 67);
+                jsonSikap.put("soal_id", 1);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
                 jsonSikap.put("start", sessionManager.getStartTime());
@@ -195,7 +188,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
 
-                jsonBahasa.put("soal_id", 69);
+                jsonBahasa.put("soal_id", 3);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
                 jsonBahasa.put("start", sessionManager.getStartTime());
@@ -203,16 +196,16 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
 
-                jsonKonsen.put("soal_id", 68);
+                jsonKonsen.put("soal_id", 2);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
                 jsonKonsen.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonKonsen);
-            } else if (sessionManager.getIdSikap(16) == 16) {
+            } else if (sessionManager.getIdSikap(11) == 11) {
                 JSONObject jsonSikap = new JSONObject();
 
-                jsonSikap.put("soal_id", 16);
+                jsonSikap.put("soal_id", 11);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
                 jsonSikap.put("start", sessionManager.getStartTime());
@@ -220,7 +213,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
 
-                jsonBahasa.put("soal_id", 18);
+                jsonBahasa.put("soal_id", 13);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
                 jsonBahasa.put("start", sessionManager.getStartTime());
@@ -228,7 +221,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
 
-                jsonKonsen.put("soal_id", 17);
+                jsonKonsen.put("soal_id", 12);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
                 jsonKonsen.put("start", sessionManager.getStartTime());
@@ -278,16 +271,16 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                                     }
                                     sessionManager.removeSessionJumlahSoal();
                                     sessionManager.removeSessionPeserta();
-                                    sessionManager.removeSessionSikap(67);
-                                    sessionManager.removeSessionSikap(68);
-                                    sessionManager.removeSessionSikap(69);
-                                    sessionManager.removeSessionSikap(17);
-                                    sessionManager.removeSessionSikap(18);
-                                    sessionManager.removeSessionSikap(16);
-                                    Toast.makeText(TestPeserta.this, message,
+                                    sessionManager.removeSessionSikap(1);
+                                    sessionManager.removeSessionSikap(2);
+                                    sessionManager.removeSessionSikap(3);
+                                    sessionManager.removeSessionSikap(11);
+                                    sessionManager.removeSessionSikap(12);
+                                    sessionManager.removeSessionSikap(13);
+                                    Toast.makeText(TestPraktekAll.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
-                                    Intent movea = new Intent(TestPeserta.this, LoginPenguji.class);
+                                    Intent movea = new Intent(TestPraktekAll.this, LoginPeserta.class);
                                     startActivity(movea);
                                     finish();
                                 }
@@ -297,7 +290,7 @@ public class TestPeserta extends AppCompatActivity implements View.OnClickListen
                         }
                     }
                     else {
-                            Toast.makeText(TestPeserta.this, "Submit Gagal",
+                            Toast.makeText(TestPraktekAll.this, "Submit Gagal",
                                 Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
                     }

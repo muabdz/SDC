@@ -1,6 +1,6 @@
 package com.example.app.jsdc.Utils;
 
-import com.example.app.jsdc.ScanQR;
+import com.example.app.jsdc.LoginPenguji;
 
 /**
  * Created by Mu'adz on 3/14/2018.
@@ -14,7 +14,7 @@ public class ApiUtils {
     //public static final String BASE_URL = "http://45.77.246.7:8080/";
 
     public ApiUtils(){
-        sessionManager = new SessionManager(ScanQR.getAppContext());
+        sessionManager = new SessionManager(LoginPenguji.getAppContext());
         this.hostPort = sessionManager.getHostPort();
         this.hostIp = sessionManager.getHostIp();
     }

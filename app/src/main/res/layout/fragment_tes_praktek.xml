@@ -9,7 +9,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="10sp"
-        tools:context=".Tes_Praktek">
+        tools:context=".TesPraktek">
 
         <TextView
             android:id="@+id/L"

@@ -19,13 +19,16 @@ import com.example.app.jsdc.Utils.SessionManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class Login_kode extends AppCompatActivity implements View.OnClickListener {
+public class LoginPesertaKode extends AppCompatActivity implements View.OnClickListener {
     String  message, p_id, nama;
     Boolean status;
     int cate;
@@ -44,7 +47,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         TextView penguji = (TextView) findViewById(R.id.pengujiKode);
         penguji.setText(sessionManager.getUid());
 
-        progressDialog = new ProgressDialog(Login_kode.this);
+        progressDialog = new ProgressDialog(LoginPesertaKode.this);
         progressDialog.setMessage("Mohon Tunggu");
         progressDialog.setCanceledOnTouchOutside(false);
 
@@ -69,7 +72,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                         message = jsonObject.getString("message");
                         status = jsonObject.getBoolean("status");
                         if (!status){
-                            Toast.makeText(Login_kode.this, message,
+                            Toast.makeText(LoginPesertaKode.this, message,
                                     Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         } else {
@@ -78,7 +81,9 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                             p_id = jsonData.getString("p_id");
                             nama = jsonData.getString("nama");
                             cate = jsonData.getInt("cate");
-                            String testTime = jsonObject.getString("start");
+                            Date c = Calendar.getInstance().getTime();
+                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd");
+                            String testTime = df.format(c);
                             sessionManager.setStartTime(testTime);
                             sessionManager.setData(p_id, nama, cate);
 
@@ -86,13 +91,13 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                             int jumsol = 0;
                             for (int i = 0; i < jsonSoal.length(); i++) {
                                 jsonObject = jsonSoal.getJSONObject(i);
-                                int sesi = jsonObject.getInt("sesi");
+                                int kategori = jsonObject.getInt("kategori");
                                 int id = jsonObject.getInt("id");
                                 int nomor = jsonObject.getInt("nomor");
                                 String soal = jsonObject.getString("soal");
-                                if (sesi == 2) {
+                                if (kategori > 20) {
                                     jumsol++;
-                                    sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
+                                    sessionManager.setQuestion(nomor, jumsol, soal, kategori, id);
                                 } else {
                                     sessionManager.setSessionSikap(soal, id);
                                 }
@@ -107,10 +112,10 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                                 }
 
                                 public void onFinish() {
-                                    Toast.makeText(Login_kode.this, message,
+                                    Toast.makeText(LoginPesertaKode.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
-                                    Intent login = new Intent(Login_kode.this, TestPeserta.class);
+                                    Intent login = new Intent(LoginPesertaKode.this, TestPraktekAll.class);
                                     startActivity(login);
                                     finish();
 
@@ -121,7 +126,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(Login_kode.this, "Nomor Pendaftaran salah",
+                    Toast.makeText(LoginPesertaKode.this, "Nomor Pendaftaran salah",
                             Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
@@ -140,7 +145,7 @@ public class Login_kode extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.b_loginPeserta:
                 if(etPeserta.getText().toString().length()==0){
-                    etPeserta.setError("Masukan Nomer Pendaftaran");
+                    etPeserta.setError("Masukan Nomor Pendaftaran");
                 }
                 else {
                     progressDialog.show();

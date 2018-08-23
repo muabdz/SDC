@@ -14,10 +14,13 @@ import android.preference.PreferenceManager;
 public class SessionManager {
     String hostIp, hostPort, question, uid;
     int jumlahSoal;
-    private SharedPreferences prefs;
+    private SharedPreferences prefs, pref;
+    private SharedPreferences.Editor editor;
 
     public SessionManager(Context cntx) {
         prefs = PreferenceManager.getDefaultSharedPreferences(cntx);
+        pref = cntx.getSharedPreferences("androidhive-welcome", 0);
+        editor = pref.edit();
     }
 
     public void setSession(String hostIp, String hostPort) {
@@ -32,27 +35,26 @@ public class SessionManager {
 
 
     public String getHostIp() {
-        hostIp = prefs.getString("hostIp","192.168.100.50");
+        hostIp = prefs.getString("hostIp","192.168.43.220");
         return hostIp;
     }
 
     public String getHostPort() {
-        hostPort = prefs.getString("hostPort","7777");
+        hostPort = prefs.getString("hostPort","3500");
         return hostPort;
     }
 
-    public void setQuestion(int nomor, int jumlah, String question, int sesi, int id){
+    public void setQuestion(int nomor, int jumlah, String question, int kategori, int id){
         prefs.edit().putInt(String.valueOf(nomor), id).apply();
-        prefs.edit().putInt(String.valueOf(nomor)+"sesi", sesi).apply();
+        prefs.edit().putInt(String.valueOf(nomor)+"kategori", kategori).apply();
         prefs.edit().putString(String.valueOf(id)+"id", question).apply();
         prefs.edit().putInt("jumlah", jumlah).apply();
     }
 
-    public int getSesi(int num){
-        int sesi = prefs.getInt(String.valueOf(num)+"sesi", 2);
-        return sesi;
-    }
-
+//    public int getSesi(int num){
+//        int sesi = prefs.getInt(String.valueOf(num)+"sesi", 2);
+//        return sesi;
+//    }
 
     public String getQuestion(int id){
         question = prefs.getString(String.valueOf(id)+"id","error");
@@ -148,6 +150,9 @@ public class SessionManager {
         int jumlah = prefs.getInt("jumlahTotal", 0);
         return jumlah;
     }
-
+    public void setFirstTimeLaunch(boolean isFirstTime){
+        editor.putBoolean("IsFirstTimeLaunch", isFirstTime);
+        editor.commit();
+    }
 
 }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-public class Tes_Sikap extends Fragment {
+public class TesSikap extends Fragment {
     // Store instance variables
     private int page;
 
@@ -17,8 +17,8 @@ public class Tes_Sikap extends Fragment {
     EditText etKonsentrasi;
 
     // newInstance constructor for creating fragment with arguments
-    public static Tes_Sikap newInstance(int page) {
-        Tes_Sikap tesSikap = new Tes_Sikap();
+    public static TesSikap newInstance(int page) {
+        TesSikap tesSikap = new TesSikap();
         Bundle args = new Bundle();
         args.putInt("1", page);
         tesSikap.setArguments(args);
@@ -37,7 +37,7 @@ public class Tes_Sikap extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_tes__sikap, container, false);
+        final View view = inflater.inflate(R.layout.fragment_tes_sikap, container, false);
         etSikap = (EditText) view.findViewById(R.id.ET_PerilakuA);
         etBahasa = (EditText) view.findViewById(R.id.ET_PerilakuB);
         etKonsentrasi = (EditText) view.findViewById(R.id.ET_PerilakuC);

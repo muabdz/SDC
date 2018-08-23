@@ -25,8 +25,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class LoginKodePetugas extends AppCompatActivity implements View.OnClickListener{
-    String username, message, uid, time;
+public class LoginPengujiKode extends AppCompatActivity implements View.OnClickListener{
+    String username, message, uid;
     boolean status;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
@@ -37,7 +37,7 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_kode_petugas);
-        progressDialog = new ProgressDialog(LoginKodePetugas.this);
+        progressDialog = new ProgressDialog(LoginPengujiKode.this);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
         Button bMasukPetugas = (Button) findViewById(R.id.b_MasukKodePetugas);
@@ -46,15 +46,13 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
     }
 
     public void loginHandler(String kodePenguji) {
-        time = kodePenguji.substring(0,10);
         uid = kodePenguji.substring(10);
         Map<String, Object> jsonParams = new ArrayMap<>();
-        jsonParams.put("date", time);
         jsonParams.put("username", uid);
         mAuthAPIService = new ApiUtils().getAuthAPIService();
         sessionManager = new SessionManager(this);
 
-        Call<ResponseBody> response = mAuthAPIService.testloginPost(uid, time);
+        Call<ResponseBody> response = mAuthAPIService.testloginPost(uid);
 
         response.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -66,12 +64,11 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
                         status = jsonObject.getBoolean("status");
                         message = jsonObject.getString("message");
                         if (!status){
-                            Toast.makeText(LoginKodePetugas.this, message,
+                            Toast.makeText(LoginPengujiKode.this, message,
                                     Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         } else {
                             username = jsonObject.getString("username");
-
 
                             new CountDownTimer(5000, 5000) {
 
@@ -81,10 +78,10 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
 
                                 public void onFinish() {
                                     sessionManager.setUid(username);
-                                    Toast.makeText(LoginKodePetugas.this, message,
+                                    Toast.makeText(LoginPengujiKode.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
-                                    Intent movea = new Intent(LoginKodePetugas.this, LoginPenguji.class);
+                                    Intent movea = new Intent(LoginPengujiKode.this, LoginPeserta.class);
                                     startActivity(movea);
                                     finish();
                                 }
@@ -94,7 +91,7 @@ public class LoginKodePetugas extends AppCompatActivity implements View.OnClickL
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(LoginKodePetugas.this, "Kode Penguji Salah",
+                    Toast.makeText(LoginPengujiKode.this, "Kode Penguji Salah",
                             Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }

@@ -5,15 +5,16 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.widget.RelativeLayout;
 
-public class Opening extends AppCompatActivity {
+import com.example.app.jsdc.Utils.SessionManager;
+
+public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opening);
+        setContentView(R.layout.activity_splash_screen);
         final RelativeLayout logoJSDC = (RelativeLayout) findViewById(R.id.logo);
 
         logoJSDC.setAlpha(0f);
@@ -35,12 +36,12 @@ public class Opening extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
 
-                    PrefManager prefManager = new PrefManager(getApplicationContext());
+                    SessionManager sessionManager = new SessionManager(getApplicationContext());
 
                     // make first time launch TRUE
-                    prefManager.setFirstTimeLaunch(true);
+                    sessionManager.setFirstTimeLaunch(true);
 
-                    startActivity(new Intent(Opening.this, ScanQR.class));
+                    startActivity(new Intent(SplashScreen.this, LoginPenguji.class));
                     finish();
 
 

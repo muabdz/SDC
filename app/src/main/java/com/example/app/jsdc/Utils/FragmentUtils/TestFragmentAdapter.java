@@ -3,13 +3,10 @@ package com.example.app.jsdc.Utils.FragmentUtils;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.example.app.jsdc.Komentar;
-import com.example.app.jsdc.Tes_Praktek;
-import com.example.app.jsdc.Tes_Sikap;
+import com.example.app.jsdc.TesKomentar;
+import com.example.app.jsdc.TesPraktek;
+import com.example.app.jsdc.TesSikap;
 
 /**
  * Created by Mu'adz on 4/2/2018.
@@ -17,7 +14,7 @@ import com.example.app.jsdc.Tes_Sikap;
 
 public class TestFragmentAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[]{"Praktek", "Sikap", "Komentar"};
+    private String tabTitles[] = new String[]{"Praktek", "Sikap", "TesKomentar"};
 
     public TestFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -33,11 +30,11 @@ public class TestFragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment
-                return Tes_Praktek.newInstance(0);
+                return TesPraktek.newInstance(0);
             case 1: // Fragment # 0 - This will show FirstFragment different title
-                return Tes_Sikap.newInstance(1);
+                return TesSikap.newInstance(1);
             case 2: // Fragment # 1 - This will show SecondFragment
-                return Komentar.newInstance(2);
+                return TesKomentar.newInstance(2);
             default:
                 return null;
         }

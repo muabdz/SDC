@@ -9,7 +9,7 @@
         android:gravity="top"
         android:orientation="vertical"
         android:paddingBottom="10sp"
-        tools:context=".Tes_Sikap">
+        tools:context=".TesSikap">
 
         <RelativeLayout
             android:layout_width="wrap_content"

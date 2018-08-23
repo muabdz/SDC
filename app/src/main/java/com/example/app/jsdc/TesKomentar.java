@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 
-public class Komentar extends Fragment {
+public class TesKomentar extends Fragment {
     private int page;
     static EditText etPengetahuan;
     static EditText etTeknik;
     static EditText etPerilaku;
-    public static Komentar newInstance(int page) {
-        Komentar komentar = new Komentar();
+    public static TesKomentar newInstance(int page) {
+        TesKomentar tesKomentar = new TesKomentar();
         Bundle args = new Bundle();
         args.putInt("1", page);
-        komentar.setArguments(args);
-        return komentar;
+        tesKomentar.setArguments(args);
+        return tesKomentar;
     }
 
     @Override
@@ -37,8 +37,6 @@ public class Komentar extends Fragment {
         etPerilaku = (EditText) view.findViewById(R.id.ET_Perilaku);
         return view;
     }
-
-
 
     public static String getPengatahuan(){
         String sikap = etPengetahuan.getText().toString();

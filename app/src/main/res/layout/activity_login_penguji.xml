@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center|top"
-    tools:context="com.example.app.jsdc.LoginPenguji">
+    tools:context="com.example.app.jsdc.LoginPeserta">
 
 
     <LinearLayout

@@ -2,33 +2,30 @@ package com.example.app.jsdc;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.jsdc.Utils.ApiUtils;
 import com.example.app.jsdc.Utils.AuthService;
 import com.example.app.jsdc.Utils.SessionManager;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -37,40 +34,27 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-
 public class LoginPenguji extends AppCompatActivity implements View.OnClickListener {
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    String message, p_id, nama, usernamePenguji;
-    Boolean status;
-    int cate;
+    String username, message, ipValue, portValue, uid;
+    boolean status;
+    private static Context context;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
-    private GoogleApiClient client;
-    SessionManager sessionManager;
-
+    SessionManager sessionManager, sm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_penguji);
-        sessionManager = new SessionManager(this);
+        setContentView(R.layout.activity_qr_code_scan);
+        LoginPenguji.context = getApplicationContext();
         final Activity activity = this;
-        Button T_scanpeserta = (Button) findViewById(R.id.b_scanPeserta);
-        TextView b_loginkode = (TextView) findViewById(R.id.Bantuan);
-        TextView penguji = (TextView) findViewById(R.id.penguji);
+        TextView TombolMasukKodePetugas = (TextView) findViewById(R.id.scanGagalPenguji);
+        TombolMasukKodePetugas.setOnClickListener(this);
+        Button T_scanpenguji = (Button) findViewById(R.id.b_scanpenguji);
         progressDialog = new ProgressDialog(LoginPenguji.this);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
-        penguji.setText(sessionManager.getUid());
 
-
-        b_loginkode.setOnClickListener(this);
-
-
-        T_scanpeserta.setOnClickListener(new View.OnClickListener() {
+        T_scanpenguji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
@@ -79,22 +63,24 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                 integrator.setCameraId(0);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
-                integrator.setCaptureActivity(captureActivityPortrait.class);
+                integrator.setCaptureActivity(CaptureActivityPortrait.class);
                 integrator.initiateScan();
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    public void loginHandler(String kodePeserta) {
+    public static Context getAppContext() {
+        return LoginPenguji.context;
+    }
+
+    public void loginHandler(String kodePenguji) {
+        uid = kodePenguji.substring(10);
         Map<String, Object> jsonParams = new ArrayMap<>();
-        jsonParams.put("username", kodePeserta);
-
+        jsonParams.put("username", uid);
         mAuthAPIService = new ApiUtils().getAuthAPIService();
+        sessionManager = new SessionManager(this);
 
-        Call<ResponseBody> response = mAuthAPIService.loginPeserta(kodePeserta);
+        Call<ResponseBody> response = mAuthAPIService.testloginPost(uid);
 
         response.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -103,38 +89,14 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                     try {
 
                         JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        message = jsonObject.getString("message");
                         status = jsonObject.getBoolean("status");
+                        message = jsonObject.getString("message");
                         if (!status){
                             Toast.makeText(LoginPenguji.this, message,
                                     Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         } else {
-                            JSONArray jsonSoal = jsonObject.getJSONArray("soal");
-                            JSONObject jsonData = jsonObject.getJSONObject("data");
-                            p_id = jsonData.getString("p_id");
-                            nama = jsonData.getString("nama");
-                            cate = jsonData.getInt("cate");
-                            String testTime = jsonObject.getString("start");
-                            sessionManager.setStartTime(testTime);
-                            sessionManager.setData(p_id, nama, cate);
-
-
-                            int jumsol = 0;
-                            for (int i = 0; i < jsonSoal.length(); i++) {
-                                jsonObject = jsonSoal.getJSONObject(i);
-                                int sesi = jsonObject.getInt("sesi");
-                                int id = jsonObject.getInt("id");
-                                int nomor = jsonObject.getInt("nomor");
-                                String soal = jsonObject.getString("soal");
-                                if (sesi == 2) {
-                                    jumsol++;
-                                    sessionManager.setQuestion(nomor, jumsol, soal, sesi, id);
-                                } else {
-                                    sessionManager.setSessionSikap(soal, id);
-                                }
-                                sessionManager.setJumlahTotal(jsonSoal.length());
-                            }
+                            username = jsonObject.getString("username");
 
 
                             new CountDownTimer(1000, 1000) {
@@ -144,10 +106,11 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                                 }
 
                                 public void onFinish() {
+                                    sessionManager.setUid(username);
                                     Toast.makeText(LoginPenguji.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
-                                    Intent movea = new Intent(LoginPenguji.this, TestPeserta.class);
+                                    Intent movea = new Intent(LoginPenguji.this, LoginPeserta.class);
                                     startActivity(movea);
                                     finish();
                                 }
@@ -157,7 +120,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(LoginPenguji.this, "Kode Peserta Salah",
+                    Toast.makeText(LoginPenguji.this, "Kode Penguji Salah",
                             Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
@@ -166,43 +129,12 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(LoginPenguji.this, "Login Gagal",
+                        Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
 
             }
         });
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.actionbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_logout:
-                new AlertDialog.Builder(this)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Logout")
-                        .setMessage("Apakah anda yakin ingin keluar?")
-                        .setPositiveButton("Ya", new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                progressDialog.show();
-                                logoutHandler();
-                            }
-
-                        })
-                        .setNegativeButton("Tidak", null)
-                        .show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
     }
 
     @Override
@@ -210,7 +142,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(this, "GAGAL", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "GAGAL", Toast.LENGTH_SHORT).show();
             } else {
                 progressDialog.show();
                 loginHandler(result.getContents());
@@ -221,127 +153,106 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_scan_penguji, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.Bantuan:
-                Intent kodePendaftaran = new Intent(this, Login_kode.class);
-                startActivity(kodePendaftaran);
-                break;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.configIP:
+                sm = new SessionManager(this);
+                ipConfig();
 
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("LoginPenguji Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
-    public void logoutHandler() {
-        Map<String, Object> jsonParams = new ArrayMap<>();
-        usernamePenguji = sessionManager.getUid();
-        jsonParams.put("username", usernamePenguji);
-
-        mAuthAPIService = ApiUtils.getAuthAPIService();
-
-        Call<ResponseBody> response = mAuthAPIService.logoutPost(usernamePenguji);
-
-        response.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> rawResponse) {
-                if (rawResponse.isSuccessful()) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        message = jsonObject.getString("message");
-                        status = jsonObject.getBoolean("status");
-                        if (!status){
-                            Toast.makeText(LoginPenguji.this, message,
-                                    Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
-                        } else {
-                            new CountDownTimer(1000, 1000) {
-
-                                public void onTick(long millisUntilFinished) {
-                                    // You don't need anything here
-                                }
-
-                                public void onFinish() {
-                                    Toast.makeText(LoginPenguji.this, message,
-                                            Toast.LENGTH_LONG).show();
-                                    progressDialog.dismiss();
-                                    Intent movea = new Intent(LoginPenguji.this, ScanQR.class);
-                                    startActivity(movea);
-                                    finish();
-                                }
-                            }.start();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(LoginPenguji.this, "Petugas Gagal Logout",
-                            Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
     }
 
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Logout")
+                .setTitle("Keluar")
                 .setMessage("Apakah anda yakin ingin keluar?")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        progressDialog.show();
-                        logoutHandler();
+                        finishAffinity();
                     }
 
                 })
                 .setNegativeButton("Tidak", null)
                 .show();
     }
+
+    public void ipConfig(){
+        LinearLayout linearLayout = new LinearLayout(LoginPenguji.this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        linearLayout.setLayoutParams(lp);
+
+        final EditText ConfigIpInput = new EditText(LoginPenguji.this);
+        ConfigIpInput.setHint("Contoh IP: 192.168.43.220");
+        String ipNow = sm.getHostIp();
+        ConfigIpInput.setText(ipNow);
+        linearLayout.addView(ConfigIpInput);
+
+        final EditText ConfigPortInput = new EditText(LoginPenguji.this);
+        ConfigPortInput.setHint("Contoh Port: 3500");
+        ConfigPortInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        String portNow = sm.getHostPort();
+        ConfigPortInput.setText(portNow);
+        linearLayout.addView(ConfigPortInput);
+
+        AlertDialog.Builder info = new AlertDialog.Builder(LoginPenguji.this);
+        info.setMessage("Ubah IP dan Port:").setCancelable(true).setPositiveButton("Simpan", new AlertDialog.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                try{
+                    ipValue = ConfigIpInput.getText().toString();
+                    portValue = ConfigPortInput.getText().toString();
+                    sm.setSession(ipValue, portValue);
+                    Toast.makeText(LoginPenguji.this,
+                            "Konfigurasi disimpan\n http://"+ ipValue + ":" + portValue + "/", Toast.LENGTH_SHORT).show();
+
+                }catch (NumberFormatException e){
+                    AlertDialog.Builder infoo = new AlertDialog.Builder(LoginPenguji.this);
+                    infoo.setMessage("Masukkan nilai IP dan Port").setCancelable(false).setPositiveButton("Coba Lagi", new AlertDialog.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int id){
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog dialog1 = infoo.create();
+                    dialog1.setTitle("Error");
+                    dialog1.show();
+                }
+            }
+        }).setNegativeButton("Batal", new AlertDialog.OnClickListener(){
+            public void onClick(DialogInterface dialog2, int id){
+                dialog2.cancel();
+            }
+        });
+        AlertDialog dialog = info.create();
+        dialog.setView(linearLayout);
+        dialog.setTitle("IP Config");
+        dialog.show();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.scanGagalPenguji:
+                Intent masukLoginKodePetugas = new Intent(this, LoginPengujiKode.class);
+                startActivity(masukLoginKodePetugas);
+                break;
+        }
+    }
 }
+
