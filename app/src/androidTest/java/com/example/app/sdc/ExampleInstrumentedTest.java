@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

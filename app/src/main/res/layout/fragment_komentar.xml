@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:paddingBottom="10sp"
         android:paddingRight="35sp"
-        tools:context="com.example.app.jsdc.TesKomentar">
+        tools:context="com.example.app.sdc.TesKomentar">
 
         <TextView
             android:id="@+id/T_pengetahuan"

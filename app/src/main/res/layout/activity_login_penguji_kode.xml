@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.example.app.jsdc.LoginPengujiKode">
+    tools:context="com.example.app.sdc.LoginPengujiKode">
 
 
         <TextView
@@ -22,10 +22,11 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/NoKodePetugas"
+            android:text="STAFF1"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="34dp"
-            android:hint="Kode Hari Ini"
+            android:hint="Masukkan Kode"
             android:layout_marginTop="10dp"
             android:textAlignment="center"
             android:background="#9999"/>

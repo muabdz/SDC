@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity=""
     android:orientation="vertical"
-    tools:context="com.example.app.jsdc.LoginPesertaKode">
+    tools:context="com.example.app.sdc.LoginPesertaKode">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -60,7 +60,8 @@
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="34dp"
-        android:hint="No.Pendaftaran"
+        android:hint="Masukkan Kode"
+        android:text="2018080001"
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:background="#9999"/>

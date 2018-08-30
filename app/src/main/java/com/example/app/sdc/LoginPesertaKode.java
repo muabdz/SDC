@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app.jsdc.Utils.ApiUtils;
-import com.example.app.jsdc.Utils.AuthService;
-import com.example.app.jsdc.Utils.SessionManager;
+import com.example.app.sdc.Utils.ApiUtils;
+import com.example.app.sdc.Utils.AuthService;
+import com.example.app.sdc.Utils.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ public class LoginPesertaKode extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_kode);
+        setContentView(R.layout.activity_login_peserta_kode);
         Button masukpeserta = (Button) findViewById(R.id.b_loginPeserta);
         etPeserta = (EditText) findViewById(R.id.No_daftar);
         sessionManager = new SessionManager(this);
@@ -82,20 +82,20 @@ public class LoginPesertaKode extends AppCompatActivity implements View.OnClickL
                             nama = jsonData.getString("nama");
                             cate = jsonData.getInt("cate");
                             Date c = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd");
+                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                             String testTime = df.format(c);
                             sessionManager.setStartTime(testTime);
                             sessionManager.setData(p_id, nama, cate);
 
 
-                            int jumsol = 0;
+                            int jumsol = 1;
                             for (int i = 0; i < jsonSoal.length(); i++) {
                                 jsonObject = jsonSoal.getJSONObject(i);
                                 int kategori = jsonObject.getInt("kategori");
                                 int id = jsonObject.getInt("id");
                                 int nomor = jsonObject.getInt("nomor");
                                 String soal = jsonObject.getString("soal");
-                                if (kategori > 20) {
+                                if (id > 20) {
                                     jumsol++;
                                     sessionManager.setQuestion(nomor, jumsol, soal, kategori, id);
                                 } else {

@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
-import com.example.app.jsdc.Utils.SessionManager;
+import com.example.app.sdc.Utils.SessionManager;
 
 public class SplashScreen extends AppCompatActivity {
 

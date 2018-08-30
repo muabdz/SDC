@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 
 import android.app.ProgressDialog;
@@ -16,10 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.example.app.jsdc.Utils.ApiUtils;
-import com.example.app.jsdc.Utils.AuthService;
-import com.example.app.jsdc.Utils.FragmentUtils.TestFragmentAdapter;
-import com.example.app.jsdc.Utils.SessionManager;
+import com.example.app.sdc.Utils.ApiUtils;
+import com.example.app.sdc.Utils.AuthService;
+import com.example.app.sdc.Utils.FragmentUtils.TestFragmentAdapter;
+import com.example.app.sdc.Utils.SessionManager;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +49,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_peserta);
+        setContentView(R.layout.activity_test_praktek_all);
 
         sessionManager = new SessionManager(this);
         jumlahSoal = sessionManager.getJumlahSoal();
@@ -141,7 +142,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
             }
 
             String jawabanSoal = TesPraktek.etSoal[i].getText().toString();
-            int idSoal = TesPraktek.etSoal[i].getId();
+            int idSoal = TesPraktek.etSoal[i].getId()-300;
 
             JSONObject jsonJawab = new JSONObject();
 
@@ -229,23 +230,19 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 soal.put(jsonKonsen);
             }
 
+            JSONObject comments = new JSONObject();
 
-            JSONObject jsonKomen = new JSONObject();
-
-            jsonKomen.put("peserta_id", sessionManager.getPId());
-            jsonKomen.put("pengetahuan", stringPengetahuan);
-            jsonKomen.put("teknik", stringTeknik);
-            jsonKomen.put("perilaku", stringPerilaku);
-            jsonKomen.put("penguji", sessionManager.getUid());
-
-            JSONArray comments = new JSONArray();
-            comments.put(jsonKomen);
+            comments.put("peserta_id", sessionManager.getPId());
+            comments.put("pengetahuan", stringPengetahuan);
+            comments.put("teknik", stringTeknik);
+            comments.put("perilaku", stringPerilaku);
+            comments.put("penguji", sessionManager.getUid());
 
             jsonParams.put("comments", comments);
 
             mAuthAPIService = ApiUtils.getAuthAPIService();
 
-            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset = utf-8"),
+            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),
                     (jsonParams).toString());
 
             Call<ResponseBody> response = mAuthAPIService.submitPeserta(body);
@@ -299,7 +296,9 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                    Toast.makeText(TestPraktekAll.this, "Submit Gagal",
+                            Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             });
         } catch (JSONException e) {

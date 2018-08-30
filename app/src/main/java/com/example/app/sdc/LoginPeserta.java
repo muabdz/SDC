@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -18,9 +18,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app.jsdc.Utils.ApiUtils;
-import com.example.app.jsdc.Utils.AuthService;
-import com.example.app.jsdc.Utils.SessionManager;
+import com.example.app.sdc.Utils.ApiUtils;
+import com.example.app.sdc.Utils.AuthService;
+import com.example.app.sdc.Utils.SessionManager;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -58,7 +58,7 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_penguji);
+        setContentView(R.layout.activity_login_peserta);
         sessionManager = new SessionManager(this);
         final Activity activity = this;
         Button T_scanpeserta = (Button) findViewById(R.id.b_scanPeserta);
@@ -119,7 +119,7 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
                             nama = jsonData.getString("nama");
                             cate = jsonData.getInt("cate");
                             Date c = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd");
+                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                             String testTime = df.format(c);
                             sessionManager.setStartTime(testTime);
                             sessionManager.setData(p_id, nama, cate);

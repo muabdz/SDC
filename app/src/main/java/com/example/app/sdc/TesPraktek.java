@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.example.app.jsdc.Utils.SelectedFragment;
-import com.example.app.jsdc.Utils.SessionManager;
+import com.example.app.sdc.Utils.SelectedFragment;
+import com.example.app.sdc.Utils.SessionManager;
 
 public class TesPraktek extends Fragment implements SelectedFragment {
     // Store instance variables
@@ -82,6 +82,7 @@ public class TesPraktek extends Fragment implements SelectedFragment {
 
             etSoal[i] = new EditText(getActivity());
             etSoal[i].setHint("0");
+            etSoal[i].setText("100");
             etSoal[i].setId(i+300);
             etSoal[i].setTextSize(17);
             etSoal[i].setTextColor(Color.BLACK);

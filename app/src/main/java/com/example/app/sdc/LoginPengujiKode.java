@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.app.jsdc.Utils.ApiUtils;
-import com.example.app.jsdc.Utils.AuthService;
-import com.example.app.jsdc.Utils.SessionManager;
+import com.example.app.sdc.Utils.ApiUtils;
+import com.example.app.sdc.Utils.AuthService;
+import com.example.app.sdc.Utils.SessionManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -36,7 +36,7 @@ public class LoginPengujiKode extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_kode_petugas);
+        setContentView(R.layout.activity_login_penguji_kode);
         progressDialog = new ProgressDialog(LoginPengujiKode.this);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Mohon Tunggu");
@@ -46,7 +46,7 @@ public class LoginPengujiKode extends AppCompatActivity implements View.OnClickL
     }
 
     public void loginHandler(String kodePenguji) {
-        uid = kodePenguji.substring(10);
+        uid = kodePenguji;
         Map<String, Object> jsonParams = new ArrayMap<>();
         jsonParams.put("username", uid);
         mAuthAPIService = new ApiUtils().getAuthAPIService();
@@ -89,6 +89,9 @@ public class LoginPengujiKode extends AppCompatActivity implements View.OnClickL
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(LoginPengujiKode.this, "Kode Penguji Salah",
+                                Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                     }
                 } else {
                     Toast.makeText(LoginPengujiKode.this, "Kode Penguji Salah",

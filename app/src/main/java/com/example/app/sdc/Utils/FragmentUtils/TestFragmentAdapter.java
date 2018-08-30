@@ -1,12 +1,12 @@
-package com.example.app.jsdc.Utils.FragmentUtils;
+package com.example.app.sdc.Utils.FragmentUtils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.app.jsdc.TesKomentar;
-import com.example.app.jsdc.TesPraktek;
-import com.example.app.jsdc.TesSikap;
+import com.example.app.sdc.TesKomentar;
+import com.example.app.sdc.TesPraktek;
+import com.example.app.sdc.TesSikap;
 
 /**
  * Created by Mu'adz on 4/2/2018.

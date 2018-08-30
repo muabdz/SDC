@@ -1,4 +1,4 @@
-package com.example.app.jsdc.Utils;
+package com.example.app.sdc.Utils;
 
 /**
  * Created by Mu'adz on 3/14/2018.

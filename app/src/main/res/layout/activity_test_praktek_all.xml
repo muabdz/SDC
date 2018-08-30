@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="left"
-    tools:context="com.example.app.jsdc.TestPraktekAll">
+    tools:context="com.example.app.sdc.TestPraktekAll">
 
     <TextView
         android:layout_width="match_parent"

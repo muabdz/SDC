@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_penguji"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    tools:context="com.example.app.sdc.LoginPeserta">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FF6C2C">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="  Penguji :"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:id="@+id/textView2"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:id="@+id/penguji"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_isdc"
+        android:layout_marginTop="60dp"
+        android:id="@+id/logo_isdc"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCAN QR CODE Peserta"
+        android:id="@+id/b_scanPeserta"
+        android:background="#FF6C2C"
+        android:textColor="#fff"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Bantuan"
+        android:text="QR CODE GAGAL"
+        android:layout_marginTop="20dp"
+        />
+
+</LinearLayout>

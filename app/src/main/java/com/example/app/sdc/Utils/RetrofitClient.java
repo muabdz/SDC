@@ -1,4 +1,4 @@
-package com.example.app.jsdc.Utils;
+package com.example.app.sdc.Utils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

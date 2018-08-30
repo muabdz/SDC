@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -20,9 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app.jsdc.Utils.ApiUtils;
-import com.example.app.jsdc.Utils.AuthService;
-import com.example.app.jsdc.Utils.SessionManager;
+import com.example.app.sdc.Utils.ApiUtils;
+import com.example.app.sdc.Utils.AuthService;
+import com.example.app.sdc.Utils.SessionManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -44,7 +44,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr_code_scan);
+        setContentView(R.layout.activity_login_penguji);
         LoginPenguji.context = getApplicationContext();
         final Activity activity = this;
         TextView TombolMasukKodePetugas = (TextView) findViewById(R.id.scanGagalPenguji);
@@ -74,7 +74,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
     }
 
     public void loginHandler(String kodePenguji) {
-        uid = kodePenguji.substring(10);
+        uid = kodePenguji;
         Map<String, Object> jsonParams = new ArrayMap<>();
         jsonParams.put("username", uid);
         mAuthAPIService = new ApiUtils().getAuthAPIService();

@@ -1,6 +1,6 @@
-package com.example.app.jsdc.Utils;
+package com.example.app.sdc.Utils;
 
-import com.example.app.jsdc.LoginPenguji;
+import com.example.app.sdc.LoginPenguji;
 
 /**
  * Created by Mu'adz on 3/14/2018.
@@ -10,8 +10,6 @@ public class ApiUtils {
     static SessionManager sessionManager;
     static String hostPort;
     static String hostIp;
-    //private static String BASE_URL = "http://"+ hostIp + ":" + hostPort + "/";
-    //public static final String BASE_URL = "http://45.77.246.7:8080/";
 
     public ApiUtils(){
         sessionManager = new SessionManager(LoginPenguji.getAppContext());

@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 
 import android.os.Bundle;
@@ -14,6 +14,7 @@ public class TesKomentar extends Fragment {
     static EditText etPengetahuan;
     static EditText etTeknik;
     static EditText etPerilaku;
+
     public static TesKomentar newInstance(int page) {
         TesKomentar tesKomentar = new TesKomentar();
         Bundle args = new Bundle();
@@ -38,21 +39,35 @@ public class TesKomentar extends Fragment {
         return view;
     }
 
-    public static String getPengatahuan(){
-        String sikap = etPengetahuan.getText().toString();
-        return sikap;
+    public static String getPengatahuan() {
+        try {
+            String sikap = etPengetahuan.getText().toString();
+            return sikap;
+        } catch (NullPointerException ep) {
+            String strKosong = "kosong";
+            return strKosong;
+        }
     }
 
-    public static String getTeknik(){
-        String bahasa = etTeknik.getText().toString();
-        return bahasa;
+    public static String getTeknik() {
+        try {
+            String bahasa = etTeknik.getText().toString();
+            return bahasa;
+        } catch (NullPointerException ep) {
+            String strKosong = "kosong";
+            return strKosong;
+        }
     }
 
-    public static String getPerilaku(){
-        String konsen = etPerilaku.getText().toString();
-        return konsen;
+    public static String getPerilaku() {
+        try {
+            String konsen = etPerilaku.getText().toString();
+            return konsen;
+        } catch (NullPointerException ep) {
+            String strKosong = "kosong";
+            return strKosong;
+        }
     }
-
 
 
 }

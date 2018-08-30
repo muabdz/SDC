@@ -1,4 +1,4 @@
-package com.example.app.jsdc;
+package com.example.app.sdc;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
