@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.app.sdc.Utils.SessionManager;
@@ -15,11 +16,11 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        final RelativeLayout logoJSDC = (RelativeLayout) findViewById(R.id.logo);
+        final RelativeLayout splash = (RelativeLayout) findViewById(R.id.activity_opening);
 
-        logoJSDC.setAlpha(0f);
+        splash.setAlpha(0f);
 
-        ValueAnimator fadeAnim = ObjectAnimator.ofFloat(logoJSDC, "alpha", 3f, 0f);
+        ValueAnimator fadeAnim = ObjectAnimator.ofFloat(splash, "alpha", 3f, 0f);
 
         fadeAnim.setDuration(2500);
 
@@ -41,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
                     // make first time launch TRUE
                     sessionManager.setFirstTimeLaunch(true);
 
-                    startActivity(new Intent(SplashScreen.this, LoginPenguji.class));
+                    startActivity(new Intent(SplashScreen.this, LoginPengujiKode.class));
                     finish();
 
 

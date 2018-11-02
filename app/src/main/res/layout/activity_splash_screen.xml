@@ -4,17 +4,16 @@
     android:id="@+id/activity_opening"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09243A"
-    tools:context="com.example.app.sdc.SplashScreen">
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.app.sdc.SplashScreen"
+    android:gravity="center">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/logo"
-        android:background="@drawable/opening1">
-
-
-    </RelativeLayout>
+        android:background="@drawable/logosdc">
+    </ImageView>
 
 
 

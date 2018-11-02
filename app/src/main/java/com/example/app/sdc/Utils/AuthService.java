@@ -17,15 +17,15 @@ import retrofit2.http.Path;
  */
 
 public interface AuthService {
-    @POST("/loginpenguji/{uid}")
-    Call<ResponseBody> testloginPost(@Path("uid") String usernameId);
+    @POST("/api/loginpenguji/")
+    Call<ResponseBody> testloginPost(@Body RequestBody loginPenguji);
 
-    @GET("/peserta/{id}")
+    @GET("/api/peserta/{id}")
     Call<ResponseBody> loginPeserta(@Path("id") String idPeserta);
 
-    @POST("/soal/")
+    @POST("/api/soal/")
     Call<ResponseBody> submitPeserta(@Body RequestBody hasil);
 
-    @POST("/logoutpenguji/{uid}")
+    @POST("/api/logoutpenguji/{uid}")
     Call<ResponseBody> logoutPost(@Path("uid") String userId);
 }

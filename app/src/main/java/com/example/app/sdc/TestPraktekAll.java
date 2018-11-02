@@ -40,7 +40,6 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
     ProgressDialog progressDialog;
     TesPraktek tes_praktek;
     TesSikap tes_sikap;
-    TesKomentar tesKomentar;
     AuthService mAuthAPIService;
     EditText[]  etJawab;
     int[] questionId;
@@ -56,7 +55,6 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
 
         tes_praktek = new TesPraktek();
         tes_sikap = new TesSikap();
-        tesKomentar = new TesKomentar();
         etJawab = new EditText[jumlahSoal];
         questionId = new int[jumlahSoal];
         progressDialog = new ProgressDialog(TestPraktekAll.this);
@@ -70,7 +68,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
         TextView kategori = (TextView) findViewById(R.id.jenis_tes);
 
         peserta.setText(sessionManager.getNama());
-        kategori.setText(sessionManager.getCate().toString());
+        kategori.setText("Roda " + sessionManager.getCate().toString());
         penguji.setText(sessionManager.getUid());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -149,7 +147,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
             jsonJawab.put("soal_id", sessionManager.getQuestionId(idSoal));
             jsonJawab.put("peserta_id", sessionManager.getPId());
             jsonJawab.put("hasil", Integer.parseInt(jawabanSoal));
-            jsonJawab.put("start", sessionManager.getStartTime());
+//            jsonJawab.put("start", sessionManager.getStartTime());
             soal.put(jsonJawab);
         }
 
@@ -158,10 +156,6 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
         String stringSikap = ((EditText) findViewById(R.id.ET_PerilakuA)).getText().toString();
         String stringBahasa = ((EditText) findViewById(R.id.ET_PerilakuB)).getText().toString();
         String stringKonsen = ((EditText) findViewById(R.id.ET_PerilakuC)).getText().toString();
-
-        String stringPengetahuan = TesKomentar.getPengatahuan();
-        String stringTeknik = TesKomentar.getTeknik();
-        String stringPerilaku = TesKomentar.getPerilaku();
 
         if (stringSikap.isEmpty()){
             Toast.makeText(this, "Harap isi nilai sikap", Toast.LENGTH_SHORT).show();
@@ -184,7 +178,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonSikap.put("soal_id", 1);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
-                jsonSikap.put("start", sessionManager.getStartTime());
+//                jsonSikap.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
@@ -192,7 +186,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonBahasa.put("soal_id", 3);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
-                jsonBahasa.put("start", sessionManager.getStartTime());
+//                jsonBahasa.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
@@ -200,7 +194,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonKonsen.put("soal_id", 2);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
-                jsonKonsen.put("start", sessionManager.getStartTime());
+//                jsonKonsen.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonKonsen);
             } else if (sessionManager.getIdSikap(11) == 11) {
@@ -209,7 +203,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonSikap.put("soal_id", 11);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
-                jsonSikap.put("start", sessionManager.getStartTime());
+//                jsonSikap.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
@@ -217,7 +211,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonBahasa.put("soal_id", 13);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
-                jsonBahasa.put("start", sessionManager.getStartTime());
+//                jsonBahasa.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
@@ -225,20 +219,10 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonKonsen.put("soal_id", 12);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
-                jsonKonsen.put("start", sessionManager.getStartTime());
+//                jsonKonsen.put("start", sessionManager.getStartTime());
 
                 soal.put(jsonKonsen);
             }
-
-            JSONObject comments = new JSONObject();
-
-            comments.put("peserta_id", sessionManager.getPId());
-            comments.put("pengetahuan", stringPengetahuan);
-            comments.put("teknik", stringTeknik);
-            comments.put("perilaku", stringPerilaku);
-            comments.put("penguji", sessionManager.getUid());
-
-            jsonParams.put("comments", comments);
 
             mAuthAPIService = ApiUtils.getAuthAPIService();
 

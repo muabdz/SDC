@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.app.sdc.TesKomentar;
 import com.example.app.sdc.TesPraktek;
 import com.example.app.sdc.TesSikap;
 
@@ -13,8 +12,8 @@ import com.example.app.sdc.TesSikap;
  */
 
 public class TestFragmentAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[]{"Praktek", "Sikap", "TesKomentar"};
+    final int PAGE_COUNT = 2;
+    private String tabTitles[] = new String[]{"Praktek", "Sikap"};
 
     public TestFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -33,8 +32,6 @@ public class TestFragmentAdapter extends FragmentPagerAdapter {
                 return TesPraktek.newInstance(0);
             case 1: // Fragment # 0 - This will show FirstFragment different title
                 return TesSikap.newInstance(1);
-            case 2: // Fragment # 1 - This will show SecondFragment
-                return TesKomentar.newInstance(2);
             default:
                 return null;
         }

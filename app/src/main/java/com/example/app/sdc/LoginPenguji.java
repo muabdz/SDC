@@ -73,69 +73,69 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
         return LoginPenguji.context;
     }
 
-    public void loginHandler(String kodePenguji) {
-        uid = kodePenguji;
-        Map<String, Object> jsonParams = new ArrayMap<>();
-        jsonParams.put("username", uid);
-        mAuthAPIService = new ApiUtils().getAuthAPIService();
-        sessionManager = new SessionManager(this);
-
-        Call<ResponseBody> response = mAuthAPIService.testloginPost(uid);
-
-        response.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> rawResponse) {
-                if (rawResponse.isSuccessful()) {
-                    try {
-
-                        JSONObject jsonObject = new JSONObject(rawResponse.body().string());
-                        status = jsonObject.getBoolean("status");
-                        message = jsonObject.getString("message");
-                        if (!status){
-                            Toast.makeText(LoginPenguji.this, message,
-                                    Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
-                        } else {
-                            username = jsonObject.getString("username");
-
-
-                            new CountDownTimer(1000, 1000) {
-
-                                public void onTick(long millisUntilFinished) {
-                                    // You don't need anything here
-                                }
-
-                                public void onFinish() {
-                                    sessionManager.setUid(username);
-                                    Toast.makeText(LoginPenguji.this, message,
-                                            Toast.LENGTH_LONG).show();
-                                    progressDialog.dismiss();
-                                    Intent movea = new Intent(LoginPenguji.this, LoginPeserta.class);
-                                    startActivity(movea);
-                                    finish();
-                                }
-                            }.start();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(LoginPenguji.this, "Kode Penguji Salah",
-                            Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(LoginPenguji.this, "Login Gagal",
-                        Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
-
-            }
-        });
-    }
+//    public void loginHandler(String kodePenguji) {
+//        uid = kodePenguji;
+//        Map<String, Object> jsonParams = new ArrayMap<>();
+//        jsonParams.put("username", uid);
+//        mAuthAPIService = new ApiUtils().getAuthAPIService();
+//        sessionManager = new SessionManager(this);
+//
+//        Call<ResponseBody> response = mAuthAPIService.testloginPost(uid);
+//
+//        response.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> rawResponse) {
+//                if (rawResponse.isSuccessful()) {
+//                    try {
+//
+//                        JSONObject jsonObject = new JSONObject(rawResponse.body().string());
+//                        status = jsonObject.getBoolean("status");
+//                        message = jsonObject.getString("message");
+//                        if (!status){
+//                            Toast.makeText(LoginPenguji.this, message,
+//                                    Toast.LENGTH_LONG).show();
+//                            progressDialog.dismiss();
+//                        } else {
+//                            username = jsonObject.getString("username");
+//
+//
+//                            new CountDownTimer(1000, 1000) {
+//
+//                                public void onTick(long millisUntilFinished) {
+//                                    // You don't need anything here
+//                                }
+//
+//                                public void onFinish() {
+//                                    sessionManager.setUid(username);
+//                                    Toast.makeText(LoginPenguji.this, message,
+//                                            Toast.LENGTH_LONG).show();
+//                                    progressDialog.dismiss();
+//                                    Intent movea = new Intent(LoginPenguji.this, LoginPeserta.class);
+//                                    startActivity(movea);
+//                                    finish();
+//                                }
+//                            }.start();
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    Toast.makeText(LoginPenguji.this, "Kode Penguji Salah",
+//                            Toast.LENGTH_LONG).show();
+//                    progressDialog.dismiss();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Toast.makeText(LoginPenguji.this, "Login Gagal",
+//                        Toast.LENGTH_LONG).show();
+//                progressDialog.dismiss();
+//
+//            }
+//        });
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -145,7 +145,7 @@ public class LoginPenguji extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_SHORT).show();
             } else {
                 progressDialog.show();
-                loginHandler(result.getContents());
+//                loginHandler(result.getContents());
             }
 
         } else {

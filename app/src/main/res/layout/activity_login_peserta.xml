@@ -14,14 +14,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="#FF6C2C">
+        android:background="@color/colorPrimaryDark">
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="  Penguji :"
-            android:textColor="#fff"
+            android:textColor="#ffffff"
             android:textSize="20dp"
             android:id="@+id/textView2"/>
 
@@ -40,16 +40,16 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_isdc"
+        android:src="@drawable/logosdc"
         android:layout_marginTop="60dp"
         android:id="@+id/logo_isdc"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SCAN QR CODE Peserta"
+        android:text="SCAN QR CODE"
         android:id="@+id/b_scanPeserta"
-        android:background="#FF6C2C"
+        android:background="@color/colorPrimary"
         android:textColor="#fff"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Bantuan"
-        android:text="QR CODE GAGAL"
+        android:text="Gagal Scan? Klik disini."
         android:layout_marginTop="20dp"
         />
 

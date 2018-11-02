@@ -1,20 +1,20 @@
 package com.example.app.sdc.Utils;
 
 import com.example.app.sdc.LoginPenguji;
+import com.example.app.sdc.LoginPengujiKode;
 
 /**
  * Created by Mu'adz on 3/14/2018.
  */
 
 public class ApiUtils {
-    static SessionManager sessionManager;
-    static String hostPort;
-    static String hostIp;
+    private static String hostPort;
+    private static String hostIp;
 
     public ApiUtils(){
-        sessionManager = new SessionManager(LoginPenguji.getAppContext());
-        this.hostPort = sessionManager.getHostPort();
-        this.hostIp = sessionManager.getHostIp();
+        SessionManager sessionManager = new SessionManager(LoginPengujiKode.getAppContext());
+        hostPort = sessionManager.getHostPort();
+        hostIp = sessionManager.getHostIp();
     }
 
     public static AuthService getAuthAPIService() {

@@ -81,10 +81,10 @@ public class LoginPesertaKode extends AppCompatActivity implements View.OnClickL
                             p_id = jsonData.getString("p_id");
                             nama = jsonData.getString("nama");
                             cate = jsonData.getInt("cate");
-                            Date c = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                            String testTime = df.format(c);
-                            sessionManager.setStartTime(testTime);
+//                            Date c = Calendar.getInstance().getTime();
+//                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//                            String testTime = df.format(c);
+//                            sessionManager.setStartTime(testTime);
                             sessionManager.setData(p_id, nama, cate);
 
 
@@ -93,13 +93,12 @@ public class LoginPesertaKode extends AppCompatActivity implements View.OnClickL
                                 jsonObject = jsonSoal.getJSONObject(i);
                                 int kategori = jsonObject.getInt("kategori");
                                 int id = jsonObject.getInt("id");
-                                int nomor = jsonObject.getInt("nomor");
                                 String soal = jsonObject.getString("soal");
-                                if (id > 20) {
-                                    jumsol++;
-                                    sessionManager.setQuestion(nomor, jumsol, soal, kategori, id);
-                                } else {
+                                if (id < 7) {
                                     sessionManager.setSessionSikap(soal, id);
+                                } else {
+                                    jumsol++;
+                                    sessionManager.setQuestion(i, jumsol, soal, kategori, id);
                                 }
                                 sessionManager.setJumlahTotal(jsonSoal.length());
                             }

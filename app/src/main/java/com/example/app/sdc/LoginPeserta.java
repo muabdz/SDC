@@ -10,11 +10,14 @@ import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -118,25 +121,26 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
                             p_id = jsonData.getString("p_id");
                             nama = jsonData.getString("nama");
                             cate = jsonData.getInt("cate");
-                            Date c = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                            String testTime = df.format(c);
-                            sessionManager.setStartTime(testTime);
+//                            Date c = Calendar.getInstance().getTime();
+//                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//                            String testTime = df.format(c);
+//                            sessionManager.setStartTime(testTime);
                             sessionManager.setData(p_id, nama, cate);
 
 
                             int jumsol = 0;
+                            int soalPraktek = 0;
                             for (int i = 0; i < jsonSoal.length(); i++) {
                                 jsonObject = jsonSoal.getJSONObject(i);
                                 int kategori = jsonObject.getInt("kategori");
                                 int id = jsonObject.getInt("id");
-                                int nomor = jsonObject.getInt("nomor");
                                 String soal = jsonObject.getString("soal");
-                                if (kategori > 20) {
-                                    jumsol++;
-                                    sessionManager.setQuestion(nomor, jumsol, soal, kategori, id);
-                                } else {
+                                if (id < 7) {
                                     sessionManager.setSessionSikap(soal, id);
+                                } else {
+                                    soalPraktek++;
+                                    jumsol++;
+                                    sessionManager.setQuestion(soalPraktek, jumsol, soal, kategori, id);
                                 }
                                 sessionManager.setJumlahTotal(jsonSoal.length());
                             }
@@ -230,8 +234,9 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Bantuan:
-                Intent kodePendaftaran = new Intent(this, LoginPesertaKode.class);
-                startActivity(kodePendaftaran);
+//                Intent kodePendaftaran = new Intent(this, LoginPesertaKode.class);
+//                startActivity(kodePendaftaran);
+                gagalScan();
                 break;
 
         }
@@ -306,7 +311,7 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
                                     Toast.makeText(LoginPeserta.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
-                                    Intent movea = new Intent(LoginPeserta.this, LoginPenguji.class);
+                                    Intent movea = new Intent(LoginPeserta.this, LoginPengujiKode.class);
                                     startActivity(movea);
                                     finish();
                                 }
@@ -328,6 +333,52 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+    }
+
+    public void gagalScan(){
+        LinearLayout linearLayout = new LinearLayout(LoginPeserta.this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                50,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        linearLayout.setLayoutParams(lp);
+
+        final EditText etKodePeserta = new EditText(LoginPeserta.this);
+        etKodePeserta.setHint("Kode Peserta");
+        linearLayout.addView(etKodePeserta);
+
+        etKodePeserta.setText("18080001");
+        //dev
+
+        AlertDialog.Builder info = new AlertDialog.Builder(LoginPeserta.this);
+        info.setMessage("Masukkan Kode Peserta").setCancelable(true).setPositiveButton("OK", new AlertDialog.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                try{
+                    String kodePeserta = etKodePeserta.getText().toString();
+                    progressDialog.show();
+                    loginHandler(kodePeserta);
+                }catch (NumberFormatException e){
+                    AlertDialog.Builder infoo = new AlertDialog.Builder(LoginPeserta.this);
+                    infoo.setMessage("Masukkan kode dengan benar").setCancelable(false).setPositiveButton("Coba Lagi", new AlertDialog.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int id){
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog dialog1 = infoo.create();
+                    dialog1.setTitle("Error");
+                    dialog1.show();
+                }
+            }
+        }).setNegativeButton("Batal", new AlertDialog.OnClickListener(){
+            public void onClick(DialogInterface dialog2, int id){
+                dialog2.cancel();
+            }
+        });
+        AlertDialog dialog = info.create();
+        dialog.setView(linearLayout);
+        dialog.setTitle("Gagal Scan");
+        dialog.show();
+
     }
 
     @Override

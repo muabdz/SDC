@@ -112,7 +112,7 @@ public class SessionManager {
 
     public void removeSessionSoal(int nomor, int id){
         prefs.edit().remove(String.valueOf(nomor)).apply();
-        prefs.edit().remove(String.valueOf(nomor)+"sesi").apply();
+//        prefs.edit().remove(String.valueOf(nomor)+"sesi").apply();
         prefs.edit().remove(String.valueOf(id)+"id").apply();
     }
 
@@ -120,7 +120,7 @@ public class SessionManager {
         prefs.edit().remove("p_id").apply();
         prefs.edit().remove("nama").apply();
         prefs.edit().remove("cate").apply();
-        prefs.edit().remove("startTime").apply();
+//        prefs.edit().remove("startTime").apply();
     }
 
     public void removeSessionJumlahSoal(){

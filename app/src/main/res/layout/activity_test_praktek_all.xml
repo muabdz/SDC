@@ -9,33 +9,21 @@
     android:gravity="left"
     tools:context="com.example.app.sdc.TestPraktekAll">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Indonesia Safety Driving Centre"
-        android:textColor="#ffff"
-        android:textStyle="italic"
-        android:textSize="22dp"
-        android:textAlignment="center"
-        android:background="#0A243B"
-        android:id="@+id/jscd_bawah"
-        android:paddingBottom="5dp" />
-
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#FF6C2C"
+    android:background="@color/colorPrimaryDark"
     android:gravity="left">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="  Penguji :"
-        android:background="#FF6C2C"
+        android:background="@color/colorPrimaryDark"
         android:textColor="#fff"
         android:textSize="20dp"
-        android:paddingTop="5dp"
+        android:padding="5dp"
         android:id="@+id/textView2" />
 
     <TextView
@@ -44,6 +32,7 @@
         android:text="Sukri"
         android:layout_marginStart="20sp"
         android:textColor="#fff"
+        android:padding="5dp"
         android:textSize="20dp"
         android:id="@+id/penguji2" />
 </LinearLayout>
@@ -68,9 +57,9 @@
     <TextView
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:background="#999999"
         android:textSize="15dp"
-        android:textColor="#000"
+        android:background="@color/colorAccent"
+        android:textColor="#fff"
         android:id="@+id/peserta"
         android:paddingTop="5dp"
         android:paddingLeft="5dp"
@@ -80,10 +69,10 @@
     <TextView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:background="#999999"
         android:textSize="15dp"
+        android:background="@color/colorAccent"
         android:id="@+id/jenis_tes"
-        android:textColor="#C41414"
+        android:textColor="#fff"
         android:textAlignment="center"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -101,7 +90,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="300sp">
+            android:layout_height="350sp">
         </android.support.v4.view.ViewPager>
 
     <Button
@@ -109,7 +98,7 @@
         android:layout_height="wrap_content"
         android:text="SUBMIT"
         android:id="@+id/bsubmit"
-        android:background="#FF6C2C"
+        android:background="@color/colorPrimary"
         android:textColor="#fff"
         android:layout_gravity="center"
         android:layout_margin="10sp"/>
