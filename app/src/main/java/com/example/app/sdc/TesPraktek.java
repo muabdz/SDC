@@ -82,7 +82,6 @@ public class TesPraktek extends Fragment implements SelectedFragment {
 
             etSoal[i] = new EditText(getActivity());
             etSoal[i].setHint("0");
-            etSoal[i].setText("100");
             etSoal[i].setId(i+300);
             etSoal[i].setTextSize(17);
             etSoal[i].setTextColor(Color.BLACK);

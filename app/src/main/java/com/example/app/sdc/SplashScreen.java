@@ -3,9 +3,8 @@ package com.example.app.sdc;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
 import com.example.app.sdc.Utils.SessionManager;
@@ -41,11 +40,14 @@ public class SplashScreen extends AppCompatActivity {
 
                     // make first time launch TRUE
                     sessionManager.setFirstTimeLaunch(true);
-
-                    startActivity(new Intent(SplashScreen.this, LoginPengujiKode.class));
-                    finish();
-
-
+                    String loggedIn = sessionManager.getUid();
+                    if (loggedIn.isEmpty()){
+                        startActivity(new Intent(SplashScreen.this, LoginPengujiKode.class));
+                        finish();
+                    }else{
+                        startActivity(new Intent(SplashScreen.this, LoginPeserta.class));
+                        finish();
+                    }
                 }
             }
         };

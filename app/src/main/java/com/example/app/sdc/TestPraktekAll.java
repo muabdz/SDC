@@ -26,6 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -35,7 +39,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
     Button bSubmit;
     SessionManager sessionManager;
     TestFragmentAdapter testFragmentAdapter;
-    int jumlahSoal;
+    int jumlahSoal, nilai;
     String status, message;
     ProgressDialog progressDialog;
     TesPraktek tes_praktek;
@@ -44,6 +48,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
     EditText[]  etJawab;
     int[] questionId;
 
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,14 +134,17 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
 
         JSONArray soal = new JSONArray();
 
+        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         for (int i = 1; i < sessionManager.getJumlahSoal(); i++) {
 
             if(TesPraktek.etSoal[i].getText().toString().isEmpty()){
                 Toast.makeText(this, "Harap isi semua soal praktek", Toast.LENGTH_SHORT).show();
-                return;
+                progressDialog.dismiss();
+                break;
             }else if(Integer.parseInt(TesPraktek.etSoal[i].getText().toString())>100||Integer.parseInt(TesPraktek.etSoal[i].getText().toString())<0|| TesPraktek.etSoal[i].getText().toString().contains("-")){
                 Toast.makeText(this, "Masukkan nilai 0 - 100", Toast.LENGTH_SHORT).show();
-                return;
+                progressDialog.dismiss();
+                break;
             }
 
             String jawabanSoal = TesPraktek.etSoal[i].getText().toString();
@@ -147,7 +155,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
             jsonJawab.put("soal_id", sessionManager.getQuestionId(idSoal));
             jsonJawab.put("peserta_id", sessionManager.getPId());
             jsonJawab.put("hasil", Integer.parseInt(jawabanSoal));
-//            jsonJawab.put("start", sessionManager.getStartTime());
+            jsonJawab.put("tanggal", date);
             soal.put(jsonJawab);
         }
 
@@ -178,7 +186,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonSikap.put("soal_id", 1);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
-//                jsonSikap.put("start", sessionManager.getStartTime());
+                jsonSikap.put("tanggal", date);
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
@@ -186,7 +194,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonBahasa.put("soal_id", 3);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
-//                jsonBahasa.put("start", sessionManager.getStartTime());
+                jsonBahasa.put("tanggal", date);
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
@@ -194,37 +202,37 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                 jsonKonsen.put("soal_id", 2);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
-//                jsonKonsen.put("start", sessionManager.getStartTime());
+                jsonKonsen.put("tanggal", date);
 
                 soal.put(jsonKonsen);
             } else if (sessionManager.getIdSikap(11) == 11) {
                 JSONObject jsonSikap = new JSONObject();
 
-                jsonSikap.put("soal_id", 11);
+                jsonSikap.put("soal_id", 4);
                 jsonSikap.put("peserta_id", sessionManager.getPId());
                 jsonSikap.put("hasil", Integer.parseInt(stringSikap));
-//                jsonSikap.put("start", sessionManager.getStartTime());
+                jsonSikap.put("tanggal", date);
 
                 soal.put(jsonSikap);
                 JSONObject jsonBahasa = new JSONObject();
 
-                jsonBahasa.put("soal_id", 13);
+                jsonBahasa.put("soal_id", 6);
                 jsonBahasa.put("peserta_id", sessionManager.getPId());
                 jsonBahasa.put("hasil", Integer.parseInt(stringBahasa));
-//                jsonBahasa.put("start", sessionManager.getStartTime());
+                jsonBahasa.put("tanggal", date);
 
                 soal.put(jsonBahasa);
                 JSONObject jsonKonsen = new JSONObject();
 
-                jsonKonsen.put("soal_id", 12);
+                jsonKonsen.put("soal_id", 5);
                 jsonKonsen.put("peserta_id", sessionManager.getPId());
                 jsonKonsen.put("hasil", Integer.parseInt(stringKonsen));
-//                jsonKonsen.put("start", sessionManager.getStartTime());
+                jsonKonsen.put("tanggal", date);
 
                 soal.put(jsonKonsen);
             }
 
-            mAuthAPIService = ApiUtils.getAuthAPIService();
+            mAuthAPIService = new ApiUtils().getAuthAPIService();
 
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),
                     (jsonParams).toString());
@@ -239,6 +247,7 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                             JSONObject jsonObject = new JSONObject(rawResponse.body().string());
                             message = jsonObject.getString("message");
                             status = jsonObject.getString("status");
+                            nilai = jsonObject.getInt("nilai");
 
                             new CountDownTimer(1000, 1000) {
 
@@ -255,19 +264,40 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
                                     sessionManager.removeSessionSikap(1);
                                     sessionManager.removeSessionSikap(2);
                                     sessionManager.removeSessionSikap(3);
-                                    sessionManager.removeSessionSikap(11);
-                                    sessionManager.removeSessionSikap(12);
-                                    sessionManager.removeSessionSikap(13);
+                                    sessionManager.removeSessionSikap(4);
+                                    sessionManager.removeSessionSikap(5);
+                                    sessionManager.removeSessionSikap(6);
                                     Toast.makeText(TestPraktekAll.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
-                                    Intent movea = new Intent(TestPraktekAll.this, LoginPeserta.class);
-                                    startActivity(movea);
-                                    finish();
+                                    String hasil;
+                                    if (nilai>=70){
+                                        hasil ="LULUS";
+                                    }else{
+                                        hasil ="GAGAL";
+                                    }
+                                    new AlertDialog.Builder(TestPraktekAll.this)
+                                            .setIcon(android.R.drawable.ic_dialog_alert)
+                                            .setTitle("Hasil")
+                                            .setMessage("Peserta dinyatakan "+hasil+" ujian ini dengan nilai "+nilai)
+                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent movea = new Intent(TestPraktekAll.this, LoginPeserta.class);
+                                                    startActivity(movea);
+                                                    finish();
+                                                }
+
+                                            })
+                                            .setCancelable(false)
+                                            .show();
                                 }
                             }.start();
                         } catch (Exception e) {
                             e.printStackTrace();
+                            Toast.makeText(TestPraktekAll.this, "Submit Gagal",
+                                    Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     }
                     else {
@@ -280,15 +310,17 @@ public class TestPraktekAll extends AppCompatActivity implements View.OnClickLis
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    progressDialog.dismiss();
                     Toast.makeText(TestPraktekAll.this, "Submit Gagal",
                             Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
                 }
             });
         } catch (JSONException e) {
             e.printStackTrace();
+            progressDialog.dismiss();
         }
 
 
     }
+
 }

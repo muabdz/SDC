@@ -2,6 +2,7 @@ package com.example.app.sdc;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -53,6 +54,7 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
     String message, p_id, nama, usernamePenguji;
     Boolean status;
     int cate;
+    public static Context context;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
     private GoogleApiClient client;
@@ -61,6 +63,7 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LoginPeserta.context = getApplicationContext();
         setContentView(R.layout.activity_login_peserta);
         sessionManager = new SessionManager(this);
         final Activity activity = this;
@@ -94,11 +97,15 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    public static Context getAppContext() {
+        return LoginPeserta.context;
+    }
     public void loginHandler(String kodePeserta) {
         Map<String, Object> jsonParams = new ArrayMap<>();
         jsonParams.put("username", kodePeserta);
 
-        mAuthAPIService = new ApiUtils().getAuthAPIService();
+        ApiUtils au = new ApiUtils();
+        mAuthAPIService = au.getAuthAPIService();
 
         Call<ResponseBody> response = mAuthAPIService.loginPeserta(kodePeserta);
 
@@ -216,10 +223,12 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
         if (result != null) {
             if (result.getContents() == null) {
                 Toast.makeText(this, "GAGAL", Toast.LENGTH_LONG).show();
             } else {
+
                 progressDialog.show();
                 loginHandler(result.getContents());
             }
@@ -284,7 +293,7 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
         usernamePenguji = sessionManager.getUid();
         jsonParams.put("username", usernamePenguji);
 
-        mAuthAPIService = ApiUtils.getAuthAPIService();
+        mAuthAPIService = new ApiUtils().getAuthAPIService();
 
         Call<ResponseBody> response = mAuthAPIService.logoutPost(usernamePenguji);
 
@@ -308,6 +317,7 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
                                 }
 
                                 public void onFinish() {
+                                    sessionManager.removeUid();
                                     Toast.makeText(LoginPeserta.this, message,
                                             Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
@@ -330,7 +340,9 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                progressDialog.dismiss();
+                Toast.makeText(LoginPeserta.this, "Terjadi Kesalahan",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -346,9 +358,6 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
         final EditText etKodePeserta = new EditText(LoginPeserta.this);
         etKodePeserta.setHint("Kode Peserta");
         linearLayout.addView(etKodePeserta);
-
-        etKodePeserta.setText("18080001");
-        //dev
 
         AlertDialog.Builder info = new AlertDialog.Builder(LoginPeserta.this);
         info.setMessage("Masukkan Kode Peserta").setCancelable(true).setPositiveButton("OK", new AlertDialog.OnClickListener() {
@@ -385,13 +394,12 @@ public class LoginPeserta extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Logout")
+                .setTitle("Keluar")
                 .setMessage("Apakah anda yakin ingin keluar?")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        progressDialog.show();
-                        logoutHandler();
+                        finishAffinity();
                     }
 
                 })

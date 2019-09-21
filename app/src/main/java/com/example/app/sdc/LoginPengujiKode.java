@@ -4,11 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,13 +20,9 @@ import android.widget.Toast;
 import com.example.app.sdc.Utils.ApiUtils;
 import com.example.app.sdc.Utils.AuthService;
 import com.example.app.sdc.Utils.SessionManager;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Map;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -38,7 +33,7 @@ public class LoginPengujiKode extends AppCompatActivity implements View.OnClickL
     String username, message, ipValue, portValue;
 
     boolean status;
-    private static Context context;
+    public static Context context;
     AuthService mAuthAPIService;
     ProgressDialog progressDialog;
     SessionManager sessionManager;
@@ -85,9 +80,9 @@ public class LoginPengujiKode extends AppCompatActivity implements View.OnClickL
                             status = jsonObject.getBoolean("status");
                             message = jsonObject.getString("message");
                             if (!status) {
+                                progressDialog.dismiss();
                                 Toast.makeText(LoginPengujiKode.this, message,
                                         Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
                             } else {
                                 username = jsonObject.getString("username");
 
@@ -109,47 +104,33 @@ public class LoginPengujiKode extends AppCompatActivity implements View.OnClickL
                                 }.start();
                             }
                         } catch (Exception e) {
+                            progressDialog.dismiss();
                             e.printStackTrace();
                             Toast.makeText(LoginPengujiKode.this, "Username Atau Password Tidak Sesuai",
                                     Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
                         }
                     } else {
-                        Toast.makeText(LoginPengujiKode.this, "Username Atau Password Tidak Sesuai",
-                                Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
+                        Toast.makeText(LoginPengujiKode.this, "Terjadi Kesalahan",
+                                Toast.LENGTH_LONG).show();
                     }
 
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginPengujiKode.this, "Terjadi Kesalahan",
+                            Toast.LENGTH_LONG).show();
                 }
             });
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(LoginPengujiKode.this, "Username Atau Password Tidak Sesuai",
+            Toast.makeText(LoginPengujiKode.this, "Terjadi Kesalahan",
                     Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-//        if (result != null) {
-//            if (result.getContents() == null) {
-//                Toast.makeText(this, "GAGAL", Toast.LENGTH_SHORT).show();
-//            } else {
-//                progressDialog.show();
-//                loginHandler(result.getContents());
-//            }
-//
-//        } else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//    }
 
     @Override
     public void onClick(View v) {

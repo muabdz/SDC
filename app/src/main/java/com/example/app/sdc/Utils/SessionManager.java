@@ -51,11 +51,6 @@ public class SessionManager {
         prefs.edit().putInt("jumlah", jumlah).apply();
     }
 
-//    public int getSesi(int num){
-//        int sesi = prefs.getInt(String.valueOf(num)+"sesi", 2);
-//        return sesi;
-//    }
-
     public String getQuestion(int id){
         question = prefs.getString(String.valueOf(id)+"id","error");
         return question;
@@ -106,8 +101,12 @@ public class SessionManager {
     }
 
     public String getUid(){
-        uid = prefs.getString("uid", "error");
+        uid = prefs.getString("uid", "");
         return uid;
+    }
+
+    public void removeUid(){
+        prefs.edit().remove("uid").apply();
     }
 
     public void removeSessionSoal(int nomor, int id){

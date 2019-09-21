@@ -68,15 +68,14 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="41dp"
                 android:hint="0"
-                android:text="100"
-                android:maxLength="3"
                 android:inputType="phone"
-                android:paddingBottom="5sp"
+                android:maxLength="3"
                 android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+                android:singleLine="true"
                 android:textAlignment="center"
                 android:textColor="#000"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ET_PerilakuB"
@@ -87,12 +86,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="41dp"
                 android:hint="0"
-                android:text="100"
                 android:inputType="phone"
-                android:paddingBottom="5sp"
-                android:paddingTop="5sp"
-                android:textAlignment="center"
                 android:maxLength="3"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+                android:singleLine="true"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="20sp" />
 
@@ -104,12 +103,12 @@
                 android:layout_alignBottom="@+id/Ckonsen_C"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="41dp"
-                android:paddingBottom="5sp"
-                android:paddingTop="5sp"
                 android:hint="0"
-                android:text="100"
-                android:maxLength="3"
                 android:inputType="phone"
+                android:maxLength="3"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+                android:singleLine="true"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="20sp" />

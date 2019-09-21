@@ -22,13 +22,13 @@
             android:id="@+id/text4"/>
 
         <EditText
+            android:id="@+id/NoKodePetugas"
             android:layout_width="250sp"
             android:layout_height="wrap_content"
-            android:id="@+id/NoKodePetugas"
-            android:text="staff1"
-            android:hint="Masukkan Username"
             android:layout_marginTop="10dp"
-            android:textAlignment="center"/>
+            android:hint="Masukkan Username"
+            android:singleLine="true"
+            android:textAlignment="center" />
 
         <TextView
             android:layout_marginTop="10sp"
@@ -38,14 +38,14 @@
             android:id="@+id/text5"/>
 
         <EditText
+            android:id="@+id/passwordPetugas"
             android:layout_width="250sp"
             android:layout_height="wrap_content"
-            android:id="@+id/passwordPetugas"
-            android:inputType="textPassword"
-            android:text="admin"
-            android:hint="Masukkan Password"
             android:layout_marginTop="10dp"
-            android:textAlignment="center"/>
+            android:hint="Masukkan Password"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textAlignment="center" />
 
         <Button
             android:layout_width="wrap_content"
